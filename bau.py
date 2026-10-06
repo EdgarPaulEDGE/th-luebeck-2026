@@ -339,17 +339,17 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .epg-karte { position: absolute; left: 1570px; top: 50px; width: 300px; background: #fff; padding: 20px 24px; border-radius: 10px; transform: rotate(-4deg); margin: 0 !important; }
 .epg-person, .dom-person { -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 99%); mask-image: linear-gradient(180deg, #000 72%, transparent 99%); }
 .epg-person.emre, .dom-person.p-emre { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%), linear-gradient(180deg, #000 72%, transparent 99%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%), linear-gradient(180deg, #000 72%, transparent 99%); mask-composite: intersect; }
-.epg-person { position: absolute; bottom: 0; height: 700px; width: auto; margin: 0 !important; max-width: none !important; max-height: none !important; transition: transform 1s cubic-bezier(.5,0,.2,1), opacity .8s; }
+.epg-person { position: absolute; bottom: -34px; height: 700px; width: auto; margin: 0 !important; max-width: none !important; max-height: none !important; transition: transform 1s cubic-bezier(.5,0,.2,1), opacity .8s; }
 .epg-person.emre { left: 560px; }
 .epg-person.eddie { left: 1080px; z-index: 1; }
-.epg-buchstabe { position: absolute; top: 205px; width: 116px; height: 116px; border-radius: 20px; display: grid; place-items: center; font-size: 84px; font-weight: 700; color: #fff;
+.epg-buchstabe { position: absolute; top: 244px; width: 116px; height: 116px; border-radius: 20px; display: grid; place-items: center; font-size: 84px; font-weight: 700; color: #fff;
   background: linear-gradient(150deg, #FF5C7A, #E4003A); opacity: 0; transform: translate(560px, -120px) scale(.4) rotate(-20deg); transition: transform .9s cubic-bezier(.3,1.4,.4,1), opacity .4s; z-index: 3; }
 .epg-schild { position: absolute; padding: 6px 22px 8px; background: #fff; color: #231F28; border-radius: 10px; font-family: "Caveat", cursive; font-weight: 700; font-size: 50px; line-height: 1; white-space: nowrap; transform: translateX(-50%) rotate(-3deg); opacity: 0; transition: opacity .5s; z-index: 3; }
 .epg-schild i { font-style: normal; color: #E4003A; }
-.s-emre { left: 803px; top: 690px; }
-.s-eddie-a, .s-eddie-b { left: 1359px; top: 700px; }
-.epg-krone { position: absolute; left: 1299px; top: 318px; width: 120px; height: 80px; opacity: 0; transform: translateY(-260px) rotate(-30deg); transition: transform .8s cubic-bezier(.3,1.5,.4,1), opacity .3s; z-index: 2; }
-.epg-blase { position: absolute; left: 560px; top: 360px; padding: 14px 26px 18px; background: #fff; color: #231F28; border-radius: 26px; font-family: "Caveat", cursive; font-weight: 700; font-size: 58px; opacity: 0; transition: opacity .4s .7s; z-index: 3; }
+.s-emre { left: 803px; top: 724px; }
+.s-eddie-a, .s-eddie-b { left: 1359px; top: 734px; }
+.epg-krone { position: absolute; left: 1299px; top: 352px; width: 120px; height: 80px; opacity: 0; transform: translateY(-260px) rotate(-30deg); transition: transform .8s cubic-bezier(.3,1.5,.4,1), opacity .3s; z-index: 2; }
+.epg-blase { position: absolute; left: 560px; top: 394px; padding: 14px 26px 18px; background: #fff; color: #231F28; border-radius: 26px; font-family: "Caveat", cursive; font-weight: 700; font-size: 58px; opacity: 0; transition: opacity .4s .7s; z-index: 3; }
 .epg-blase::after { content: ""; position: absolute; left: 30px; bottom: -18px; border: 12px solid transparent; border-top: 16px solid #fff; border-left-width: 4px; }
 .epg-label { position: absolute; left: 130px; top: 250px; margin: 0; font-family: "Caveat", cursive; font-weight: 700; font-size: 64px; color: var(--th-hell); opacity: 0; transition: opacity .4s; }
 /* Klick 1: Eddies Vorschlag */
@@ -410,8 +410,19 @@ body.standbild .dom-szene .epg-schild { transform: translateX(-50%) rotate(-3deg
 body.standbild .polaroid { animation: none !important; }
 
 /* Team heute */
-.slide.team { flex-direction: row !important; padding: 150px 80px 70px; gap: 0; }
-.mitte { width: 420px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 56px; padding-top: 56px; }
+.slide.team { flex-direction: row !important; padding: 172px 60px 60px; gap: 0; }
+.mitte { width: 420px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 50px; padding-top: 72px !important; }
+.slide.team .person.du .rund { width: 216px; height: 216px; }
+.slide.team .person.du figcaption span { white-space: nowrap; font-size: 23px; }
+.slide.team .seiten-titel { font-size: 30px; height: 36px; line-height: 36px; margin-bottom: 36px; }
+.slide.team .person.gross .rund { width: 262px; height: 262px; border-width: 6px; }
+.slide.team .person.gross figcaption { margin-top: 16px; }
+.slide.team .person.gross figcaption b { font-size: 42px; }
+.slide.team .person.gross figcaption span { font-size: 25px; }
+.slide.team .reihe { gap: 22px; margin-top: 56px; }
+.slide.team .reihe .rund { width: 184px; height: 184px; }
+.slide.team .reihe figcaption b { font-size: 30px; }
+.slide.team .reihe figcaption span { font-size: 21px; max-width: 206px; }
 .team-titel { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 56px; font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; margin: 0; }
 .du .rund { --ring: var(--th); border-style: dashed; background: rgba(228,0,58,.06); }
 .du .rund::before { display: none; }
@@ -1279,7 +1290,7 @@ def bau():
 <section class="f-th" data-stimmung="neutral">
   <figure class="polaroid stapel" style="left:990px;top:calc(var(--extra) + 70px);width:600px;--d:-3deg;--y:0px;--i:0;"><img src="assets/fotos/nachtarbeit.jpg" alt=""><figcaption>irgendwann nachts</figcaption></figure><figure class="polaroid stapel" style="left:1515px;top:calc(var(--extra) + 110px);width:330px;--d:6deg;--y:0px;--i:1;"><img src="assets/fotos/moment-bildschirme.jpg" alt=""><figcaption>Mehr Bildschirme.<br>Weniger Probleme.</figcaption></figure><figure class="polaroid stapel" style="left:950px;top:calc(var(--extra) + 545px);width:300px;--d:-6deg;--y:0px;--i:2;"><img src="assets/fotos/moment-ueberflieger.jpg" alt="Eddie und Emre beim Überflieger-Wettbewerb"><figcaption>Überflieger, Kiel 2023</figcaption></figure><figure class="polaroid stapel" style="left:1275px;top:calc(var(--extra) + 520px);width:265px;--d:3deg;--y:0px;--i:3;"><img src="assets/fotos/moment-gewonnen.jpg" alt="Emre mit der Urkunde vom Social Hackathon"><figcaption>Social Hackathon 2024</figcaption></figure><figure class="polaroid stapel" style="left:1565px;top:calc(var(--extra) + 560px);width:300px;--d:-4deg;--y:0px;--i:4;"><img src="assets/fotos/preis-2025.jpg" alt="Das Team auf der Bühne beim Existenzgründerpreis"><figcaption>Existenzgründerpreis 2025</figcaption></figure>
   <div class="slide links-mitte">
-    <h2 class="these" style="max-width:760px;">Anfangen schlägt <span class="schimmer">Planen.</span></h2>
+    <h2 class="these" style="max-width:none;white-space:nowrap;">Anfangen<br><span class="schimmer">&gt;</span> Planen</h2>
   </div>
   {notizen("Echte Momente, keine Planung: Nachtschicht mit Decke über den Schultern, mehr Bildschirme, weniger Probleme. Dann die ersten Bühnen: Überflieger-Wettbewerb in Kiel 2023, Social Hackathon 2024 (Urkunde für den besten Prototyp), Existenzgründerpreis der Lübecker Wirtschaft 2025. Nichts davon stand in einem Businessplan, alles kam, weil wir einfach angefangen haben. Eure eigene Geschichte dazu, wann ihr einfach losgelegt habt.")}
 </section>
@@ -1290,7 +1301,7 @@ def bau():
     <h2 class="headline" style="font-size:70px;max-width:1350px;">Worin Gründer zu früh <span class="schimmer">investieren</span></h2>
     <div class="karten"><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Logo</span><span>Website</span><span>Visitenkarten</span></div><div class="seite hinten"><b>Keiner sieht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Büromöbel</span><span>Büro</span><span>Schicke Gegenstände</span></div><div class="seite hinten"><b>Keiner besucht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Investoren</span><span>Testphasen</span></div><div class="seite hinten"><b>Bubble.</b></div></div></div></div>
   </div>
-  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Tough Talks, ein Format<br>unseres YouTube-Kanals</figcaption></figure>
+  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Das sagte sogar Emre<br>in seinen Tough Talks …</figcaption></figure>
   {notizen("Die drei Punkte stammen aus Emres Whiteboard in den Tough Talks, einem Format unseres YouTube-Kanals (oben rechts). Drei Karten, drei Klicks. Vorne das, worin fast jeder Gründer zuerst Zeit und Geld steckt. Umgedreht die Wahrheit: Logo, Website, Visitenkarten, keiner sieht dich. Büro, Möbel, schicke Sachen, keiner besucht dich. Investoren und ewige Testphasen, du lebst in einer Blase. Emre erzählt dazu, was wir selbst falsch gemacht haben.")}
 </section>
 

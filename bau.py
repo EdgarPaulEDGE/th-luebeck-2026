@@ -761,7 +761,7 @@ body.hochkant .weil-liste li { font-size: 50px; }
 body.hochkant .duo { flex-direction: column; gap: 60px; align-items: center; }
 body.hochkant .chat-buehne { grid-template-columns: 1fr; gap: 50px; }
 body.hochkant .namen-buehne, body.hochkant .namen-buehne .wurde { flex-direction: column; gap: 50px; }
-body.hochkant .fotowand { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); }
+body.hochkant .fotowand { width: 1080px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); }
 body.hochkant .fotoreihe { grid-template-columns: 1fr 1fr; }
 body.hochkant .polaroid img { height: 420px; }
 body.hochkant .slide.team { flex-direction: column !important; align-items: center; padding: 260px 60px 130px; }
@@ -790,6 +790,60 @@ body.hochkant .fenster-bild { width: 1080px; height: 608px; top: 700px; }
 body.hochkant .fenster-name { top: 1330px; font-size: 26px; }
 body.hochkant .balken-zeile { grid-template-columns: 1fr 100px; }
 body.hochkant .balken-zeile .spur, body.hochkant .balken-zeile .platz { grid-column: 1 / -1; }
+/* Handy hochkant: die Bühne ist so hoch wie das Handy (--extra oben und unten), alles Absolute rechnet --extra mit ein */
+body.hochkant .kennen-titel { font-size: 84px !important; }
+body.hochkant .polaroid.gruendung { width: 460px; top: calc(var(--extra) + 450px); }
+body.hochkant .polaroid.gruendung img { height: 500px; }
+body.hochkant .polaroid.gruendung:nth-of-type(1) { left: 60px !important; }
+body.hochkant .polaroid.gruendung:nth-of-type(2) { left: 560px !important; }
+body.hochkant .polaroid.gruendung:nth-of-type(3) { left: 60px !important; top: calc(var(--extra) + 1110px); }
+body.hochkant .polaroid.gruendung:nth-of-type(4) { left: 560px !important; top: calc(var(--extra) + 1110px); }
+body.hochkant .epg-szene { top: calc(var(--extra) + 735px); transform-origin: 0 0; transform: translateX(-31px) scale(.582); }
+body.hochkant .dom-szene { top: calc(var(--extra) + 571px); transform-origin: 0 0; transform: translateX(-260px) scale(.78); }
+body.hochkant .epg-label { left: 70px; top: 330px; font-size: 56px; }
+body.hochkant .bueros { grid-template-columns: repeat(6, 1fr); gap: 44px 24px; margin-top: 90px; padding: 0; }
+body.hochkant .polaroid.buero { grid-column: span 2; }
+body.hochkant .polaroid.buero:nth-child(4) { grid-column: 2 / span 2; }
+body.hochkant .polaroid.buero:nth-child(5) { grid-column: 4 / span 2; }
+body.hochkant .polaroid.buero img { height: 400px; }
+body.hochkant .slide.team { display: grid !important; grid-template-columns: 1fr 1fr; grid-template-areas: "emre emre" "service software" "du du"; align-content: center; justify-items: center; gap: 70px 16px; padding: 250px 30px 120px; }
+body.hochkant .slide.team .team-titel { top: 170px; font-size: 64px; }
+body.hochkant .slide.team .person.gf { grid-area: emre; }
+body.hochkant .slide.team .person.du { grid-area: du; }
+body.hochkant .slide.team .seite.service { grid-area: service; margin: 0; }
+body.hochkant .slide.team .seite.software { grid-area: software; margin: 0; }
+body.hochkant .slide.team .person.gross .rund { width: 250px; height: 250px; }
+body.hochkant .slide.team .person.gf .rund { width: 290px; height: 290px; }
+body.hochkant .slide.team .person.du .rund { width: 220px; height: 220px; }
+body.hochkant .slide.team .reihe { gap: 10px; margin-top: 44px; }
+body.hochkant .slide.team .reihe .rund { width: 150px; height: 150px; }
+body.hochkant .slide.team .reihe figcaption b { font-size: 30px; }
+body.hochkant .slide.team .reihe figcaption span { font-size: 21px; max-width: 168px; }
+body.hochkant .slide.team .person.du figcaption span { font-size: 30px; }
+body.hochkant section:has(> .polaroid.stapel) .slide, body.hochkant section:has(> .orbit) .slide { justify-content: flex-start !important; padding-top: 300px; }
+body.hochkant .polaroid.stapel:nth-of-type(1) { left: 50px !important; top: calc(var(--extra) + 600px) !important; width: 640px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(2) { left: 700px !important; top: calc(var(--extra) + 640px) !important; width: 340px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(3) { left: 40px !important; top: calc(var(--extra) + 1180px) !important; width: 320px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(4) { left: 385px !important; top: calc(var(--extra) + 1160px) !important; width: 300px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(5) { left: 705px !important; top: calc(var(--extra) + 1200px) !important; width: 340px !important; }
+body.hochkant .headline[style*="max-width:1350px"] { max-width: 650px !important; }
+body.hochkant .polaroid.quelle-foto { right: 46px; top: calc(var(--extra) + 160px); width: 290px; }
+body.hochkant .polaroid.quelle-foto figcaption { font-size: 25px; }
+body.hochkant .karte { height: 320px; }
+body.hochkant .orbit { top: calc(var(--extra) + 820px); left: -880px; }
+body.hochkant img.voll.foto-rechts { top: auto; bottom: 0; width: 1080px; height: 1250px; object-position: 88% 50%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
+body.hochkant section:has(> img.foto-rechts) .schleier-links { display: none; }
+body.hochkant section:has(> img.foto-rechts) .slide { justify-content: flex-start !important; padding-top: 420px; }
+body.hochkant .sa-video { top: calc(var(--extra) + 660px); width: 1080px; height: 608px; }
+body.hochkant .sa-titel { top: 560px; left: 60px; }
+body.hochkant .sa-kennung { top: 1290px; bottom: auto; right: auto; left: 60px; }
+body.hochkant .fenster-bild { top: calc(var(--extra) + 700px); }
+body.hochkant .fenster-name { top: calc(var(--extra) + 1330px); }
+body.hochkant .fenster-erklaerung { left: 540px; top: calc(var(--extra) + 470px); }
+body.hochkant .szenarien { grid-template-columns: 1fr; gap: 56px; }
+body.hochkant .szenario .wenn { min-height: 0; }
+body.hochkant .slide.schluss { justify-content: flex-start !important; padding-top: 360px; }
+body.hochkant .ende-foto { height: 1150px; }
 """
 
 
@@ -1017,7 +1071,7 @@ def bau():
     hat_finale = (ORDNER / "assets/illu/finale.jpg").exists()
     hat_pause = (ORDNER / "assets/illu/pause.jpg").exists()
     finale_bild = '<img class="voll" src="assets/illu/finale.jpg" alt="Das Seminargebäude der TH Lübeck im Morgengrauen"><div class="schleier-links"></div>' if hat_finale else kante_ende
-    pause_bild = '<img class="voll" src="assets/illu/pause.jpg" alt="Der EDGE-Roboter im Friesennerz bewacht in der Mensa das letzte Fischbrötchen"><div class="schleier-links"></div>' if hat_pause else ""
+    pause_bild = '<img class="voll foto-rechts" src="assets/illu/pause.jpg" alt="Der EDGE-Roboter im Friesennerz bewacht in der Mensa das letzte Fischbrötchen"><div class="schleier-links"></div>' if hat_pause else ""
 
     folien = f'''
 <!-- ============ TITEL ============ -->
@@ -1152,7 +1206,7 @@ def bau():
   {fotowand()}
   <div class="schleier-unten stark"></div>
   <div class="slide unten">
-    <h2 class="hero" style="font-size:120px;">Kennengelernt am <span class="schimmer">ersten Tag.</span></h2>
+    <h2 class="hero kennen-titel" style="font-size:120px;">Kennengelernt am <span class="schimmer">ersten Tag.</span></h2>
   </div>
   {notizen("September 2019, erster Tag BWL hier an der TH: Da haben wir uns kennengelernt und ab dann zusammen gelernt. Ab März 2020 Corona, Hochschule zu, Zoom bis nachts. Bachelor 2022, dann beide den Master in BWL, fertig Anfang 2024. Nebenbei Werkstudenten: Emre bei PwC als Berater im Public Sector, Eddie im Online-Marketing einer Akademie für Führungskräftetrainings, dort sogar als Seminartrainer, dazu selbstständig mit Content. Gegründet haben wir dann mitten im Master.")}
 </section>
@@ -1338,7 +1392,7 @@ def bau():
 
 <!-- ============ KAPITEL: KI-SKILLS ============ -->
 <section class="f-th" data-stimmung="th" data-chrome="zahl">
-  <img class="voll" src="assets/illu/robo-hoersaal.jpg" alt="Der EDGE-Roboter im roten Hoodie meldet sich im Hörsaal">
+  <img class="voll foto-rechts" src="assets/illu/robo-hoersaal.jpg" alt="Der EDGE-Roboter im roten Hoodie meldet sich im Hörsaal">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
     <h2 class="hero" style="font-size:104px;">Dein neuer<br><span class="schimmer">Kommilitone.</span></h2>
@@ -1514,7 +1568,7 @@ def bau():
 
 <!-- ============ GELDAUTOMAT ============ -->
 <section class="f-th" data-stimmung="neutral">
-  <img class="voll automat-bild" src="assets/illu/geldautomat.jpg" alt="Ein leuchtender Geldautomat im Dunkeln">
+  <img class="voll automat-bild foto-rechts" src="assets/illu/geldautomat.jpg" alt="Ein leuchtender Geldautomat im Dunkeln">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
     <h2 class="these" style="max-width:1100px;font-size:104px;">Der Geldautomat hat die Kassierer <span class="schimmer">nicht abgeschafft.</span></h2>

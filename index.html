@@ -252,13 +252,13 @@ body.chrome-zahl .chrome-edge { opacity: 0; }
    mindestens 34px, sonst wird er am Gerät kleiner als 12px. Dichte Folien (.rollbar) scrollen in sich.
    ========================================================================== */
 .collage-hoch { display: none; }
-body.hochkant .reveal .slides > section { height: 1920px; }
+body.hochkant .reveal .slides > section { height: var(--buehne-h); }
 body.hochkant .slide { width: 1080px; height: 1920px; padding: 190px 70px 130px; }
 body.hochkant .slide.rollbar { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 body.hochkant .slide.rollbar > * { flex-shrink: 0; }
 /* Gescrollter Inhalt blendet unter Logo und Seitenzahl weich aus, statt darunter durchzulaufen */
 body.hochkant .slide.rollbar { -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); }
-body.hochkant .kunst { width: 1080px; height: 1920px; }
+body.hochkant .kunst { width: 1080px; height: var(--buehne-h); }
 body.hochkant .hero { font-size: 94px; }
 body.hochkant .f-lila .hero, body.hochkant .f-dblau .hero { font-size: 76px; }
 body.hochkant .headline { font-size: 70px; }
@@ -267,7 +267,7 @@ body.hochkant .lead { font-size: 44px; }
 body.hochkant .slide.uebergang { justify-content: flex-start; padding-top: 330px; }
 body.hochkant .slide.uebergang::before { background: linear-gradient(180deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.62) 34%, rgba(3,3,9,0) 58%); }
 body.hochkant .titel-logo { width: 780px; }
-body.hochkant .kante { inset: auto; left: -560px; top: 840px; width: 1920px; height: 1080px; }
+body.hochkant .kante { inset: auto; left: -560px; top: calc(840px + var(--extra)); width: 1920px; height: 1080px; }
 body.hochkant section[data-chrome="aus"] .slide { justify-content: flex-start !important; padding-top: 420px; }
 /* Folie 3 */
 body.hochkant .raster-rot { display: flex; flex-direction: column; gap: 26px; flex: none; margin-top: 34px; }
@@ -899,7 +899,7 @@ body.hochkant .weil-liste li { font-size: 50px; }
 body.hochkant .duo { flex-direction: column; gap: 60px; align-items: center; }
 body.hochkant .chat-buehne { grid-template-columns: 1fr; gap: 50px; }
 body.hochkant .namen-buehne, body.hochkant .namen-buehne .wurde { flex-direction: column; gap: 50px; }
-body.hochkant .fotowand { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); }
+body.hochkant .fotowand { width: 1080px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); }
 body.hochkant .fotoreihe { grid-template-columns: 1fr 1fr; }
 body.hochkant .polaroid img { height: 420px; }
 body.hochkant .slide.team { flex-direction: column !important; align-items: center; padding: 260px 60px 130px; }
@@ -928,6 +928,60 @@ body.hochkant .fenster-bild { width: 1080px; height: 608px; top: 700px; }
 body.hochkant .fenster-name { top: 1330px; font-size: 26px; }
 body.hochkant .balken-zeile { grid-template-columns: 1fr 100px; }
 body.hochkant .balken-zeile .spur, body.hochkant .balken-zeile .platz { grid-column: 1 / -1; }
+/* Handy hochkant: die Bühne ist so hoch wie das Handy (--extra oben und unten), alles Absolute rechnet --extra mit ein */
+body.hochkant .kennen-titel { font-size: 84px !important; }
+body.hochkant .polaroid.gruendung { width: 460px; top: calc(var(--extra) + 450px); }
+body.hochkant .polaroid.gruendung img { height: 500px; }
+body.hochkant .polaroid.gruendung:nth-of-type(1) { left: 60px !important; }
+body.hochkant .polaroid.gruendung:nth-of-type(2) { left: 560px !important; }
+body.hochkant .polaroid.gruendung:nth-of-type(3) { left: 60px !important; top: calc(var(--extra) + 1110px); }
+body.hochkant .polaroid.gruendung:nth-of-type(4) { left: 560px !important; top: calc(var(--extra) + 1110px); }
+body.hochkant .epg-szene { top: calc(var(--extra) + 735px); transform-origin: 0 0; transform: translateX(-31px) scale(.582); }
+body.hochkant .dom-szene { top: calc(var(--extra) + 571px); transform-origin: 0 0; transform: translateX(-260px) scale(.78); }
+body.hochkant .epg-label { left: 70px; top: 330px; font-size: 56px; }
+body.hochkant .bueros { grid-template-columns: repeat(6, 1fr); gap: 44px 24px; margin-top: 90px; padding: 0; }
+body.hochkant .polaroid.buero { grid-column: span 2; }
+body.hochkant .polaroid.buero:nth-child(4) { grid-column: 2 / span 2; }
+body.hochkant .polaroid.buero:nth-child(5) { grid-column: 4 / span 2; }
+body.hochkant .polaroid.buero img { height: 400px; }
+body.hochkant .slide.team { display: grid !important; grid-template-columns: 1fr 1fr; grid-template-areas: "emre emre" "service software" "du du"; align-content: center; justify-items: center; gap: 70px 16px; padding: 250px 30px 120px; }
+body.hochkant .slide.team .team-titel { top: 170px; font-size: 64px; }
+body.hochkant .slide.team .person.gf { grid-area: emre; }
+body.hochkant .slide.team .person.du { grid-area: du; }
+body.hochkant .slide.team .seite.service { grid-area: service; margin: 0; }
+body.hochkant .slide.team .seite.software { grid-area: software; margin: 0; }
+body.hochkant .slide.team .person.gross .rund { width: 250px; height: 250px; }
+body.hochkant .slide.team .person.gf .rund { width: 290px; height: 290px; }
+body.hochkant .slide.team .person.du .rund { width: 220px; height: 220px; }
+body.hochkant .slide.team .reihe { gap: 10px; margin-top: 44px; }
+body.hochkant .slide.team .reihe .rund { width: 150px; height: 150px; }
+body.hochkant .slide.team .reihe figcaption b { font-size: 30px; }
+body.hochkant .slide.team .reihe figcaption span { font-size: 21px; max-width: 168px; }
+body.hochkant .slide.team .person.du figcaption span { font-size: 30px; }
+body.hochkant section:has(> .polaroid.stapel) .slide, body.hochkant section:has(> .orbit) .slide { justify-content: flex-start !important; padding-top: 300px; }
+body.hochkant .polaroid.stapel:nth-of-type(1) { left: 50px !important; top: calc(var(--extra) + 600px) !important; width: 640px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(2) { left: 700px !important; top: calc(var(--extra) + 640px) !important; width: 340px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(3) { left: 40px !important; top: calc(var(--extra) + 1180px) !important; width: 320px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(4) { left: 385px !important; top: calc(var(--extra) + 1160px) !important; width: 300px !important; }
+body.hochkant .polaroid.stapel:nth-of-type(5) { left: 705px !important; top: calc(var(--extra) + 1200px) !important; width: 340px !important; }
+body.hochkant .headline[style*="max-width:1350px"] { max-width: 650px !important; }
+body.hochkant .polaroid.quelle-foto { right: 46px; top: calc(var(--extra) + 160px); width: 290px; }
+body.hochkant .polaroid.quelle-foto figcaption { font-size: 25px; }
+body.hochkant .karte { height: 320px; }
+body.hochkant .orbit { top: calc(var(--extra) + 820px); left: -880px; }
+body.hochkant img.voll.foto-rechts { top: auto; bottom: 0; width: 1080px; height: 1250px; object-position: 88% 50%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
+body.hochkant section:has(> img.foto-rechts) .schleier-links { display: none; }
+body.hochkant section:has(> img.foto-rechts) .slide { justify-content: flex-start !important; padding-top: 420px; }
+body.hochkant .sa-video { top: calc(var(--extra) + 660px); width: 1080px; height: 608px; }
+body.hochkant .sa-titel { top: 560px; left: 60px; }
+body.hochkant .sa-kennung { top: 1290px; bottom: auto; right: auto; left: 60px; }
+body.hochkant .fenster-bild { top: calc(var(--extra) + 700px); }
+body.hochkant .fenster-name { top: calc(var(--extra) + 1330px); }
+body.hochkant .fenster-erklaerung { left: 540px; top: calc(var(--extra) + 470px); }
+body.hochkant .szenarien { grid-template-columns: 1fr; gap: 56px; }
+body.hochkant .szenario .wenn { min-height: 0; }
+body.hochkant .slide.schluss { justify-content: flex-start !important; padding-top: 360px; }
+body.hochkant .ende-foto { height: 1150px; }
 
 /* Die Anfänge: Bento-Raster, jedes Foto groß und erkennbar */
 .umzug-folie { padding: 60px 70px; }
@@ -1105,7 +1159,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
   <div class="fotowand"><img src="assets/alt/studium-1.jpg" alt="" loading="lazy"><img src="assets/alt/studium-2.jpg" alt="" loading="lazy"><img src="assets/alt/studium-3.jpg" alt="" loading="lazy"><img src="assets/alt/studium-4.jpg" alt="" loading="lazy"><img src="assets/alt/studium-5.jpg" alt="" loading="lazy"><img src="assets/alt/studium-6.jpg" alt="" loading="lazy"><img src="assets/alt/studium-7.jpg" alt="" loading="lazy"><img src="assets/alt/studium-8.jpg" alt="" loading="lazy"><img src="assets/alt/studium-9.jpg" alt="" loading="lazy"><img src="assets/alt/studium-10.jpg" alt="" loading="lazy"><img src="assets/alt/studium-11.jpg" alt="" loading="lazy"><img src="assets/alt/studium-12.jpg" alt="" loading="lazy"><img src="assets/alt/studium-13.jpg" alt="" loading="lazy"><img src="assets/alt/studium-14.jpg" alt="" loading="lazy"><img src="assets/alt/studium-15.jpg" alt="" loading="lazy"><img src="assets/alt/studium-16.jpg" alt="" loading="lazy"><img src="assets/alt/studium-17.jpg" alt="" loading="lazy"><img src="assets/alt/studium-18.jpg" alt="" loading="lazy"><img src="assets/alt/studium-19.jpg" alt="" loading="lazy"><img src="assets/alt/studium-20.jpg" alt="" loading="lazy"><img src="assets/alt/studium-21.jpg" alt="" loading="lazy"><img src="assets/alt/studium-22.jpg" alt="" loading="lazy"><img src="assets/alt/studium-23.jpg" alt="" loading="lazy"><img src="assets/alt/studium-24.jpg" alt="" loading="lazy"></div>
   <div class="schleier-unten stark"></div>
   <div class="slide unten">
-    <h2 class="hero" style="font-size:120px;">Kennengelernt am <span class="schimmer">ersten Tag.</span></h2>
+    <h2 class="hero kennen-titel" style="font-size:120px;">Kennengelernt am <span class="schimmer">ersten Tag.</span></h2>
   </div>
   <aside class="notes">September 2019, erster Tag BWL hier an der TH: Da haben wir uns kennengelernt und ab dann zusammen gelernt. Ab März 2020 Corona, Hochschule zu, Zoom bis nachts. Bachelor 2022, dann beide den Master in BWL, fertig Anfang 2024. Nebenbei Werkstudenten: Emre bei PwC als Berater im Public Sector, Eddie im Online-Marketing einer Akademie für Führungskräftetrainings, dort sogar als Seminartrainer, dazu selbstständig mit Content. Gegründet haben wir dann mitten im Master.</aside>
 </section>
@@ -1321,7 +1375,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 
 <!-- ============ PAUSE ============ -->
 <section class="f-th" data-stimmung="neutral" data-chrome="zahl">
-  <img class="voll" src="assets/illu/pause.jpg" alt="Der EDGE-Roboter im Friesennerz bewacht in der Mensa das letzte Fischbrötchen"><div class="schleier-links"></div>
+  <img class="voll foto-rechts" src="assets/illu/pause.jpg" alt="Der EDGE-Roboter im Friesennerz bewacht in der Mensa das letzte Fischbrötchen"><div class="schleier-links"></div>
   <div class="slide links-mitte">
     <h2 class="hero">Pause</h2>
     <p class="unterzeile" style="font-size:46px;font-weight:600;color:var(--w-70);margin:18px 0 0;">15 Minuten</p>
@@ -1331,7 +1385,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 
 <!-- ============ KAPITEL: KI-SKILLS ============ -->
 <section class="f-th" data-stimmung="th" data-chrome="zahl">
-  <img class="voll" src="assets/illu/robo-hoersaal.jpg" alt="Der EDGE-Roboter im roten Hoodie meldet sich im Hörsaal">
+  <img class="voll foto-rechts" src="assets/illu/robo-hoersaal.jpg" alt="Der EDGE-Roboter im roten Hoodie meldet sich im Hörsaal">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
     <h2 class="hero" style="font-size:104px;">Dein neuer<br><span class="schimmer">Kommilitone.</span></h2>
@@ -1548,7 +1602,7 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
 
 <!-- ============ GELDAUTOMAT ============ -->
 <section class="f-th" data-stimmung="neutral">
-  <img class="voll automat-bild" src="assets/illu/geldautomat.jpg" alt="Ein leuchtender Geldautomat im Dunkeln">
+  <img class="voll automat-bild foto-rechts" src="assets/illu/geldautomat.jpg" alt="Ein leuchtender Geldautomat im Dunkeln">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
     <h2 class="these" style="max-width:1100px;font-size:104px;">Der Geldautomat hat die Kassierer <span class="schimmer">nicht abgeschafft.</span></h2>
@@ -1627,14 +1681,15 @@ function hochkantSetzen() {
 /* Quer: die Bühne übernimmt das Seitenverhältnis des Bildschirms, damit im Vollbild nichts abgeschnitten
    wirkt (MacBook 16:10 hatte sonst oben und unten Balken und harte Bildkanten). Breite bleibt 1920. */
 function buehnenHoehe() {
-  if (istHochkant()) return 1920;
+  /* Hochkant genauso: Handys sind schmaler als 9:16, die Bühne wird höher statt oben und unten Balken zu zeigen */
+  if (istHochkant()) return Math.max(1920, Math.min(2560, Math.round(1080 * window.innerHeight / window.innerWidth)));
   return Math.max(1080, Math.min(1440, Math.round(1920 * window.innerHeight / window.innerWidth)));
 }
 function buehneSetzen() {
   var h = buehnenHoehe(), quer = !istHochkant(), w = document.documentElement.style;
-  w.setProperty('--buehne-h', quer ? h + 'px' : '1920px');
-  w.setProperty('--extra', quer ? Math.round((h - 1080) / 2) + 'px' : '0px');
-  w.setProperty('--buehne-skala', quer ? String(h / 1080) : '1');
+  w.setProperty('--buehne-h', h + 'px');
+  w.setProperty('--extra', Math.round((h - (quer ? 1080 : 1920)) / 2) + 'px');
+  w.setProperty('--buehne-skala', String(h / (quer ? 1080 : 1920)));
   if (window.Reveal && Reveal.isReady && Reveal.isReady()) {
     var c = Reveal.getConfig();
     if (c.width !== (quer ? 1920 : 1080) || c.height !== h) Reveal.configure({ width: quer ? 1920 : 1080, height: h });

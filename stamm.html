@@ -252,13 +252,13 @@ body.chrome-zahl .chrome-edge { opacity: 0; }
    mindestens 34px, sonst wird er am Gerät kleiner als 12px. Dichte Folien (.rollbar) scrollen in sich.
    ========================================================================== */
 .collage-hoch { display: none; }
-body.hochkant .reveal .slides > section { height: 1920px; }
+body.hochkant .reveal .slides > section { height: var(--buehne-h); }
 body.hochkant .slide { width: 1080px; height: 1920px; padding: 190px 70px 130px; }
 body.hochkant .slide.rollbar { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 body.hochkant .slide.rollbar > * { flex-shrink: 0; }
 /* Gescrollter Inhalt blendet unter Logo und Seitenzahl weich aus, statt darunter durchzulaufen */
 body.hochkant .slide.rollbar { -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); }
-body.hochkant .kunst { width: 1080px; height: 1920px; }
+body.hochkant .kunst { width: 1080px; height: var(--buehne-h); }
 body.hochkant .hero { font-size: 94px; }
 body.hochkant .f-lila .hero, body.hochkant .f-dblau .hero { font-size: 76px; }
 body.hochkant .headline { font-size: 70px; }
@@ -267,7 +267,7 @@ body.hochkant .lead { font-size: 44px; }
 body.hochkant .slide.uebergang { justify-content: flex-start; padding-top: 330px; }
 body.hochkant .slide.uebergang::before { background: linear-gradient(180deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.62) 34%, rgba(3,3,9,0) 58%); }
 body.hochkant .titel-logo { width: 780px; }
-body.hochkant .kante { inset: auto; left: -560px; top: 840px; width: 1920px; height: 1080px; }
+body.hochkant .kante { inset: auto; left: -560px; top: calc(840px + var(--extra)); width: 1920px; height: 1080px; }
 body.hochkant section[data-chrome="aus"] .slide { justify-content: flex-start !important; padding-top: 420px; }
 /* Folie 3 */
 body.hochkant .raster-rot { display: flex; flex-direction: column; gap: 26px; flex: none; margin-top: 34px; }
@@ -358,14 +358,15 @@ function hochkantSetzen() {
 /* Quer: die Bühne übernimmt das Seitenverhältnis des Bildschirms, damit im Vollbild nichts abgeschnitten
    wirkt (MacBook 16:10 hatte sonst oben und unten Balken und harte Bildkanten). Breite bleibt 1920. */
 function buehnenHoehe() {
-  if (istHochkant()) return 1920;
+  /* Hochkant genauso: Handys sind schmaler als 9:16, die Bühne wird höher statt oben und unten Balken zu zeigen */
+  if (istHochkant()) return Math.max(1920, Math.min(2560, Math.round(1080 * window.innerHeight / window.innerWidth)));
   return Math.max(1080, Math.min(1440, Math.round(1920 * window.innerHeight / window.innerWidth)));
 }
 function buehneSetzen() {
   var h = buehnenHoehe(), quer = !istHochkant(), w = document.documentElement.style;
-  w.setProperty('--buehne-h', quer ? h + 'px' : '1920px');
-  w.setProperty('--extra', quer ? Math.round((h - 1080) / 2) + 'px' : '0px');
-  w.setProperty('--buehne-skala', quer ? String(h / 1080) : '1');
+  w.setProperty('--buehne-h', h + 'px');
+  w.setProperty('--extra', Math.round((h - (quer ? 1080 : 1920)) / 2) + 'px');
+  w.setProperty('--buehne-skala', String(h / (quer ? 1080 : 1920)));
   if (window.Reveal && Reveal.isReady && Reveal.isReady()) {
     var c = Reveal.getConfig();
     if (c.width !== (quer ? 1920 : 1080) || c.height !== h) Reveal.configure({ width: quer ? 1920 : 1080, height: h });

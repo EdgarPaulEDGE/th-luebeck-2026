@@ -1,4 +1,4 @@
-/** Fotografiert ausgewählte Folien im Handy-Hochformat (430 x 932 (Handy hochkant)). Aufruf: node werkzeuge/pruefe-1610.mjs adresse ordner 1,3,12 */
+/** Fotografiert ausgewählte Folien im Handy-Hochformat (430 x 932 (Handy hochkant)). Aufruf: node werkzeuge/pruefe-hochkant.mjs adresse ordner 1,3,12 */
 import puppeteer from "puppeteer";
 import { mkdirSync } from "node:fs";
 const [adresse, ordner, liste] = process.argv.slice(2);

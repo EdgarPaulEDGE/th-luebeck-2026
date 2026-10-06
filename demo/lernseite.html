@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angebot und Nachfrage · Lübecker Weihnachtsmarkt</title>
+<style>
+  /* Lernseite aus einem einzigen Prompt: zwei Regler, eine Kurve, ein Beispiel. Läuft im Deck als iframe. */
+  :root { --bg: #0B0A10; --text: #F4F6FF; --leise: rgba(244,246,255,.55); --linie: rgba(244,246,255,.14); --rot: #E4003A; --hell: #FF5C7A; --blau: #7FD4FF; }
+  * { box-sizing: border-box; }
+  /* Im breiten Folienrahmen alles größer, damit es auf dem Beamer lesbar bleibt */
+  @media (min-width: 1400px) { html { zoom: 1.15; } }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif; }
+  body { display: grid; grid-template-columns: 1fr 400px; gap: 34px; padding: 30px 36px; }
+  h1 { margin: 0 0 6px; font-size: 38px; letter-spacing: -.01em; }
+  .unter { margin: 0 0 10px; color: var(--leise); font-size: 22px; }
+  main { display: flex; flex-direction: column; min-height: 0; }
+  svg { width: 100%; flex: 1; min-height: 0; display: block; }
+  .achse { stroke: rgba(244,246,255,.35); stroke-width: 2; }
+  .beschriftung { fill: var(--leise); font-size: 20px; }
+  .kurve-n { stroke: var(--hell); stroke-width: 5; fill: none; stroke-linecap: round; }
+  .kurve-a { stroke: var(--blau); stroke-width: 5; fill: none; stroke-linecap: round; }
+  .hilfslinie { stroke: rgba(244,246,255,.35); stroke-dasharray: 6 6; stroke-width: 1.5; }
+  .punkt { fill: #fff; }
+  .punkt-schein { fill: rgba(255,255,255,.18); }
+  .seite { display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
+  .regler { background: rgba(244,246,255,.04); border: 1px solid var(--linie); border-radius: 14px; padding: 14px 16px; }
+  .regler label { display: flex; justify-content: space-between; font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+  .regler label span { color: var(--leise); font-weight: 500; }
+  input[type=range] { width: 100%; accent-color: var(--rot); height: 30px; }
+  .ergebnis { border-top: 1px solid var(--linie); padding-top: 14px; }
+  .preis { font-size: 76px; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+  .preis small { font-size: 22px; color: var(--leise); font-weight: 500; margin-left: 6px; }
+  .menge { margin-top: 10px; color: var(--leise); font-size: 21px; }
+  .erklaerung { font-size: 22px; line-height: 1.45; margin: 0; color: rgba(244,246,255,.8); min-height: 70px; }
+  .legende { display: flex; gap: 22px; font-size: 19px; color: var(--leise); }
+  .legende i { display: inline-block; width: 18px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Glühwein auf dem Weihnachtsmarkt</h1>
+  <p class="unter">Zieh an den Reglern und sieh zu, wo sich der Preis einpendelt.</p>
+  <svg id="grafik" viewBox="0 0 640 420" aria-label="Angebots- und Nachfragekurve"></svg>
+</main>
+<aside class="seite">
+  <div class="regler">
+    <label for="nachfrage">Besucher <span id="n-wert"></span></label>
+    <input id="nachfrage" type="range" min="-40" max="40" value="0">
+  </div>
+  <div class="regler">
+    <label for="angebot">Glühweinstände <span id="a-wert"></span></label>
+    <input id="angebot" type="range" min="-40" max="40" value="0">
+  </div>
+  <div class="ergebnis">
+    <div class="preis" id="preis"></div>
+    <div class="menge" id="menge"></div>
+  </div>
+  <p class="erklaerung" id="erklaerung"></p>
+  <div class="legende"><span><i style="background:var(--hell)"></i>Nachfrage</span><span><i style="background:var(--blau)"></i>Angebot</span></div>
+</aside>
+<script>
+/* Lineares Modell: Nachfrage P = a - b*Q, Angebot P = c + d*Q. Die Regler verschieben a bzw. c. */
+const svg = document.getElementById('grafik');
+const W = 640, H = 420, L = 60, R = 610, O = 20, U = 370;
+const QMAX = 100, PMAX = 8;
+const x = q => L + (R - L) * q / QMAX, y = p => U - (U - O) * p / PMAX;
+const b = 0.06, d = 0.05;
+
+function zeichnen() {
+  const dn = +document.getElementById('nachfrage').value, da = +document.getElementById('angebot').value;
+  const a = 6.5 + dn * 0.04;           // mehr Besucher: Nachfragekurve wandert nach oben
+  const c = 1.0 - da * 0.025;          // mehr Stände: Angebotskurve wandert nach unten
+  const q = Math.max(0, (a - c) / (b + d)), p = a - b * q;
+  const linie = (f, k) => `<path class="${k}" d="M${x(0)},${y(f(0))} L${x(QMAX)},${y(f(QMAX))}"/>`;
+  svg.innerHTML = `
+    <defs><clipPath id="feld"><rect x="${L}" y="${O}" width="${R - L}" height="${U - O}"/></clipPath></defs>
+    <line class="achse" x1="${L}" y1="${O}" x2="${L}" y2="${U}"/><line class="achse" x1="${L}" y1="${U}" x2="${R}" y2="${U}"/>
+    <text class="beschriftung" x="${L - 10}" y="${O + 4}" text-anchor="end">Preis</text>
+    <text class="beschriftung" x="${R}" y="${U + 30}" text-anchor="end">Verkaufte Becher</text>
+    <g clip-path="url(#feld)">
+      ${linie(Q => a - b * Q, 'kurve-n')}${linie(Q => c + d * Q, 'kurve-a')}
+      <line class="hilfslinie" x1="${L}" y1="${y(p)}" x2="${x(q)}" y2="${y(p)}"/><line class="hilfslinie" x1="${x(q)}" y1="${y(p)}" x2="${x(q)}" y2="${U}"/>
+      <circle class="punkt-schein" cx="${x(q)}" cy="${y(p)}" r="18"/><circle class="punkt" cx="${x(q)}" cy="${y(p)}" r="8"/>
+    </g>`;
+  document.getElementById('preis').innerHTML = p.toFixed(2).replace('.', ',') + ' €<small>pro Becher</small>';
+  document.getElementById('menge').textContent = Math.round(q * 40) + ' Becher pro Abend';
+  document.getElementById('n-wert').textContent = (dn > 0 ? '+' : '') + dn + ' %';
+  document.getElementById('a-wert').textContent = (da > 0 ? '+' : '') + da + ' %';
+  let t = 'Gleichgewicht: So viel wird angeboten, wie die Leute kaufen wollen.';
+  if (dn > 10 && da <= 10) t = 'Mehr Besucher, gleich viele Stände: Es wird knapp, der Preis steigt.';
+  else if (da > 10 && dn <= 10) t = 'Mehr Stände, gleich viele Besucher: Die Stände unterbieten sich, der Preis fällt.';
+  else if (dn > 10 && da > 10) t = 'Beides steigt: Es wird viel mehr verkauft, der Preis bleibt fast gleich.';
+  else if (dn < -10) t = 'Regen, kaum Besucher: Die Stände bleiben auf ihrem Glühwein sitzen, der Preis fällt.';
+  else if (da < -10) t = 'Nur noch wenige Stände: Lange Schlangen, der Preis steigt.';
+  document.getElementById('erklaerung').textContent = t;
+}
+document.querySelectorAll('input').forEach(i => i.addEventListener('input', zeichnen));
+zeichnen();
+</script>
+</body>
+</html>

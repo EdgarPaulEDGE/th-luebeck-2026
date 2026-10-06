@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>KI-Skills zum Mitnehmen · TH Lübeck × EDGE</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  /* Karte zum Mitnehmen: alle Prompts aus dem Vortrag, je mit Kopieren-Knopf. Fürs Handy gebaut. */
+  @font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Regular.ttf") format("truetype"); font-weight: 400; }
+  @font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-DemiBold.ttf") format("truetype"); font-weight: 600; }
+  @font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Bold.ttf") format("truetype"); font-weight: 700; }
+  :root { --bg: #08060C; --text: #F4F6FF; --leise: rgba(244,246,255,.6); --linie: rgba(244,246,255,.12); --rot: #E4003A; --hell: #FF5C7A; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: "Avenir Next LT", "Avenir Next", Avenir, system-ui, sans-serif; line-height: 1.5;
+    background-image: radial-gradient(60% 40% at 90% 0%, rgba(228,0,58,.18), transparent 70%); background-repeat: no-repeat; }
+  main { max-width: 720px; margin: 0 auto; padding: 28px 16px 60px; }
+  .logos { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
+  .logos img { height: 40px; width: auto; display: block; }
+  .logos span { color: var(--leise); }
+  h1 { font-size: 34px; line-height: 1.1; text-transform: uppercase; letter-spacing: -.01em; margin: 0 0 10px; }
+  h1 em { font-style: normal; color: var(--hell); }
+  .unter { color: var(--leise); margin: 0 0 36px; }
+  h2 { font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: var(--hell); margin: 40px 0 14px; }
+  .kompass { display: grid; gap: 10px; }
+  .kompass div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; border-top: 1px solid var(--linie); }
+  .kompass b { color: var(--hell); }
+  .karte { border: 1px solid rgba(228,0,58,.5); background: rgba(228,0,58,.06); border-radius: 16px; padding: 18px 18px 14px; margin-bottom: 16px; }
+  .karte h3 { margin: 0 0 8px; font-size: 20px; }
+  .karte p { margin: 0 0 14px; font-size: 16px; color: rgba(244,246,255,.85); }
+  button { font: inherit; font-weight: 600; font-size: 15px; color: var(--text); background: var(--rot); border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; min-height: 44px; }
+  button.kopiert { background: #2e7d4f; }
+  ul { padding-left: 20px; margin: 0; }
+  li { margin: 6px 0; }
+  footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--linie); color: var(--leise); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="logos"><img src="assets/th/logo-thl-weiss.svg" alt="TH Lübeck"><span>×</span><img src="assets/logos/edge-logo-white.png" alt="EDGE Digital"></div>
+  <h1>KI-Skills <em>zum Mitnehmen</em></h1>
+  <p class="unter">Projektwoche 2026 · Emre Erdogan &amp; Edgar Paul-Ghazaryan</p>
+
+  <h2>Der Kompass</h2>
+  <div class="kompass">
+    <div><b>Rolle</b><span>Wer soll die KI sein?</span></div>
+    <div><b>Aufgabe</b><span>Was genau soll passieren?</span></div>
+    <div><b>Kontext</b><span>Was weißt nur du?</span></div>
+    <div><b>„Förmchen“</b><span>In welcher Form soll es kommen?</span></div>
+  </div>
+
+  <h2>Die Prompts aus dem Vortrag</h2>
+  <div class="karte"><h3>Bewerbung üben</h3><p data-prompt>Du bist Personalerin bei einem Lübecker Medizintechnik-Unternehmen. Führ ein Vorstellungsgespräch mit mir. Eine Frage nach der anderen. Ich bewerbe mich als Werkstudent im Marketing, 3. Semester BWL. Nach jeder Antwort: ehrliches Feedback, höchstens drei Sätze.</p><button type="button">Kopieren</button></div>
+  <div class="karte"><h3>Lernen mit Tutor</h3><p data-prompt>Du bist mein Tutor. Erklär mir Angebot und Nachfrage in drei Sätzen, so dass ich es nie wieder vergesse. Dann stell mir eine Frage und warte auf meine Antwort.</p><button type="button">Kopieren</button></div>
+  <div class="karte"><h3>KI baut dir ein Werkzeug</h3><p data-prompt>Bau mir eine interaktive Lernseite zu Angebot und Nachfrage. Mit zwei Reglern, einer Kurve, die sich live bewegt, und dem Lübecker Weihnachtsmarkt als Beispiel. Eine einzige HTML-Datei.</p><button type="button">Kopieren</button></div>
+  <div class="karte"><h3>Zerreiß meine Idee</h3><p data-prompt>Du bist eine skeptische Investorin. Zerreiß meine Idee: [deine Idee in zwei Sätzen]. Nenn die drei größten Risiken. Kurz.</p><button type="button">Kopieren</button></div>
+  <div class="karte"><h3>Weniger Erfundenes</h3><p data-prompt>Wenn du dir bei einer Antwort nicht sicher bist oder keine Quelle hast, sag mir das offen, statt etwas zu erfinden.</p><button type="button">Kopieren</button></div>
+
+  <h2>Was nie in die KI gehört</h2>
+  <ul><li>Namen, Adressen, Telefonnummern</li><li>Passwörter</li><li>Gesundheitsdaten</li><li>Firmeninterna, auch aus Praktikum oder Abschlussarbeit</li></ul>
+
+  <h2>Drei Gewohnheiten</h2>
+  <ul><li>Erst selbst denken, dann KI fragen.</li><li>Jede Quelle selbst öffnen, jede Zahl gegenprüfen.</li><li>Die Regeln deiner Prüfungsordnung zu KI gelten immer.</li></ul>
+
+  <footer>EDGE Digital · emre@edge-digital.com · edgar@edge-digital.com</footer>
+</main>
+<script>
+/* Kopieren-Knopf: kopiert den Prompt der eigenen Karte */
+document.querySelectorAll('.karte button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var t = b.parentElement.querySelector('[data-prompt]').textContent;
+    var fertig = function () { b.textContent = 'Kopiert'; b.classList.add('kopiert'); setTimeout(function () { b.textContent = 'Kopieren'; b.classList.remove('kopiert'); }, 1800); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(fertig, fertig); else fertig();
+  });
+});
+</script>
+</body>
+</html>

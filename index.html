@@ -1,0 +1,1752 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TH Lübeck × EDGE · Ehemalige Studierende. Heute Unternehmer.</title>
+<meta name="theme-color" content="#030309">
+<!-- Nicht für Suchmaschinen: kein Index, keinen Links folgen, kein Archiv, kein Textausschnitt, keine Bildersuche.
+     Bewusst KEINE robots.txt Sperre: die würde verhindern, dass Crawler diese Anweisung überhaupt lesen. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="vendor/reveal/reveal.css">
+<style>
+/* ============================================================================
+   EDGE DIGITAL · UNTERNEHMENSPRÄSENTATION
+   Stamm: cbl-ueberblick (Raumschwarz, Galaxie, Avenir Next, Schimmer).
+   Dramaturgie: ROT und viele Ecken  >  PINK, weiche Dreiecke  >  LILA, zwei Kreise
+   >  DUNKELBLAU, einzelne Kreise  >  HELLBLAU, nur noch die Kante: die EDGE.
+   Kein box-shadow (decktape PDF Bug). Keine Emojis. Änderungen in bau.py.
+   ========================================================================== */
+
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Regular.ttf") format("truetype"); font-weight: 400; }
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Medium.ttf") format("truetype"); font-weight: 500; }
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-DemiBold.ttf") format("truetype"); font-weight: 600; }
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Bold.ttf") format("truetype"); font-weight: 700; }
+
+:root {
+  /* Bühnenhöhe folgt dem Bildschirm: 1080 bei 16:9, 1200 bei 16:10 (MacBook), bis 1440 bei 4:3. Setzt das Skript unten. */
+  --buehne-h: 1080px; --extra: 0px;
+  --raum: #030309;
+  --weiss: #F4F6FF;
+  --w-70: rgba(244, 246, 255, 0.70);
+  --w-45: rgba(244, 246, 255, 0.45);
+  --w-25: rgba(244, 246, 255, 0.25);
+  --hairline: rgba(244, 246, 255, 0.14);
+  --purple: #C15DE6;
+  --blau: #009FF4;
+  --cyan: #00E2E2;
+  /* Schimmer: drei Stopps, pro Farbphase überschrieben */
+  --s1: var(--purple); --s2: var(--blau); --s3: var(--cyan);
+  /* Ringfarben der Teamfolie: bewusst gedämpft */
+  --ring-service: #F04452;
+  --ring-software: #86C8FF;
+  --ring-gf: #B9A2F5;
+  --font: "Avenir Next LT", "Avenir Next", Avenir, "Nunito Sans", "Segoe UI", sans-serif;
+}
+.f-rot   { --s1: #FF1F3D; --s2: #FF4B2B; --s3: #FF8A5C; }
+.f-pink  { --s1: #FF3D9A; --s2: #FF7AC3; --s3: #FFB3DC; }
+.f-lila  { --s1: #8B5CF6; --s2: #B266FF; --s3: #DDA8FF; }
+.f-dblau { --s1: #3D6BFF; --s2: #2F8BFF; --s3: #4FC3FF; }
+.f-hblau { --s1: #4FC3FF; --s2: #7FD4FF; --s3: #C4EEFF; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { background: var(--raum); font-family: var(--font); }
+.reveal-viewport { background: transparent !important; }
+
+/* ---------- Raum-Ebenen: liegen fix HINTER allen Folien ---------- */
+#kosmos { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; }
+/* Je Farbphase eine Stimmungs-Ebene. Beim Folienwechsel blendet nur die
+   Deckkraft um: so wandert die Farbe weich von Rot nach Blau. */
+.stimmung {
+  position: fixed; inset: -20%; z-index: 0; pointer-events: none; filter: blur(70px);
+  opacity: 0; transition: opacity 1.1s ease;
+}
+body[data-stimmung="neutral"] .st-neutral, body[data-stimmung="rot"] .st-rot, body[data-stimmung="pink"] .st-pink,
+body[data-stimmung="lila"] .st-lila, body[data-stimmung="dblau"] .st-dblau, body[data-stimmung="hblau"] .st-hblau { opacity: 1; }
+.st-neutral { background: radial-gradient(38% 30% at 78% 24%, rgba(0,159,244,.10), transparent 70%), radial-gradient(34% 28% at 16% 80%, rgba(193,93,230,.11), transparent 70%); }
+.st-rot   { background: radial-gradient(46% 42% at 80% 46%, rgba(255,31,61,.26), transparent 70%), radial-gradient(30% 26% at 12% 86%, rgba(255,75,43,.14), transparent 70%); }
+.st-pink  { background: radial-gradient(46% 42% at 78% 50%, rgba(255,79,163,.24), transparent 70%), radial-gradient(30% 26% at 14% 84%, rgba(255,150,210,.12), transparent 70%); }
+.st-lila  { background: radial-gradient(46% 42% at 76% 50%, rgba(139,92,246,.30), transparent 70%), radial-gradient(30% 26% at 14% 84%, rgba(193,93,230,.14), transparent 70%); }
+.st-dblau { background: radial-gradient(46% 42% at 78% 50%, rgba(47,91,255,.30), transparent 70%), radial-gradient(30% 26% at 14% 84%, rgba(20,50,200,.16), transparent 70%); }
+.st-hblau { background: radial-gradient(40% 46% at 84% 50%, rgba(127,212,255,.20), transparent 70%); }
+.vignette {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(140% 120% at 50% 42%, transparent 50%, rgba(1,1,4,.88) 100%);
+}
+
+/* ---------- Reveal-Grundgerüst ---------- */
+.reveal { font-family: var(--font); font-size: 30px; color: var(--weiss); }
+.reveal .slides { text-align: left; }
+.reveal .slides > section { padding: 0; height: var(--buehne-h); }
+.reveal .progress { color: var(--weiss); height: 4px; }
+.reveal .controls { color: var(--w-45); }
+
+.slide {
+  width: 1920px; height: 1080px; position: relative;
+  display: flex !important; flex-direction: column;
+  padding: 132px 130px 96px;
+  /* Das 16:9 Layout sitzt mittig auf der höheren Bühne, darüber und darunter läuft nur der Hintergrund weiter */
+  margin-top: var(--extra);
+}
+/* Formen liegen hinter dem Text, innerhalb der Folie */
+.kunst { position: absolute; inset: 0; width: 1920px; height: var(--buehne-h); pointer-events: none; }
+/* Die Kante ist auf 1080 gebaut und bleibt mittig, ihr Schein läuft oben und unten ohnehin ins Nichts aus */
+.kunst.kante { height: 1080px; top: var(--extra); }
+
+body.standbild *, body.standbild *::before, body.standbild *::after { animation-duration: .001s !important; animation-delay: 0s !important; transition: none !important; }
+body.standbild .reveal .controls, body.standbild .reveal .progress { display: none !important; }
+
+/* ---------- Typografie ---------- */
+h1, h2, h3 { margin: 0; font-family: var(--font); }
+.hero {
+  font-size: 150px; line-height: 1.08; letter-spacing: -.025em; font-weight: 700;
+  text-transform: uppercase; margin: 0;
+}
+.headline {
+  font-size: 80px; line-height: 1.12; letter-spacing: -.02em; font-weight: 700;
+  text-transform: uppercase; margin: 0 0 20px; flex-shrink: 0;
+}
+.schimmer {
+  background: linear-gradient(96deg, var(--s1), var(--s2) 52%, var(--s3));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* Unterlängen und das Auslassungszeichen sonst angeschnitten */
+  padding: 0 .06em .08em 0;
+}
+.lead { color: var(--w-70); font-size: 36px; line-height: 1.5; margin: 0; }
+.label { font-weight: 600; font-size: 20px; letter-spacing: .16em; text-transform: uppercase; color: var(--w-45); margin: 0; }
+
+/* ---------- Übergangsfolien: ein Satz, sehr groß, links ---------- */
+.slide.uebergang { justify-content: center; }
+.slide.uebergang::before {
+  /* Dunkler Schleier hinter der Schrift, damit sie über den Formen sicher lesbar bleibt */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.70) 42%, rgba(3,3,9,0) 72%);
+}
+.slide.uebergang .hero { position: relative; }
+
+/* ---------- Deckblatt ---------- */
+.titel-logo { width: 640px; height: auto; display: block; }
+
+/* ---------- Folie 3: sechs Baustellen, kantig ---------- */
+.raster-rot { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 26px; flex: 1; margin-top: 26px; min-height: 0; }
+.kachel-rot {
+  /* Abgeschnittene Ecke statt Rundung: die rote Phase besteht aus Kanten */
+  --schnitt: 34px; padding: 1.5px; min-height: 0;
+  background: linear-gradient(140deg, rgba(255,31,61,.95), rgba(255,75,43,.30) 55%, rgba(255,31,61,.55));
+  clip-path: polygon(0 0, calc(100% - var(--schnitt)) 0, 100% var(--schnitt), 100% 100%, var(--schnitt) 100%, 0 calc(100% - var(--schnitt)));
+}
+.kachel-rot > div {
+  height: 100%; padding: 34px 38px 30px; display: flex; flex-direction: column;
+  background: linear-gradient(160deg, #14070b, #0a060c 60%);
+  clip-path: polygon(0 0, calc(100% - var(--schnitt)) 0, 100% var(--schnitt), 100% 100%, var(--schnitt) 100%, 0 calc(100% - var(--schnitt)));
+}
+/* Icon auf Schwarz gerendert: screen blendet das Schwarz weg, nur das Leuchten bleibt.
+   Fest oben rechts verankert, der Satz hält rechts Abstand. Kein float: lange Titel rutschen sonst darunter. */
+.kr-kopf { display: block; position: relative; }
+.kr-icon { position: absolute; top: -18px; right: -20px; width: 156px; height: 156px; mix-blend-mode: screen; display: block; margin: 0; }
+.kr-titel { margin: 0 0 16px; font-size: 23px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #FF5468; }
+.kr-satz { margin: 0; padding-right: 118px; font-size: 28px; line-height: 1.32; font-weight: 600; color: var(--weiss); }
+.kr-tags { margin: auto 0 0; padding-top: 14px; font-size: 20px; color: var(--w-45); white-space: nowrap; }
+
+/* ---------- Folie 5: Collage, randlos über die ganze Folie ---------- */
+.collage { position: absolute; inset: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
+
+/* Dunkler Schleier nur in den linken Ecken: dort sitzen Logo und Seitenzahl, das Foto darunter ist teils hell */
+.collage-schleier { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(420px 190px at 0 0, rgba(3,3,9,.78), transparent 100%), radial-gradient(240px 150px at 0 100%, rgba(3,3,9,.78), transparent 100%); }
+
+/* ---------- Folie 7: Referenzwand ---------- */
+.slide.wand { padding: 116px 110px 56px; }
+.logos { display: grid; align-items: center; justify-items: center; flex-shrink: 0; }
+.logos > div { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.logos img { display: block; margin: 0; width: auto; height: auto; object-fit: contain; }
+.logos.gross { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 126px; column-gap: 40px; }
+.logos.gross img { max-width: 250px; max-height: 96px; opacity: .96; }
+.logos.klein { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0; }
+.logos.klein > div { width: calc(100% / var(--spalten, 10)); height: 88px; padding: 0 13px; }
+.logos.klein img { max-width: 100%; max-height: 58px; opacity: .84; }
+.trenner { border: none; height: 1px; width: 100%; flex-shrink: 0; margin: 22px 0 18px; background: linear-gradient(90deg, transparent, rgba(178,102,255,.7), transparent); }
+.namen { margin: 20px 0 0; text-align: center; font-size: 21px; line-height: 1.6; color: var(--w-45); font-weight: 500; flex-shrink: 0; }
+/* Preise: bewusst offen gesetzt, ohne Kästen, Rahmen oder Flächen. Nur Name, Logo und Luft. */
+.preise { margin-top: auto; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.preise .label { color: var(--w-45); }
+.preis-reihe { display: flex; align-items: center; justify-content: center; gap: 60px; }
+.preis { display: flex; align-items: center; gap: 11px; color: #C9A6FF; }
+.preis b { font-size: 20px; font-weight: 600; color: var(--weiss); white-space: nowrap; }
+.preis img { height: 23px; width: auto; max-width: 170px; opacity: .8; object-fit: contain; display: block; margin: 0 0 0 4px !important; }
+.preis img[src*="socialhackathon"], .preis img[src*="lnpreis"] { height: 38px; }
+.preis img[src*="sparkasse"] { height: 32px; }
+
+/* ---------- Folie 9: Team. Ruhig halten, die Ringe tragen die Farbe ---------- */
+.slide.team { flex-direction: row !important; padding: 108px 80px 56px; gap: 0; }
+.seite { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.mitte { padding-top: 56px !important; width: 400px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 0 20px; }
+.seiten-titel { margin: 0 0 26px; height: 30px; line-height: 30px; font-size: 25px; font-weight: 600; color: var(--w-70); text-align: center; }
+.person { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.rund {
+  --ring: var(--w-25); position: relative; width: 150px; height: 150px; border-radius: 50%;
+  border: 4px solid var(--ring);
+  /* Glasscheibe wie in der SoulByte Schulung: verschiedene Ursprungsfotos sitzen so in derselben Bildwelt */
+  background: radial-gradient(75% 70% at 50% 12%, rgba(244,246,255,.10), transparent 62%), radial-gradient(80% 80% at 50% 100%, color-mix(in srgb, var(--ring) 16%, transparent), transparent 60%), rgba(12,16,30,.86);
+}
+.rund::before {
+  /* Glow ohne box-shadow: weicher Farbschein hinter dem Kreis */
+  content: ""; position: absolute; inset: -22px; border-radius: 50%; z-index: -1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--ring) 42%, transparent) 46%, transparent 70%);
+}
+.rund img, .rund .leer { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; margin: 0; }
+.rund img { object-fit: cover; object-position: center bottom; display: block; }
+.person.gross .rund { width: 214px; height: 214px; border-width: 5px; }
+.person.gf .rund { width: 214px; height: 214px; border-width: 5px; }
+.person figcaption { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+.person figcaption b { font-size: 25px; font-weight: 700; color: var(--weiss); }
+.person figcaption span { font-size: 18px; line-height: 1.25; color: var(--w-45); max-width: 176px; min-height: 45px; }
+.person.gross figcaption b { font-size: 34px; }
+.person.gross figcaption span, .person.gf figcaption span { font-size: 21px; max-width: none; min-height: 0; color: var(--w-70); }
+.person.gf figcaption b { font-size: 34px; }
+.service .rund { --ring: var(--ring-service); }
+.software .rund { --ring: var(--ring-software); }
+.gf .rund { --ring: var(--ring-gf); }
+/* Gehört nicht zu uns: schwarzer Ring, kein Glow, leicht entsättigt */
+.fremd .rund { --ring: #000; border-color: #000; outline: 1px solid rgba(244,246,255,.16); }
+.fremd .rund::before { display: none; }
+.fremd .rund img { filter: saturate(.55) brightness(.92); }
+.person.fehlt .rund { border-style: dashed; }
+.person.fehlt .leer { display: grid; place-items: center; font-size: 46px; font-weight: 700; color: var(--w-25); }
+.reihe { display: flex; justify-content: center; gap: 26px; margin-top: 16px; }
+.punkte { list-style: none; margin: 16px 0 0; padding: 0; width: 100%; max-width: 640px; }
+.punkte li { position: relative; padding: 6px 0 6px 28px; font-size: 22.5px; line-height: 1.3; white-space: nowrap; color: var(--w-70); border-top: 1px solid var(--hairline); margin: 0; }
+.punkte li:last-child { border-bottom: 1px solid var(--hairline); }
+.punkte li::before { content: ""; position: absolute; left: 4px; top: 16px; width: 9px; height: 9px; border-radius: 50%; }
+.service .punkte li::before { background: var(--ring-service); }
+.software .punkte li::before { background: var(--ring-software); }
+.gag { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.gag-text { margin: 16px 0 0; font-size: 20px; line-height: 1.45; color: var(--w-45); }
+.gag-text b { color: var(--w-70); font-weight: 600; }
+
+/* ---------- Folie 10: Ende ---------- */
+.slide.ende { justify-content: center; padding-right: 700px; padding-bottom: 230px; }
+.slide.ende .hero { font-size: 116px; white-space: nowrap; }
+.slide.ende .lead { margin-top: 34px; max-width: 900px; }
+.kontakt { position: absolute; left: 130px; bottom: 84px; display: flex; align-items: center; gap: 36px; }
+.kontakt img { height: 58px; width: auto; margin: 0; display: block; }
+.kontakt p { margin: 0; font-size: 34px; line-height: 1.35; font-weight: 600; color: #fff; border-left: 1px solid var(--hairline); padding-left: 36px; }
+
+/* ---------- Chrome (fixe Overlays) ---------- */
+.chrome { position: fixed; z-index: 20; pointer-events: none; transition: opacity .3s; }
+.chrome-edge { top: calc(var(--folie-oben, 0px) + 34px * var(--folie-skala, 1)); left: calc(var(--folie-links, 0px) + 56px * var(--folie-skala, 1)); }
+.chrome-edge img { height: calc(50px * var(--folie-skala, 1)); display: block; }
+.chrome-num {
+  bottom: calc(var(--folie-unten, 0px) + 36px * var(--folie-skala, 1)); left: calc(var(--folie-links, 0px) + 60px * var(--folie-skala, 1));
+  font-weight: 600; font-size: calc(21px * var(--folie-skala, 1)); letter-spacing: .12em; color: var(--w-45);
+}
+body.chrome-aus .chrome-edge, body.chrome-aus .chrome-num { opacity: 0; }
+body.chrome-zahl .chrome-edge { opacity: 0; }
+
+/* ============================================================================
+   HOCHKANT (Handy im Hochformat). Schaltet sich per JS ein: body.hochkant, Bühne 1080 x 1920.
+   Das Handy zeigt diese Bühne auf rund 36 Prozent verkleinert. Lesetext braucht hier deshalb
+   mindestens 34px, sonst wird er am Gerät kleiner als 12px. Dichte Folien (.rollbar) scrollen in sich.
+   ========================================================================== */
+.collage-hoch { display: none; }
+body.hochkant .reveal .slides > section { height: 1920px; }
+body.hochkant .slide { width: 1080px; height: 1920px; padding: 190px 70px 130px; }
+body.hochkant .slide.rollbar { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+body.hochkant .slide.rollbar > * { flex-shrink: 0; }
+/* Gescrollter Inhalt blendet unter Logo und Seitenzahl weich aus, statt darunter durchzulaufen */
+body.hochkant .slide.rollbar { -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); }
+body.hochkant .kunst { width: 1080px; height: 1920px; }
+body.hochkant .hero { font-size: 94px; }
+body.hochkant .f-lila .hero, body.hochkant .f-dblau .hero { font-size: 76px; }
+body.hochkant .headline { font-size: 70px; }
+body.hochkant .label { font-size: 28px; }
+body.hochkant .lead { font-size: 44px; }
+body.hochkant .slide.uebergang { justify-content: flex-start; padding-top: 330px; }
+body.hochkant .slide.uebergang::before { background: linear-gradient(180deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.62) 34%, rgba(3,3,9,0) 58%); }
+body.hochkant .titel-logo { width: 780px; }
+body.hochkant .kante { inset: auto; left: -560px; top: 840px; width: 1920px; height: 1080px; }
+body.hochkant section[data-chrome="aus"] .slide { justify-content: flex-start !important; padding-top: 420px; }
+/* Folie 3 */
+body.hochkant .raster-rot { display: flex; flex-direction: column; gap: 26px; flex: none; margin-top: 34px; }
+body.hochkant .kachel-rot > div { padding: 40px 44px 36px; }
+body.hochkant .kr-titel { font-size: 31px; }
+body.hochkant .kr-satz { font-size: 41px; padding-right: 170px; }
+body.hochkant .kr-tags { font-size: 28px; white-space: normal; padding-top: 22px; }
+body.hochkant .kr-icon { width: 190px; height: 190px; }
+/* Folie 5 */
+body.hochkant .collage { display: none; }
+body.hochkant .collage-hoch { display: block; position: absolute; inset: 0; }
+body.hochkant .collage-hoch > div { height: 960px; background-image: url("assets/collage/collage.jpg"); background-size: 2160px auto; background-repeat: no-repeat; }
+/* Folie 7 */
+body.hochkant .slide.wand { padding: 190px 60px 130px; }
+body.hochkant .logos.gross { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 178px; column-gap: 34px; }
+body.hochkant .logos.gross img { max-width: 290px; max-height: 128px; }
+body.hochkant .logos.klein > div { width: 33.333%; height: 138px; padding: 0 22px; }
+body.hochkant .logos.klein img { max-height: 92px; }
+body.hochkant .preise { margin-top: 60px; gap: 30px; }
+body.hochkant .preis-reihe { flex-direction: column; gap: 34px; }
+body.hochkant .preis b { font-size: 36px; white-space: normal; text-align: center; }
+body.hochkant .preis img { height: 46px; max-width: 300px; }
+body.hochkant .preis img[src*="socialhackathon"], body.hochkant .preis img[src*="lnpreis"] { height: 74px; }
+body.hochkant .preis img[src*="sparkasse"] { height: 64px; }
+/* Folie 9: erst Emre, dann Service, dann Software, zum Schluss der Gag */
+body.hochkant .slide.team { flex-direction: column !important; align-items: center; padding: 190px 60px 130px; }
+body.hochkant .mitte { display: contents; }
+body.hochkant .person.gf { order: -2; }
+body.hochkant .gag { order: 99; margin-top: 90px; }
+body.hochkant .seite { flex: none; width: 100%; margin-top: 90px; }
+body.hochkant .seiten-titel { font-size: 40px; height: auto; line-height: 1.3; margin-bottom: 36px; }
+body.hochkant .rund { width: 250px; height: 250px; border-width: 6px; }
+body.hochkant .person.gross .rund, body.hochkant .person.gf .rund { width: 360px; height: 360px; border-width: 7px; }
+body.hochkant .person figcaption b { font-size: 40px; }
+body.hochkant .person figcaption span { font-size: 29px; max-width: 290px; min-height: 0; }
+body.hochkant .person.gross figcaption b, body.hochkant .person.gf figcaption b { font-size: 52px; }
+body.hochkant .person.gross figcaption span, body.hochkant .person.gf figcaption span { font-size: 34px; }
+body.hochkant .reihe { gap: 40px; margin-top: 44px; }
+body.hochkant .punkte { max-width: none; margin-top: 44px; }
+body.hochkant .punkte li { font-size: 35px; white-space: normal; padding: 16px 0 16px 44px; }
+body.hochkant .punkte li::before { top: 34px; width: 14px; height: 14px; }
+body.hochkant .gag-text { font-size: 33px; }
+/* Folie 10 */
+body.hochkant .slide.ende { justify-content: flex-start; padding: 330px 70px 0; }
+body.hochkant .slide.ende .hero { font-size: 100px; }
+body.hochkant .slide.ende .lead { max-width: none; }
+body.hochkant .kontakt { left: 70px; bottom: 170px; flex-direction: column; align-items: flex-start; gap: 30px; }
+body.hochkant .kontakt img { height: 84px; }
+body.hochkant .kontakt p { border-left: none; padding-left: 0; font-size: 46px; }
+/* Logo und Seitenzahl */
+body.hochkant .chrome-edge img { height: calc(64px * var(--folie-skala, 1)); }
+body.hochkant .chrome-num { font-size: calc(26px * var(--folie-skala, 1)); }
+
+/* ---------- TH Lübeck Projektwoche 2026: Zusatzstil ---------- */
+body.standbild .reveal .slides section .fragment { opacity: 1 !important; visibility: inherit !important; transform: none !important; }
+:root { --th: #E4003A; --th-hell: #FF5C7A; --th-zart: #FF9FB1; --edge-blau: #7FD4FF; }
+/* TH-Phase: Schimmer von TH-Rot ins Helle. Die EDGE-Phase am Ende nutzt f-hblau aus dem Stamm. */
+.f-th { --s1: #E4003A; --s2: #FF3D63; --s3: #FF9FB1; }
+.st-th { background: radial-gradient(46% 42% at 80% 46%, rgba(228,0,58,.26), transparent 70%), radial-gradient(30% 26% at 12% 86%, rgba(255,92,122,.12), transparent 70%); }
+.st-neutral { background: radial-gradient(38% 30% at 78% 24%, rgba(228,0,58,.10), transparent 70%), radial-gradient(34% 28% at 16% 80%, rgba(255,92,122,.07), transparent 70%) !important; }
+body[data-stimmung="th"] .st-th { opacity: 1; }
+
+/* Vollflächige Bilder und Schleier (aus dem Stamm Deutsche Bank) */
+.voll { position: absolute; inset: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.schleier-links { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.72) 30%, rgba(3,3,9,.18) 52%, rgba(3,3,9,0) 64%); }
+.schleier-unten { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,3,9,.94) 0%, rgba(3,3,9,.6) 28%, rgba(3,3,9,0) 55%); }
+.schleier-unten.stark { background: linear-gradient(0deg, rgba(3,3,9,.97) 0%, rgba(3,3,9,.85) 24%, rgba(3,3,9,.35) 48%, rgba(3,3,9,0) 66%); }
+.schleier-ganz { position: absolute; inset: 0; background: rgba(3,3,9,.55); }
+.bild-quelle { position: absolute; right: 40px; bottom: 26px; font-size: 16px; color: rgba(244,246,255,.4); letter-spacing: .06em; }
+.slide.mittig { justify-content: center; align-items: center; text-align: center; }
+.slide.unten { justify-content: flex-end; padding-bottom: 120px; }
+.slide.links-mitte { justify-content: center; }
+.schatten { text-shadow: 0 6px 40px rgba(3,3,9,.85), 0 2px 10px rgba(3,3,9,.6); }
+@keyframes auftauchen { to { opacity: 1; } }
+@keyframes hochkommen { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+
+
+/* Nummern im drehenden Verlaufsring */
+.ring { position: relative; display: inline-grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; flex-shrink: 0; isolation: isolate; overflow: hidden; }
+.ring::before { content: ""; position: absolute; inset: -40%; background: conic-gradient(from 0deg, #E4003A, #FF9FB1, #7FD4FF, #E4003A); animation: drehen 5s linear infinite; z-index: -2; }
+.ring::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #0A0710; z-index: -1; }
+.ring b { font-size: 40px; font-weight: 700; color: var(--weiss); }
+@keyframes drehen { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ring::before { animation: none; } }
+
+/* Titel */
+.titel-duo { display: flex; align-items: center; gap: 36px; position: relative; }
+.titel-duo .th-logo { height: 118px; width: auto; display: block; margin: 0; }
+.titel-duo .edge-logo { height: 96px; width: auto; display: block; margin: 0; }
+.titel-duo .mal { font-size: 52px; font-weight: 400; color: var(--w-45); line-height: 1; }
+.deckblatt { justify-content: space-between; padding-top: 104px; padding-bottom: 92px; }
+.deckblatt .hero { font-size: 128px; position: relative; }
+.deckblatt .unterzeile { font-size: 46px; font-weight: 600; margin: 26px 0 0; color: var(--w-70); position: relative; letter-spacing: .02em; }
+.ecken { position: relative; display: flex; justify-content: space-between; font-size: 24px; font-weight: 600; letter-spacing: .08em; color: var(--w-45); margin-top: 60px; }
+
+/* Große Fragen */
+.frage-gross { font-size: 132px; line-height: 1.06; font-weight: 700; letter-spacing: -.025em; text-transform: uppercase; margin: 0; }
+.nein { font-size: 420px; line-height: .9; font-weight: 700; letter-spacing: -.04em; margin: 0; }
+.vielleicht { position: relative; font-size: 96px; font-weight: 700; letter-spacing: -.02em; margin: 0; }
+.weil-liste { list-style: none; margin: 60px 0 0; padding: 0; }
+.weil-liste li { font-size: 62px; line-height: 1.2; font-weight: 600; padding: 24px 0 24px 0; border-top: 1px solid var(--hairline); color: var(--weiss); }
+.weil-liste li:last-child { border-bottom: 1px solid var(--hairline); }
+.weil-liste li span { color: var(--w-45); font-weight: 500; }
+
+/* Wer sind wir: zwei Freisteller */
+.duo { display: flex; justify-content: center; gap: 140px; margin-top: auto; margin-bottom: 0; }
+.duo figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.duo .rund { width: 380px; height: 380px; border-width: 6px; --ring: var(--th); }
+.duo figcaption { margin-top: 26px; text-align: center; }
+.duo figcaption b { display: block; font-size: 46px; font-weight: 700; }
+.duo figcaption span { display: block; font-size: 26px; color: var(--w-45); margin-top: 6px; letter-spacing: .04em; }
+
+/* Wer sind wir: Freisteller groß */
+.duo-frei { position: absolute; right: 40px; bottom: calc(0px - var(--extra)); height: 980px; width: auto; margin: 0 !important; max-width: none !important; max-height: none !important; filter: drop-shadow(0 0 60px rgba(228,0,58,.25)); }
+.namen-duo { display: flex; flex-direction: column; gap: 22px; margin-top: 60px; }
+.namen-duo p { margin: 0; display: flex; flex-direction: column; border-left: 4px solid var(--th); padding-left: 24px; }
+.namen-duo b { font-size: 44px; font-weight: 700; }
+.namen-duo span { font-size: 26px; color: var(--w-45); letter-spacing: .04em; margin-top: 2px; }
+body.hochkant .duo-frei { height: 900px; right: -60px; }
+
+/* Agenda */
+.agenda { display: flex; flex-direction: column; gap: 34px; margin-top: 70px; }
+.agenda-zeile { display: flex; align-items: center; gap: 44px; }
+.agenda-zeile b { font-size: 72px; font-weight: 700; text-transform: uppercase; letter-spacing: -.015em; }
+.agenda-zeile.pause b { font-size: 40px; color: var(--w-45); font-weight: 600; letter-spacing: .1em; }
+.agenda-zeile.pause .strich { width: 92px; display: flex; justify-content: center; }
+.agenda-zeile.pause .strich::before { content: ""; width: 2px; height: 46px; background: var(--hairline); }
+
+/* Chat vom 28.12.2020 */
+.chat-buehne { display: grid; grid-template-columns: 640px 1fr; gap: 90px; flex: 1; align-items: center; }
+.chat { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; padding: 30px 34px; border-radius: 28px; background: #0B141A; border: 1px solid rgba(244,246,255,.08); }
+.chat-datum { align-self: center; font-size: 20px; font-weight: 600; color: #D1D7DB; background: #182229; padding: 6px 18px; border-radius: 10px; margin-bottom: 6px; }
+.blase { max-width: 88%; background: #005C4B; color: #E9EDEF; border-radius: 16px 4px 16px 16px; padding: 12px 18px 10px; font-size: 27px; line-height: 1.32; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 14px; justify-content: flex-end; opacity: 0; }
+.blase span { flex: 1 1 auto; text-align: left; }
+/* Kraftausdrücke wie im Fernsehen unkenntlich, das Wort bleibt an seiner Stelle */
+.blase .zensur { display: inline-block; filter: blur(7px); background: rgba(233,237,239,.25); border-radius: 6px; padding: 0 4px; user-select: none; }
+.blase i { font-style: normal; font-size: 16px; color: rgba(233,237,239,.6); display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.blase svg { width: 17px; height: 12px; }
+.reveal section.present .blase { animation: hochkommen .45s calc(.5s + var(--i) * .7s) cubic-bezier(.2,.7,.3,1) forwards; }
+body.standbild .blase { opacity: 1; }
+.chat-text .label { color: var(--th-hell); }
+.chat-text .hero { font-size: 118px; margin-top: 18px; }
+
+/* Erster Name: EPG wird EDGE */
+.namen-buehne { display: flex; align-items: center; justify-content: space-between; gap: 60px; flex: 1; }
+.namen-buehne .epg { width: 540px; height: auto; margin: 0 0 40px; display: block; background: #fff; padding: 34px 40px; border-radius: 10px; transform: rotate(-3deg); }
+.epg-spalte { display: flex; flex-direction: column; align-items: flex-start; }
+.lesart { display: flex; align-items: baseline; gap: 26px; padding: 16px 0; border-top: 1px solid var(--hairline); width: 760px; }
+.lesart span { width: 150px; flex-shrink: 0; font-size: 22px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--w-45); }
+.lesart b { font-size: 50px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.lesart i { font-style: normal; font-weight: 700; color: var(--th-hell); }
+.namen-buehne .pfeil { font-size: 110px; color: var(--th); line-height: 1; }
+.namen-buehne .edge { width: 520px; height: auto; margin: 0; display: block; }
+.namen-buehne .wurde { display: flex; align-items: center; gap: 50px; }
+
+/* Fotowand Studium: 8 x 3, randlos */
+.fotowand { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(3, 1fr); gap: 6px; }
+.fotowand img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; filter: saturate(.85); }
+
+/* Master-Urkunde: Polaroid fällt auf Klick über die Fotowand */
+.polaroid.master { position: absolute; right: 150px; top: calc(var(--extra) + 120px); width: 640px; margin: 0; z-index: 3; }
+.polaroid.master img { height: auto; aspect-ratio: 665 / 640; }
+.reveal .slides section .polaroid.master.fragment { transition: opacity .4s ease, transform .6s cubic-bezier(.2,.8,.3,1.2); transform: translateY(-80px) rotate(-12deg); }
+.reveal .slides section .polaroid.master.fragment.visible { transform: translateY(0) rotate(-4deg); }
+body.standbild .polaroid.master { transform: rotate(-4deg) !important; }
+
+@font-face { font-family: "Caveat"; src: url("assets/fonts/Caveat.ttf") format("truetype"); font-weight: 400 700; }
+/* Stapel echter Momente: Beschriftung wie mit Stift auf dem Polaroid-Rand */
+.polaroid figcaption { font-family: "Caveat", "Bradley Hand", cursive; font-weight: 600; color: #2A2630; text-align: center; line-height: 1.05; }
+.polaroid.stapel figcaption { margin-top: 8px; font-size: 28px; }
+.polaroid.stapel { position: absolute; margin: 0; padding: 12px 12px 12px; }
+.polaroid.stapel img { height: auto; }
+
+/* Karten drehen auf Klick (Kniff aus dem Charta-Deck) */
+.karten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: auto; margin-bottom: auto; perspective: 2400px; }
+.reveal .slides section .fragment.karte { opacity: 1 !important; visibility: inherit !important; }
+.karte { height: 470px; }
+.karte .innen { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.3,.8,.25,1); }
+.karte.visible .innen, body.standbild .karte .innen { transform: rotateY(180deg); }
+.karte .seite { position: absolute; inset: 0; border-radius: 22px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px; text-align: center; }
+.karte .vorn { background: rgba(244,246,255,.06); border: 1.5px solid rgba(244,246,255,.2); }
+.karte .vorn span { font-size: 46px; font-weight: 700; color: var(--w-70); }
+.karte .hinten { transform: rotateY(180deg); background: linear-gradient(150deg, #FF5C7A, #E4003A 55%, #9A0027); }
+.karte .hinten b { font-size: 64px; line-height: 1.1; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: -.01em; }
+.polaroid.quelle-foto { position: absolute; right: 70px; top: calc(var(--extra) + 36px); width: 320px; margin: 0; padding: 10px 10px 30px; }
+.polaroid.quelle-foto img { height: auto; }
+.polaroid.quelle-foto figcaption { margin-top: 6px; font-size: 27px; }
+body.hochkant .karten { grid-template-columns: 1fr; }
+
+
+/* Platzhalter für fehlende Fotos: gestrichelter Rahmen im Polaroid */
+.polaroid .platzhalter { aspect-ratio: 4 / 5; display: grid; place-items: center; border: 3px dashed #B9B2C2; background: #E9E5EE; }
+.polaroid .platzhalter span { font-family: var(--font); font-size: 26px; font-weight: 600; color: #6B6475; text-align: center; line-height: 1.3; }
+.polaroid figcaption { margin-top: 8px; font-size: 30px; }
+.platzhalter-foto { position: absolute; right: 200px; top: calc(var(--extra) + 170px); width: 560px; margin: 0; padding: 16px 16px 20px; }
+
+/* Gründung: vier Polaroids nebeneinander */
+.polaroid.gruendung { position: absolute; top: calc(var(--extra) + 330px); width: 380px; margin: 0; padding: 14px 14px 18px; }
+.polaroid.gruendung img { height: 480px; width: 100%; object-fit: cover; object-position: 50% 40%; }
+.polaroid.gruendung .platzhalter { height: 480px; aspect-ratio: auto; }
+
+/* EPG-Szene: Karte, zwei Freisteller, Buchstaben fliegen auf Klick */
+.epg-szene, .dom-szene { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; pointer-events: none; }
+.epg-s1, .epg-s2, .dom-s1 { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.epg-karte { position: absolute; left: 1570px; top: 50px; width: 300px; background: #fff; padding: 20px 24px; border-radius: 10px; transform: rotate(-4deg); margin: 0 !important; }
+.epg-person { position: absolute; bottom: 0; height: 700px; width: auto; margin: 0 !important; max-width: none !important; max-height: none !important; transition: transform 1s cubic-bezier(.5,0,.2,1), opacity .8s; }
+.epg-person.emre { left: 560px; }
+.epg-person.eddie { left: 1080px; z-index: 1; }
+.epg-buchstabe { position: absolute; top: 205px; width: 116px; height: 116px; border-radius: 20px; display: grid; place-items: center; font-size: 84px; font-weight: 700; color: #fff;
+  background: linear-gradient(150deg, #FF5C7A, #E4003A); opacity: 0; transform: translate(560px, -120px) scale(.4) rotate(-20deg); transition: transform .9s cubic-bezier(.3,1.4,.4,1), opacity .4s; z-index: 3; }
+.epg-schild { position: absolute; padding: 6px 22px 8px; background: #fff; color: #231F28; border-radius: 10px; font-family: "Caveat", cursive; font-weight: 700; font-size: 50px; line-height: 1; white-space: nowrap; transform: translateX(-50%) rotate(-3deg); opacity: 0; transition: opacity .5s; z-index: 3; }
+.epg-schild i { font-style: normal; color: #E4003A; }
+.s-emre { left: 803px; top: 690px; }
+.s-eddie-a, .s-eddie-b { left: 1359px; top: 700px; }
+.epg-krone { position: absolute; left: 1299px; top: 318px; width: 120px; height: 80px; opacity: 0; transform: translateY(-260px) rotate(-30deg); transition: transform .8s cubic-bezier(.3,1.5,.4,1), opacity .3s; z-index: 2; }
+.epg-blase { position: absolute; left: 250px; top: 430px; padding: 14px 26px 18px; background: #fff; color: #231F28; border-radius: 26px; font-family: "Caveat", cursive; font-weight: 700; font-size: 58px; opacity: 0; transition: opacity .4s .7s; z-index: 3; }
+.epg-blase::after { content: ""; position: absolute; left: 30px; bottom: -18px; border: 12px solid transparent; border-top: 16px solid #fff; border-left-width: 4px; }
+.epg-label { position: absolute; left: 130px; top: 250px; margin: 0; font-family: "Caveat", cursive; font-weight: 700; font-size: 64px; color: var(--th-hell); opacity: 0; transition: opacity .4s; }
+/* Klick 1: Eddies Vorschlag */
+.epg-szene:has(.epg-s1.visible) .epg-buchstabe { opacity: 1; }
+.epg-szene:has(.epg-s1.visible) .b-e { transform: translate(745px, 0) rotate(-4deg); }
+.epg-szene:has(.epg-s1.visible) .b-p { transform: translate(1243px, 0) rotate(3deg); }
+.epg-szene:has(.epg-s1.visible) .b-g { transform: translate(1373px, 0) rotate(-2deg); }
+.epg-szene:has(.epg-s1.visible) .s-emre, .epg-szene:has(.epg-s1.visible) .s-eddie-a { opacity: 1; }
+.slide:has(~ .epg-szene .epg-s1.visible) .l1 { opacity: 1; }
+/* Klick 2: was alle gelesen haben */
+.epg-szene:has(.epg-s2.visible) .emre, body.standbild .epg-szene .emre { transform: translateX(-660px) rotate(-14deg); }
+.epg-szene:has(.epg-s2.visible) .s-emre, .epg-szene:has(.epg-s2.visible) .s-eddie-a { opacity: 0; }
+.epg-szene:has(.epg-s2.visible) .s-eddie-b, .epg-szene:has(.epg-s2.visible) .epg-blase { opacity: 1; }
+.epg-szene:has(.epg-s2.visible) .b-e, body.standbild .epg-szene .b-e { transform: translate(1170px, 0px) rotate(-6deg); }
+.epg-szene:has(.epg-s2.visible) .b-p, body.standbild .epg-szene .b-p { transform: translate(1300px, 0px) rotate(2deg); }
+.epg-szene:has(.epg-s2.visible) .b-g, body.standbild .epg-szene .b-g { transform: translate(1430px, 0px) rotate(-3deg); }
+.epg-szene:has(.epg-s2.visible) .epg-krone, body.standbild .epg-szene .epg-krone { opacity: 1; transform: rotate(-8deg); }
+.slide:has(~ .epg-szene .epg-s2.visible) .l1 { opacity: 0; }
+.slide:has(~ .epg-szene .epg-s2.visible) .l2 { opacity: 1; }
+/* Standbild (PDF): die Pointe */
+body.standbild .epg-buchstabe, body.standbild .epg-krone, body.standbild .s-eddie-b, body.standbild .epg-blase, body.standbild .l2 { opacity: 1 !important; }
+body.standbild .l1, body.standbild .s-emre, body.standbild .s-eddie-a { opacity: 0 !important; }
+
+/* Dom-Szene: drei Freisteller, E D G E auf Klick */
+.dom-person { position: absolute; bottom: 0; height: 640px; width: auto; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.p-emre { left: 360px; z-index: 2; }
+.p-dom { left: 655px; z-index: 1; }
+.p-eddie { left: 1180px; z-index: 2; }
+.dom-b { position: absolute; top: 290px; width: 116px; height: 116px; border-radius: 20px; display: grid; place-items: center; font-size: 84px; font-weight: 700; color: #fff;
+  background: linear-gradient(150deg, #FF5C7A, #E4003A); opacity: 0; transform: translateY(-80px) scale(.5); transition: transform .7s cubic-bezier(.3,1.5,.4,1), opacity .3s; z-index: 3; }
+.d1 { left: 518px; } .d2 { left: 838px; transition-delay: .15s; } .d3 { left: 968px; transition-delay: .3s; } .d4 { left: 1378px; transition-delay: .45s; }
+.n-emre { left: 576px; top: 760px; } .n-dom { left: 960px; top: 760px; } .n-eddie { left: 1436px; top: 760px; }
+.dom-szene:has(.dom-s1.visible) .dom-b { opacity: 1; transform: none; }
+.dom-szene:has(.dom-s1.visible) .epg-schild { opacity: 1; transition-delay: .6s; }
+body.standbild .dom-b, body.standbild .dom-szene .epg-schild { opacity: 1 !important; transform: none; }
+body.standbild .dom-szene .epg-schild { transform: translateX(-50%) rotate(-3deg) !important; }
+
+/* Büros: drei Stationen */
+.bueros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; margin-top: 50px; padding: 0 30px; }
+.polaroid.buero { margin: 0; padding: 14px 14px 18px; }
+.polaroid.buero img { width: 100%; height: 520px; object-fit: cover; object-position: 50% 35%; }
+.bueros-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; padding: 0 30px; margin-top: 36px; text-align: center; }
+.bueros-team span { font-size: 30px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--w-45); }
+.bueros-team span:last-child { color: var(--th-hell); }
+
+.umzug-datum { position: absolute; left: 96px; bottom: 84px; z-index: 5; padding: 8px 24px 10px; background: #fff; color: #231F28; border-radius: 10px; font-family: "Caveat", cursive; font-weight: 700; font-size: 46px; transform: rotate(-3deg); }
+
+/* Persönliche Folien */
+.person-folie { justify-content: flex-start; }
+.person-folie .headline { font-size: 104px; margin-bottom: 0; }
+.person-folie .rolle { font-size: 30px; color: var(--w-45); letter-spacing: .06em; margin: 8px 0 0; font-weight: 600; }
+.fotoreihe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: auto; margin-bottom: auto; padding: 0 10px; }
+/* Polaroids: weißer Rand, leicht schräg, fallen beim Folienwechsel nacheinander ein */
+.polaroid { margin: 0; background: #F6F3EE; padding: 16px 16px 58px; border-radius: 3px; transform: translateY(var(--y)) rotate(var(--d)); }
+.polaroid img { width: 100%; height: 470px; object-fit: cover; object-position: 50% 30%; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.reveal section.present .polaroid { animation: einfallen .7s calc(.15s + var(--i) * .16s) cubic-bezier(.2,.8,.3,1.15) both; }
+@keyframes einfallen { from { opacity: 0; transform: translateY(calc(var(--y) - 120px)) rotate(calc(var(--d) * 3)); } to { opacity: 1; transform: translateY(var(--y)) rotate(var(--d)); } }
+body.standbild .polaroid { animation: none !important; }
+
+/* Team heute */
+.slide.team { flex-direction: row !important; padding: 150px 80px 70px; gap: 0; }
+.mitte { width: 420px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 56px; padding-top: 56px; }
+.team-titel { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font-size: 56px; font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; margin: 0; }
+.du .rund { --ring: var(--th); border-style: dashed; background: rgba(228,0,58,.06); }
+.du .rund::before { display: none; }
+.du .rund b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 96px; font-weight: 700; color: var(--th-hell); }
+.person.du figcaption span { color: var(--w-70); }
+
+/* Seit letztem Jahr */
+.drei { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; margin-top: auto; margin-bottom: auto; }
+.drei > div { display: flex; flex-direction: column; gap: 22px; padding-top: 30px; border-top: 2px solid var(--th); }
+.drei h3 { font-size: 54px; font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.1; }
+.drei p { margin: 0; font-size: 36px; line-height: 1.4; color: var(--w-70); }
+.drei .logo-reihe { display: flex; flex-wrap: wrap; gap: 26px 34px; align-items: center; margin-top: 10px; }
+.drei .logo-reihe img { height: 70px; width: auto; max-width: 210px; object-fit: contain; display: block; margin: 0 !important; opacity: .92; }
+.drei .soft-icons { display: flex; gap: 34px; margin-top: 10px; }
+.drei .soft-icons .icon { width: 96px; height: 96px; color: var(--th-hell); filter: drop-shadow(0 0 14px rgba(228,0,58,.5)); }
+.drei .koepfe { display: flex; margin-top: 10px; }
+.drei .koepfe img { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; object-position: center bottom; border: 3px solid #030309; margin: 0 -16px 0 0 !important; background: #14101c; }
+
+/* Logowand (aus dem Stamm) */
+.slide.wand { padding: 120px 110px 56px; }
+.logos { display: grid; align-items: center; justify-items: center; flex-shrink: 0; }
+.logos > div { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.logos img { display: block; margin: 0; width: auto; height: auto; object-fit: contain; }
+.logos.gross { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; column-gap: 40px; }
+.logos.gross img { max-width: 240px; max-height: 92px; opacity: .96; }
+.logos.klein { display: flex; flex-wrap: wrap; justify-content: center; }
+.logos.klein > div { width: calc(100% / var(--spalten, 10)); height: 84px; padding: 0 13px; }
+.logos.klein img { max-width: 100%; max-height: 56px; opacity: .84; }
+.trenner { border: none; height: 1px; width: 100%; flex-shrink: 0; margin: 20px 0 16px; background: linear-gradient(90deg, transparent, rgba(228,0,58,.8), transparent); }
+.preise { margin-top: auto; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.preis-reihe { display: flex; align-items: center; justify-content: center; gap: 60px; }
+.preis { display: flex; align-items: center; gap: 11px; }
+.preis b { font-size: 20px; font-weight: 600; color: var(--weiss); white-space: nowrap; }
+.preis img { height: 23px; width: auto; max-width: 170px; opacity: .8; object-fit: contain; display: block; margin: 0 0 0 4px !important; }
+.preis img[src*="socialhackathon"], .preis img[src*="lnpreis"] { height: 38px; }
+.preis img[src*="sparkasse"] { height: 32px; }
+.wand-kopf { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 26px; flex-shrink: 0; }
+.wand-kopf .vielleicht { font-size: 64px; }
+
+/* Icon-Reihen für Handzeichen und Checklisten */
+.icons { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 30px; margin-top: auto; margin-bottom: auto; }
+.icons > div { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.icons .icon { width: 150px; height: 150px; color: var(--th-hell); filter: drop-shadow(0 0 16px rgba(228,0,58,.5)); }
+.icons p { margin: 30px 0 0; font-size: 38px; font-weight: 700; letter-spacing: .02em; line-height: 1.25; }
+.icons.klein .icon { width: 180px; height: 180px; }
+.icons.klein p { font-size: 28px; letter-spacing: .06em; text-transform: uppercase; }
+.handzeichen { display: inline-flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--th-hell); margin: 0 0 18px; }
+
+/* Reality-Check-Thesen */
+.these { font-size: 124px; line-height: 1.06; font-weight: 700; letter-spacing: -.025em; text-transform: uppercase; margin: 0; max-width: 1500px; }
+.these-beleg { margin-top: 70px; display: flex; align-items: center; gap: 40px; }
+.these-beleg .blase { opacity: 1; animation: none !important; font-size: 40px; max-width: none; }
+.these-foto.breit { width: 1060px; object-position: 30% 50%; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22%); mask-image: linear-gradient(90deg, transparent 0, #000 22%); }
+.these-foto { position: absolute; right: 0; top: 0; width: 900px; height: var(--buehne-h); object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 36%); mask-image: linear-gradient(90deg, transparent 0, #000 36%); }
+
+/* So arbeiten wir: KI-Video vollflächig, auf Klick die Auflösung */
+.sa-video { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; background: #F2F2F2; }
+.sa-titel { position: absolute; left: 60px; top: 50px; margin: 0; padding: 10px 24px 12px; border-radius: 14px; background: rgba(21,18,28,.86); font-size: 40px; font-weight: 700; letter-spacing: -.01em; text-transform: uppercase; }
+.sa-aufloesung { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(8,6,12,.84); }
+.sa-aufloesung .hero { font-size: 190px; }
+.sa-aufloesung p { margin: 18px 0 0; font-size: 44px; color: var(--w-70); }
+.sa-kennung { position: absolute; right: 150px; bottom: 26px; margin: 0; padding: 6px 14px; border-radius: 8px; background: rgba(21,18,28,.7); font-size: 20px; letter-spacing: .04em; color: rgba(244,246,255,.85); }
+
+/* Was KI heute kann: Bento aus fünf Kacheln mit echtem Material */
+.ki-bento { flex: 1; min-height: 0; margin-top: 14px; display: grid; gap: 22px; grid-template-columns: 570px 1fr 500px; grid-template-rows: 1.12fr 1fr;
+  grid-template-areas: "bild video avatar" "text stimme avatar"; }
+.kachel { position: relative; margin: 0; overflow: hidden; border-radius: 22px; background: #0F0C16; border: 1px solid rgba(244,246,255,.09); }
+.k-bild { grid-area: bild; } .k-video { grid-area: video; } .k-avatar { grid-area: avatar; } .k-text { grid-area: text; } .k-stimme { grid-area: stimme; }
+.kachel > img, .kachel > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.kachel figcaption { position: absolute; left: 24px; bottom: 18px; z-index: 3; font-size: 22px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #fff; }
+.kachel.medien::after { content: ""; position: absolute; inset: auto 0 0 0; height: 38%; z-index: 2; background: linear-gradient(180deg, transparent, rgba(5,4,10,.78)); pointer-events: none; }
+/* Bild: das Foto blendet langsam ins KI-Bild über, das Etikett wechselt mit */
+.k-bild .nachher { opacity: 0; }
+.k-bild .marke { position: absolute; left: 20px; top: 18px; z-index: 3; display: grid; justify-items: center; padding: 7px 16px; border-radius: 999px; background: rgba(5,4,10,.62); font-size: 20px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.k-bild .marke i { grid-area: 1 / 1; font-style: normal; }
+.k-bild .m-nach { color: var(--th-hell); opacity: 0; }
+.reveal .slides section.present .k-bild .nachher, .reveal .slides section.present .k-bild .m-nach { animation: ki-nacht 10s ease-in-out .8s infinite; }
+.reveal .slides section.present .k-bild .m-vor { animation: ki-tag 10s ease-in-out .8s infinite; }
+@keyframes ki-nacht { 0%, 22% { opacity: 0; } 34%, 88% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ki-tag { 0%, 22% { opacity: 1; } 34%, 88% { opacity: 0; } 100% { opacity: 1; } }
+body.standbild .k-bild .nachher, body.standbild .k-bild .m-nach { animation: none !important; opacity: 1; }
+body.standbild .k-bild .m-vor { animation: none !important; opacity: 0; }
+.k-avatar > img { object-position: 50% 40%; }
+/* Schreiben: Text tippt sich, roter Cursor blinkt */
+.k-text { background: #F4F6FF; border: 0; }
+.k-text figcaption { color: rgba(15,12,22,.45); }
+.tipp { margin: 0; padding: 34px 36px 0; font-size: 31px; line-height: 1.42; font-weight: 500; color: #15121C; white-space: pre-line; }
+.tipp .cursor { display: inline-block; width: 3px; height: 1.05em; margin-left: 3px; vertical-align: -.16em; background: var(--th); animation: ki-cursor 1s steps(1) infinite; }
+@keyframes ki-cursor { 50% { opacity: 0; } }
+/* Stimme: Knopf und die echte Wellenform der Aufnahme, beim Abspielen färbt sie sich durch */
+.k-stimme { display: flex; align-items: center; gap: 34px; padding: 0 40px 30px; }
+.k-stimme .knopf { flex: none; width: 96px; height: 96px; border-radius: 50%; background: var(--th); position: relative; cursor: pointer; }
+.k-stimme .knopf::before { content: ""; position: absolute; left: 38px; top: 29px; border-style: solid; border-width: 19px 0 19px 30px; border-color: transparent transparent transparent #fff; }
+.k-stimme.spielt .knopf { animation: ki-puls 1.2s ease-in-out infinite; }
+@keyframes ki-puls { 50% { box-shadow: 0 0 0 16px rgba(228,0,58,.18); } }
+.welle { flex: 1; height: 170px; display: flex; align-items: center; gap: 5px; }
+.welle i { flex: 1; height: calc(var(--h) * 100%); border-radius: 3px; background: rgba(244,246,255,.26); transition: background .15s; }
+.welle i.an { background: linear-gradient(180deg, var(--th-hell), var(--th)); }
+.k-stimme audio { display: none; }
+
+/* Kurve: Moore gegen KI, in TH-Rot */
+.kurve { width: 100%; height: auto; margin-top: 30px; overflow: visible; }
+.kurve .jahre text { font-size: 24px; fill: rgba(244,246,255,.45); font-family: var(--font); }
+.kurve .kurven-name { font-size: 30px; font-weight: 700; font-family: var(--font); opacity: 0; }
+.kurve .kurven-name.ki { fill: var(--th-hell); }
+.kurve .kurven-name.moore { fill: rgba(244,246,255,.7); }
+.kurve .linie { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.reveal section.present .kurve .linie.moore { animation: zeichnen 2.4s .3s ease-out forwards; }
+.reveal section.present .kurve .linie.ki { animation: zeichnen 1.6s 1.2s ease-in forwards; }
+.reveal section.present .kurve .kurven-name.moore { animation: auftauchen .6s 2.5s forwards; }
+.reveal section.present .kurve .kurven-name.ki { animation: auftauchen .6s 2.8s forwards; }
+body.standbild .kurve .linie { stroke-dashoffset: 0; }
+body.standbild .kurve .kurven-name { opacity: 1; }
+@keyframes zeichnen { to { stroke-dashoffset: 0; } }
+
+/* Alles KI: vier Bilder aus diesem Vortrag */
+.alles-ki { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 26px; margin-top: auto; margin-bottom: auto; }
+.reveal section.present .alles-ki figure { animation: kachel-ein .5s calc(.2s + var(--i) * .1s) cubic-bezier(.2,.8,.3,1) both; }
+body.standbild .alles-ki figure { animation: none !important; }
+.alles-ki figure { margin: 0; }
+.alles-ki img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; margin: 0 !important; outline: 1.5px solid rgba(228,0,58,.55); outline-offset: 0; }
+.alles-ki figcaption { margin-top: 10px; font-size: 22px; color: var(--w-45); letter-spacing: .06em; }
+
+/* Statement */
+.zitat { font-size: 104px; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; margin: 0; max-width: 1640px; text-transform: uppercase; }
+
+/* Pizza (aus dem Stamm) */
+.pizza { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 70px; flex: 1; align-items: stretch; }
+.pizza .trennlinie { background: linear-gradient(180deg, transparent, rgba(244,246,255,.25), transparent); }
+.pizza > div:not(.trennlinie) { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.pizza .label { margin-bottom: 26px; }
+.pizza .label.gut { color: var(--th-hell); }
+.pizza .ansage { min-height: 170px; display: flex; align-items: center; justify-content: center; margin: 0; font-weight: 700; }
+.pizza .ansage.kurz { font-size: 88px; }
+.pizza .ansage.lang { font-size: 34px; line-height: 1.4; max-width: 780px; font-weight: 600; }
+.pizza img { height: 420px; width: auto; display: block; margin: 20px 0 !important; }
+
+/* Kompass */
+.kompass { display: flex; flex-direction: column; margin-top: auto; margin-bottom: auto; }
+.kompass-zeile { display: grid; grid-template-columns: 560px 1fr; align-items: center; gap: 40px; padding: 40px 0; border-top: 1px solid var(--hairline); }
+.kompass-zeile:last-child { border-bottom: 1px solid var(--hairline); }
+.kompass-zeile .kopf { font-size: 64px; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; color: var(--th-hell); }
+.kompass-zeile b { font-size: 50px; font-weight: 600; }
+.kompass-zeile span { font-size: 33px; line-height: 1.35; color: var(--w-70); }
+
+/* Prompt und Antwort */
+.demo { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: auto; margin-bottom: auto; align-items: start; }
+.prompt, .antwort { border-radius: 20px; padding: 34px 40px 36px; }
+.prompt { background: rgba(228,0,58,.08); border: 1.5px solid rgba(228,0,58,.55); }
+.antwort { background: rgba(244,246,255,.04); border: 1.5px solid rgba(244,246,255,.14); }
+.prompt-label { display: block; font-size: 19px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--th-hell); margin-bottom: 18px; }
+.antwort .prompt-label { color: var(--w-45); }
+.prompt p, .antwort p { margin: 0; font-size: 37px; line-height: 1.45; }
+.prompt.klein p { font-size: 34px; }
+.prompt p { font-weight: 600; }
+.antwort p { color: var(--w-70); }
+.antwort p b { color: var(--weiss); }
+.antwort .nach { color: var(--th-hell); font-weight: 600; }
+.risiken { list-style: none; margin: 0; padding: 0; counter-reset: r; }
+.risiken li { position: relative; font-size: 35px; line-height: 1.42; color: var(--w-70); padding: 18px 0 18px 66px; border-top: 1px solid var(--hairline); }
+.risiken li:first-child { border-top: none; padding-top: 0; }
+.risiken li::before { counter-increment: r; content: counter(r); position: absolute; left: 0; top: 16px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--th); display: grid; place-items: center; font-size: 24px; font-weight: 700; color: var(--weiss); }
+.risiken li:first-child::before { top: -2px; }
+.demo-kopf { display: flex; align-items: center; gap: 22px; }
+.demo-kopf .headline { margin: 0; }
+
+/* Lernseite im Rahmen */
+.bauen { display: grid; grid-template-columns: 560px 1fr; gap: 50px; flex: 1; margin-top: 36px; min-height: 0; }
+.bauen .prompt { align-self: start; }
+.bauen .prompt p { font-size: 29px; }
+.fenster { border-radius: 16px; overflow: hidden; border: 1.5px solid rgba(244,246,255,.18); background: #0B0A10; display: flex; flex-direction: column; min-height: 0; }
+.fenster-leiste { height: 44px; display: flex; align-items: center; gap: 9px; padding: 0 18px; background: #16131D; flex-shrink: 0; }
+.fenster-leiste i { width: 13px; height: 13px; border-radius: 50%; background: rgba(244,246,255,.18); }
+.fenster-leiste span { margin-left: 14px; font-size: 16px; color: var(--w-45); letter-spacing: .04em; }
+.fenster.gross { flex: 1; margin-top: 30px; }
+.fenster iframe { flex: 1; width: 100%; border: 0; display: block; background: #0B0A10; }
+
+/* Trotzdem gemacht */
+.trotzdem-foto { object-position: 50% 62%; }
+
+/* Faktencheck */
+.faktencheck { display: flex; flex-direction: column; gap: 0; margin-top: 70px; max-width: 1300px; }
+.faktencheck > div { display: flex; align-items: center; gap: 40px; padding: 30px 0; border-top: 1px solid var(--hairline); }
+.faktencheck > div:last-child { border-bottom: 1px solid var(--hairline); }
+.faktencheck .icon { width: 74px; height: 74px; color: var(--th-hell); flex-shrink: 0; }
+.faktencheck p { margin: 0; font-size: 50px; font-weight: 700; }
+
+/* Studie */
+.studie { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+.riesig { font-size: 300px; line-height: .95; font-weight: 700; letter-spacing: -.04em; margin: 16px 0 0; }
+.riesig small { font-size: 72px; letter-spacing: -.01em; margin-left: 28px; color: var(--weiss); -webkit-text-fill-color: var(--weiss); }
+.nebenzahlen { display: flex; gap: 90px; margin-top: 40px; font-size: 44px; font-weight: 600; color: var(--w-70); }
+.nebenzahlen b { color: var(--weiss); }
+
+/* Das Handy ist nur das Fenster */
+.fenster-bild { position: absolute; left: 0; top: calc(var(--extra) + 60px); width: 1920px; height: 1080px; object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.fenster-name { position: absolute; top: calc(var(--extra) + 60px + 1080px * .86); transform: translateX(-50%); font-size: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; padding: 6px 16px; border-radius: 8px; background: rgba(3,3,9,.78); }
+
+/* Seit letztem November: Wand wächst */
+.wachstum-folie { padding-bottom: 70px; }
+.wachstum { position: relative; display: flex; flex-direction: column; gap: 34px; margin-top: auto; margin-bottom: auto; }
+.wachstum-trigger { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.wachstum-gross { display: grid; grid-template-columns: repeat(5, 1fr); gap: 50px; align-items: center; min-height: 130px; }
+.wachstum-gross div { display: flex; align-items: center; justify-content: center; height: 130px; }
+.wachstum-gross img { max-width: 290px; max-height: 120px; width: auto; height: auto; margin: 0 !important; filter: drop-shadow(0 0 22px rgba(228,0,58,.55)); }
+.wachstum-wand { display: grid; grid-template-columns: repeat(11, 1fr); grid-auto-rows: 84px; gap: 8px 26px; align-items: center; }
+.wachstum-wand div { display: flex; align-items: center; justify-content: center; height: 84px; }
+.wachstum-wand img { max-width: 100%; max-height: 54px; width: auto; height: auto; margin: 0 !important; }
+.wachstum .alt { transition: opacity .8s ease; }
+.wachstum .neu { opacity: 0; transform: scale(.6); }
+.wachstum:has(.wachstum-trigger.visible) .alt { opacity: .28; }
+.wachstum:has(.wachstum-trigger.visible) .neu { animation: aufploppen .45s calc(var(--i) * 45ms) cubic-bezier(.2,.9,.3,1.3) forwards; }
+@keyframes aufploppen { to { opacity: 1; transform: none; } }
+body.standbild .wachstum .neu { opacity: 1; transform: none; animation: none; }
+body.standbild .wachstum .alt { opacity: .28; }
+
+/* Turm: Prompt oben, Unterbau wächst auf Klick */
+.turm-folie { flex-direction: row !important; align-items: center; justify-content: space-between; }
+.turm-folie .headline { align-self: center; }
+.turm { position: relative; width: 760px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.turm-trigger { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.turm .block { height: 84px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 34px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.turm .spitze { width: 46%; background: linear-gradient(135deg, #E4003A, #FF5C7A); color: #fff; filter: drop-shadow(0 0 30px rgba(228,0,58,.6)); }
+.unterbau { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.unterbau .block { width: var(--w); background: rgba(244,246,255,.06); border: 1.5px solid rgba(244,246,255,.22); color: var(--w-70); opacity: 0; transform: translateY(40px); }
+.turm:has(.turm-trigger.visible) .unterbau .block { animation: hochkommen .5s calc(var(--i) * .12s) cubic-bezier(.2,.8,.3,1.1) forwards; }
+body.standbild .unterbau .block { opacity: 1; transform: none; animation: none; }
+body.hochkant .turm-folie { flex-direction: column !important; }
+
+/* Route: krumme Linie durch echte Stationen */
+.route { width: 100%; height: auto; margin-top: auto; overflow: visible; }
+.route .linie, .route .schein { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.route .schein { opacity: .25; }
+.route .station { opacity: 0; }
+.route .station circle { fill: #F4F6FF; }
+.route .station text { font-family: var(--font); font-size: 34px; font-weight: 700; fill: #F4F6FF; }
+.route .station:last-child circle { fill: #7FD4FF; }
+.route .station:last-child text { fill: #7FD4FF; font-size: 44px; }
+.reveal section.present .route .linie, .reveal section.present .route .schein { animation: zeichnen 4.2s .4s cubic-bezier(.45,.05,.4,1) forwards; }
+.reveal section.present .route .station { animation: auftauchen .4s calc(.6s + var(--i) * .7s) forwards; }
+body.standbild .route .linie, body.standbild .route .schein { stroke-dashoffset: 0; }
+body.standbild .route .station { opacity: 1; }
+
+/* Zehn-Sekunden-Ring */
+.ring-zeit { position: relative; width: 190px; height: 190px; margin: 70px auto 0; }
+.ring-zeit svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
+.ring-zeit .spur { fill: none; stroke: rgba(244,246,255,.14); stroke-width: 8; }
+.ring-zeit .lauf { fill: none; stroke: #7FD4FF; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 534; stroke-dashoffset: 534; filter: drop-shadow(0 0 10px rgba(127,212,255,.6)); }
+.ring-zeit .ausloeser { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ring-zeit:has(.ausloeser.visible) .lauf { animation: ring-fuellen 10s linear forwards; }
+@keyframes ring-fuellen { to { stroke-dashoffset: 0; } }
+body.standbild .ring-zeit .lauf { stroke-dashoffset: 0; animation: none; }
+
+/* These 1: nachgestellter Betriebs-Post plus echte Chatnachrichten */
+.nervt { flex-direction: row !important; align-items: center; justify-content: space-between; gap: 60px; }
+.post-buehne { position: relative; width: 820px; height: 860px; flex-shrink: 0; }
+.post { position: absolute; right: 0; top: 0; width: 700px; background: #FFFFFF; color: #1C1E21; border-radius: 14px; padding: 22px 0 0; transform: rotate(2.5deg); font-family: Helvetica, Arial, sans-serif; }
+.post-kopf { display: flex; align-items: center; gap: 14px; padding: 0 22px; }
+.post-kopf i { width: 56px; height: 56px; border-radius: 50%; background: #C9A26B; color: #fff; font-style: normal; font-weight: 700; font-size: 28px; display: grid; place-items: center; }
+.post-kopf b { display: block; font-size: 24px; }
+.post-kopf span { font-size: 18px; color: #65676B; }
+.post-text { margin: 16px 22px 14px; font-size: 26px; }
+.post img { width: 100%; height: 470px; object-fit: cover; display: block; margin: 0 !important; max-width: none !important; }
+.post-fuss { display: flex; justify-content: space-between; padding: 16px 22px 20px; font-size: 21px; color: #65676B; border-top: 1px solid #E4E6EB; }
+.post-fuss .daumen { font-weight: 700; color: #1C1E21; }
+.nachgestellt { position: absolute; right: 18px; top: -40px; font-size: 18px; letter-spacing: .14em; text-transform: uppercase; color: var(--w-45); font-family: var(--font); transform: rotate(-2.5deg); }
+.post-chat { position: absolute; left: -40px; bottom: 30px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.post-chat .blase { opacity: 1; animation: none !important; font-size: 36px; max-width: none; border-radius: 4px 18px 18px 18px; }
+.reveal section.present .post-chat .blase { animation: hochkommen .45s .6s both !important; }
+.reveal section.present .post-chat .blase + .blase { animation-delay: 1.3s !important; }
+body.standbild .reveal section .post-chat .blase, body.standbild .reveal section.present .post-chat .blase { animation: none !important; opacity: 1; }
+body.hochkant .nervt { flex-direction: column !important; }
+
+/* Orbit: echte Fotos kreisen um „Du“ (Idee aus dem Charta-Deck) */
+.orbit { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; pointer-events: none; }
+.orbit .o { position: absolute; left: 0; top: 0; width: 230px; height: 230px; border-radius: 50%; object-fit: cover; margin: 0 !important; max-width: none !important; border: 4px solid rgba(244,246,255,.9); will-change: transform; }
+.orbit-du { position: absolute; left: 1420px; top: 540px; width: 260px; height: 260px; margin: -130px 0 0 -130px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 30%, #FF5C7A, #E4003A 60%, #9A0027); font-size: 76px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #fff; filter: drop-shadow(0 0 40px rgba(228,0,58,.6)); }
+body.hochkant .orbit { top: 600px; left: -840px; }
+
+/* Berufe: Balken */
+.balken { display: flex; flex-direction: column; gap: 26px; margin-top: auto; margin-bottom: auto; }
+.balken-zeile { display: grid; grid-template-columns: 560px 1fr 120px 200px; align-items: center; gap: 30px; }
+.balken-zeile .beruf { font-size: 40px; font-weight: 700; }
+.balken-zeile .spur { height: 26px; border-radius: 13px; background: rgba(244,246,255,.07); overflow: hidden; }
+.balken-zeile .spur i { display: block; height: 100%; border-radius: 13px; background: linear-gradient(90deg, #E4003A, #FF9FB1); }
+.balken-zeile b { font-size: 40px; font-weight: 700; text-align: right; }
+.balken-zeile .platz { font-size: 26px; color: var(--w-45); font-weight: 600; letter-spacing: .04em; }
+.balken-zeile:first-child .beruf, .balken-zeile:first-child b { color: var(--th-hell); }
+.quelle-klein { font-size: 22px; color: var(--w-45); letter-spacing: .08em; font-weight: 600; margin: 0; }
+
+/* Geldautomat */
+.automat-bild { object-position: 70% 50%; }
+
+/* Drei Zukünfte: Bedingung oben, Ergebnis in Jahren groß */
+.unterzeile-klar { font-size: 34px; color: var(--w-70); margin: 10px 0 0; font-weight: 500; }
+.szenarien { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 60px; margin-top: auto; margin-bottom: auto; }
+.szenario { display: flex; flex-direction: column; padding-top: 28px; border-top: 2px solid var(--hairline); }
+.szenario .wenn { margin: 0; font-size: 38px; line-height: 1.3; font-weight: 600; min-height: 150px; }
+.szenario .wenn span { color: var(--w-45); }
+.szenario .jahre { margin-top: 26px; font-size: 110px; line-height: 1; font-weight: 700; letter-spacing: -.02em; color: rgba(244,246,255,.55); white-space: nowrap; }
+.szenario.s1 .jahre { color: var(--th-zart); }
+.szenario.s2 .jahre { color: var(--th-hell); }
+.szenario.s2 { border-top-color: var(--th); }
+.szenario .jahre small { font-size: 50px; font-weight: 600; margin-right: 8px; }
+.szenario .prozent { margin-top: 16px; font-size: 26px; color: var(--w-45); letter-spacing: .03em; }
+.offen { font-size: 52px; font-weight: 700; margin: 10px 0 0; }
+
+/* Ende */
+.ende-foto { position: absolute; right: 0; top: 0; width: 900px; height: var(--buehne-h); object-fit: cover; object-position: 50% 35%; margin: 0 !important; max-width: none !important; max-height: none !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 34%); mask-image: linear-gradient(90deg, transparent 0, #000 34%); }
+body.hochkant .ende-foto { width: 1080px; height: 900px; top: auto; bottom: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 40%); mask-image: linear-gradient(180deg, transparent 0, #000 40%); }
+.slide.schluss { justify-content: center; }
+.slide.schluss .hero { font-size: 112px; max-width: 1100px; }
+.slide.schluss .kontakt { position: static; margin-top: 80px; display: flex; align-items: center; gap: 36px; }
+.slide.schluss .kontakt img { width: 280px; height: auto; margin: 0; }
+.slide.schluss .kontakt p { margin: 0; font-size: 28px; line-height: 1.55; color: var(--w-70); border-left: 1px solid var(--hairline); padding-left: 36px; font-weight: 500; }
+.slide.schluss .kontakt p b { color: var(--weiss); }
+.qr { position: absolute; right: 130px; top: calc(var(--extra) + 300px); display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.qr img { width: 300px; height: 300px; border-radius: 16px; background: #fff; padding: 16px; margin: 0 !important; }
+.qr span { font-size: 24px; font-weight: 600; color: var(--w-70); }
+
+/* ---------- Hochkant (Handy) ---------- */
+body.hochkant .deckblatt .hero { font-size: 96px; }
+body.hochkant .titel-duo .th-logo { height: 100px; }
+body.hochkant .titel-duo .edge-logo { height: 80px; }
+body.hochkant .ecken { flex-direction: column; gap: 10px; }
+body.hochkant .frage-gross { font-size: 96px; }
+body.hochkant .nein { font-size: 300px; }
+body.hochkant .weil-liste li { font-size: 50px; }
+body.hochkant .duo { flex-direction: column; gap: 60px; align-items: center; }
+body.hochkant .chat-buehne { grid-template-columns: 1fr; gap: 50px; }
+body.hochkant .namen-buehne, body.hochkant .namen-buehne .wurde { flex-direction: column; gap: 50px; }
+body.hochkant .fotowand { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); }
+body.hochkant .fotoreihe { grid-template-columns: 1fr 1fr; }
+body.hochkant .polaroid img { height: 420px; }
+body.hochkant .slide.team { flex-direction: column !important; align-items: center; padding: 260px 60px 130px; }
+body.hochkant .mitte { display: contents; }
+body.hochkant .seite { flex: none; width: 100%; margin-top: 70px; }
+body.hochkant .drei { grid-template-columns: 1fr; gap: 50px; }
+body.hochkant .icons { grid-template-columns: repeat(2, 1fr); gap: 70px 30px; }
+body.hochkant .these { font-size: 88px; }
+body.hochkant .these-foto { width: 1080px; height: 900px; top: auto; bottom: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 40%); mask-image: linear-gradient(180deg, transparent 0, #000 40%); }
+body.hochkant .ki-bento { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr 1.3fr; grid-template-areas: "bild video" "text stimme" "avatar avatar"; }
+body.hochkant .alles-ki { grid-template-columns: 1fr 1fr; }
+body.hochkant .zitat { font-size: 78px; }
+body.hochkant .pizza { grid-template-columns: 1fr; gap: 50px; }
+body.hochkant .pizza .trennlinie { display: none; }
+body.hochkant .pizza img { height: 300px; }
+body.hochkant .kompass-zeile { grid-template-columns: 1fr; gap: 12px; }
+body.hochkant .demo, body.hochkant .bauen { grid-template-columns: 1fr; }
+body.hochkant .fenster { height: 900px; }
+body.hochkant .faktencheck p { font-size: 42px; }
+body.hochkant .riesig { font-size: 190px; }
+body.hochkant .nebenzahlen { flex-direction: column; gap: 16px; }
+body.hochkant .slide.schluss .hero { font-size: 84px; }
+body.hochkant .qr { position: static; margin-top: 60px; align-items: flex-start; }
+body.hochkant .zitat, body.hochkant .headline { white-space: normal !important; }
+body.hochkant .fenster-bild { width: 1080px; height: 608px; top: 700px; }
+body.hochkant .fenster-name { top: 1330px; font-size: 26px; }
+body.hochkant .balken-zeile { grid-template-columns: 1fr 100px; }
+body.hochkant .balken-zeile .spur, body.hochkant .balken-zeile .platz { grid-column: 1 / -1; }
+
+/* Die Anfänge: Bento-Raster, jedes Foto groß und erkennbar */
+.umzug-folie { padding: 60px 70px; }
+.bento { flex: 1; display: grid; grid-template-columns: 1fr 1.25fr 1.25fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; min-height: 0; }
+.bento figure { margin: 0; border-radius: 14px; overflow: hidden; min-height: 0; background: #111; }
+.bento img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.bento .b-sofa { grid-column: 1; grid-row: 1 / 3; }
+.bento .b-sofa img { object-position: 40% 70%; }
+.bento .b-rathaus { grid-column: 2 / 4; grid-row: 1; }
+.bento .b-rathaus img { object-position: 50% 62%; }
+.bento .b-schild { grid-column: 2; grid-row: 2; }
+.bento .b-schild img { object-position: 50% 50%; }
+.bento .b-tisch { grid-column: 3; grid-row: 2; }
+.bento .b-tisch img { object-position: 50% 45%; }
+.bento .b-regal { grid-column: 4; grid-row: 1 / 3; }
+.bento .b-regal img { object-position: 45% 50%; }
+.reveal section.present .bento figure { animation: kachel-ein .6s calc(.1s + var(--i) * .12s) cubic-bezier(.2,.8,.3,1) both; }
+@keyframes kachel-ein { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+body.standbild .bento figure { animation: none !important; }
+body.hochkant .bento { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); }
+body.hochkant .bento .b-sofa { grid-column: 1; grid-row: 1 / 3; }
+body.hochkant .bento .b-regal { grid-column: 2; grid-row: 1 / 3; }
+body.hochkant .bento .b-rathaus { grid-column: 1 / 3; grid-row: 3; }
+body.hochkant .bento .b-schild { grid-column: 1; grid-row: 4; }
+body.hochkant .bento .b-tisch { grid-column: 2; grid-row: 4; }
+
+/* Die Anfänge (alt): fünf Fotos als Band, randlos */
+.band-anfang { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); display: grid; grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr; gap: 6px; }
+.band-anfang img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
+body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; }
+</style>
+</head>
+<body data-stimmung="neutral">
+
+<canvas id="kosmos"></canvas>
+<div class="stimmung st-neutral"></div><div class="stimmung st-rot"></div><div class="stimmung st-pink"></div>
+<div class="stimmung st-lila"></div><div class="stimmung st-dblau"></div><div class="stimmung st-hblau"></div><div class="stimmung st-th"></div>
+<div class="vignette"></div>
+
+<div class="chrome chrome-edge"><img src="assets/logos/edge-logo-white.png" alt="EDGE Digital"></div>
+<div class="chrome chrome-num" id="chrome-num"></div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ============ TITEL ============ -->
+<section class="f-th" data-chrome="aus" data-stimmung="th">
+  <img class="voll" src="assets/illu/titel.jpg" alt="Das Seminargebäude der TH Lübeck bei Nacht, die Punktfassade leuchtet rot">
+  <div class="schleier-links"></div>
+  <div class="schleier-unten"></div>
+  <div class="slide deckblatt">
+    <div class="titel-duo">
+      <img class="th-logo" src="assets/th/logo-thl-weiss.svg" alt="Technische Hochschule Lübeck">
+      <span class="mal">×</span>
+      <img class="edge-logo" src="assets/logos/edge-logo-white.png" alt="EDGE Digital">
+    </div>
+    <div>
+      <h1 class="hero">Ehemalige Studierende.<br>Heute <span class="schimmer">Unternehmer.</span></h1>
+      <p class="unterzeile">Der Reality Check</p>
+      <div class="ecken"><span>Emre Erdogan &amp; Edgar Paul-Ghazaryan</span><span>Projektwoche · 10. November 2026</span></div>
+    </div>
+  </div>
+  <aside class="notes">Ankommen lassen. Noch nichts sagen, bis es ruhig ist. Dann begrüßen Emre und Eddie gemeinsam, Dank an Herrn Balke. Kurz: zweieinhalb Stunden, eine Pause, zwischendurch Handzeichen, sonst müsst ihr nichts tun. Bild: das neue Seminargebäude bei Nacht, mit KI gebaut (wird später aufgelöst).</aside>
+</section>
+
+<!-- ============ WIEDER DA ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide links-mitte">
+    <h2 class="hero" style="font-size:124px;">Wir sind<br><span class="schimmer">wieder da.</span></h2>
+  </div>
+  <figure class="polaroid platzhalter-foto" style="--d:4deg;--y:0px;--i:0;"><div class="platzhalter"><span>Foto vom Vortrag<br>November 2025</span></div><figcaption>Projektwoche 2025</figcaption></figure>
+  <aside class="notes">Rückgriff aufs letzte Jahr: gleiche Projektwoche, gleiche Hochschule. Dank an Herrn Balke für die zweite Einladung. (Platzhalter: Foto vom Vortrag im November 2025 einsetzen, sobald Emre es raussucht.)</aside>
+</section>
+
+<!-- ============ WESHALB ZUHÖREN ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide mittig">
+    <h2 class="frage-gross">Weshalb solltest du<br>uns <span class="schimmer">zuhören?</span></h2>
+  </div>
+  <aside class="notes">Die Frage vom letzten Jahr, bewusst wieder als Einstieg. Stehen lassen, zwei Sekunden Stille. Dann: Vielleicht weil …</aside>
+</section>
+
+<!-- ============ VIELLEICHT WEIL: FOTOWAND EVENTS ============ -->
+<section class="f-th" data-stimmung="neutral" data-chrome="zahl">
+  <img class="voll" src="assets/collage/collage.jpg" alt="Collage aus Bühnen, Preisverleihungen und Events">
+  <div class="schleier-unten"></div>
+  <div class="slide unten">
+    <p class="vielleicht schatten">Vielleicht weil …</p>
+  </div>
+  <aside class="notes">Nicht kommentieren, nur kurz wirken lassen. Bühnen, Preise, Hände schütteln. Ein, zwei Sätze, welche Bühne euch am meisten bedeutet hat. Dann weiter: oder weil …</aside>
+</section>
+
+<!-- ============ ODER WEIL: LOGOWAND ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide wand">
+    <div class="wand-kopf"><p class="vielleicht">… oder weil …</p></div>
+    <div class="logos gross"><div><img src="assets/logos/ref-sparkasse.png" alt="Sparkasse zu Lübeck" width="547" height="240"></div><div><img src="assets/logos/ref-ihk.png" alt="IHK zu Lübeck" width="324" height="96"></div><div><img src="assets/logos/ref-staatskanzlei.png" alt="Staatskanzlei Schleswig-Holstein" width="640" height="94"></div><div><img src="assets/logos/ref-hansestadt.png" alt="Hansestadt Lübeck" width="237" height="240"></div><div><img src="assets/logos/ref-ln.png" alt="Lübecker Nachrichten" width="188" height="188"></div><div><img src="assets/logos/ref-collins.png" alt="Collins Aerospace" width="640" height="110"></div><div><img src="assets/logos/ref-deutschebank.png" alt="Deutsche Bank" width="240" height="240"></div><div><img src="assets/logos/ref-wfluebeck.png" alt="Wirtschaftsförderung Lübeck" width="441" height="240"></div><div><img src="assets/logos/ref-wfl.png" alt="WFL Herzogtum Lauenburg" width="410" height="240"></div><div><img src="assets/logos/ref-hansebelt.png" alt="HanseBelt" width="640" height="229"></div><div><img src="assets/logos/ref-exrohr.png" alt="ExRohr" width="640" height="179"></div><div><img src="assets/logos/ref-cbl.png" alt="Convention Bureau Lübeck" width="498" height="240"></div><div><img src="assets/logos/ref-ltm.png" alt="Lübeck Travemünde Marketing" width="307" height="240"></div><div><img src="assets/logos/ref-ksk.png" alt="Kreissparkasse Herzogtum Lauenburg" width="640" height="160"></div><div><img src="assets/logos/ref-hamann.png" alt="Hugo Hamann Firmengruppe" width="640" height="192"></div><div><img src="assets/logos/ref-diakonie.png" alt="Diakonie Nord Nord Ost" width="611" height="240"></div><div><img src="assets/logos/ref-norva24.png" alt="Norva24" width="640" height="108"></div><div><img src="assets/logos/ref-vs.png" alt="Vereinigte Stadtwerke" width="379" height="240"></div></div>
+    <hr class="trenner">
+    <div class="logos klein" style="--spalten:11;"><div><img src="assets/logos/ref-wks.png" alt="WKS Kreis Segeberg" width="452" height="193"></div><div><img src="assets/logos/ref-swm.png" alt="Wirtschaftsförderung Südwestmecklenburg" width="201" height="134"></div><div><img src="assets/logos/ref-digitalesmv.png" alt="digitales MV" width="263" height="215"></div><div><img src="assets/logos/ref-kish.png" alt="KI.SH" width="640" height="196"></div><div><img src="assets/logos/ref-behne.png" alt="Behne" width="356" height="240"></div><div><img src="assets/logos/ref-segler.png" alt="Kommunaltechnik Segler" width="640" height="143"></div><div><img src="assets/logos/ref-falkenhagen.png" alt="Rohrreinigung Falkenhagen" width="640" height="149"></div><div><img src="assets/logos/ref-kt.png" alt="Kanal Türpe" width="640" height="103"></div><div><img src="assets/logos/ref-willidamm.png" alt="Willi Damm" width="200" height="142"></div><div><img src="assets/logos/ref-buhck.png" alt="Buhck Gruppe" width="640" height="125"></div><div><img src="assets/logos/ref-mayer.png" alt="MAYER" width="146" height="146"></div><div><img src="assets/logos/ref-inlingua.png" alt="inlingua" width="640" height="139"></div><div><img src="assets/logos/ref-mediamagneten.png" alt="mediamagneten" width="640" height="173"></div><div><img src="assets/logos/ref-sterac.png" alt="STERAC" width="640" height="163"></div><div><img src="assets/logos/ref-elvis.png" alt="ELVIS Eis" width="443" height="240"></div><div><img src="assets/logos/ref-aerztekammer.png" alt="Ärztekammer Schleswig-Holstein" width="538" height="240"></div><div><img src="assets/logos/ref-apart.png" alt="APART" width="640" height="146"></div><div><img src="assets/logos/ref-baumstark.png" alt="Baumstark Pflege" width="209" height="240"></div><div><img src="assets/logos/ref-cordula.png" alt="Cordula Ahrens" width="222" height="240"></div><div><img src="assets/logos/ref-vfb.png" alt="VfB Lübeck" width="200" height="200"></div><div><img src="assets/logos/ref-easyfitness.png" alt="EasyFitness" width="640" height="178"></div><div><img src="assets/logos/ref-gogroon.png" alt="GO GRØØN" width="640" height="170"></div><div><img src="assets/logos/ref-it4b.png" alt="IT4B Digital Summit" width="640" height="64"></div><div><img src="assets/logos/ref-witzleben.png" alt="Jan von Witzleben" width="329" height="240"></div><div><img src="assets/logos/ref-kitzmann.png" alt="Kitzmann" width="640" height="208"></div><div><img src="assets/logos/ref-lachclash.png" alt="Lach Clash" width="239" height="240"></div><div><img src="assets/logos/ref-thomar.png" alt="ThoMar" width="324" height="215"></div><div><img src="assets/logos/ref-praktikum-hansebelt.png" alt="Praktikum HanseBelt" width="366" height="240"></div><div><img src="assets/logos/ref-egoh.png" alt="EGOH" width="640" height="200"></div><div><img src="assets/logos/ref-geesthacht.png" alt="Stadtwerke Geesthacht" width="528" height="240"></div><div><img src="assets/logos/ref-digitalfueralle.png" alt="Digital für alle" width="440" height="240"></div><div><img src="assets/logos/ref-rotary.png" alt="Rotary Club" width="638" height="240"></div><div><img src="assets/logos/ref-k2konzept.png" alt="K2Konzept" width="640" height="79"></div><div><img src="assets/logos/ref-energiecluster.png" alt="Energiecluster" width="640" height="127"></div><div><img src="assets/logos/ref-hdd.png" alt="Haus des Döners" width="640" height="178"></div><div><img src="assets/logos/ref-sprungtuch.png" alt="Sprungtuch" width="239" height="240"></div><div><img src="assets/logos/ref-tq.png" alt="TQ" width="240" height="240"></div><div><img src="assets/logos/ref-css.png" alt="Change School Summit" width="464" height="240"></div><div><img src="assets/logos/ref-hansefriseur.png" alt="HanseFriseur" width="232" height="240"></div><div><img src="assets/logos/ref-epunkt.png" alt="Forum Ehrenamt" width="134" height="47"></div><div><img src="assets/logos/ref-vfl.png" alt="VfL Lübeck-Schwartau" width="197" height="240"></div></div>
+    <div class="preise"><span class="label">Gewonnen, ausgezeichnet, nominiert</span><div class="preis-reihe"><span class="preis"><b>Existenzgründerpreis</b><img src="assets/logos/ref-lnpreis.png" alt=""></span><span class="preis"><b>Gründerpreis der Sparkasse zu Lübeck</b><img src="assets/logos/ref-sparkasse.png" alt=""></span><span class="preis"><b>Social Hackathon</b><img src="assets/logos/ref-socialhackathon.png" alt=""></span><span class="preis"><b>Überflieger Wettbewerb</b><img src="assets/logos/ref-startupsh.png" alt=""></span></div></div>
+  </div>
+  <aside class="notes">Die Wand wirken lassen. Kein Logo einzeln erklären. Höchstens: Sparkasse, IHK, Staatskanzlei, die Stadt Lübeck. Die Preise unten nur nennen, nicht feiern.</aside>
+</section>
+
+<!-- ============ GANZ BESTIMMT ABER WEIL ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide links-mitte">
+    <p class="vielleicht">… ganz bestimmt aber weil …</p>
+    <ul class="weil-liste">
+      <li class="fragment">wir auf <span>derselben</span> Hochschule waren wie ihr?</li>
+      <li class="fragment">wir erfolgreich sind in dem, was wir tun?</li>
+      <li class="fragment">wir dich inspirieren können?</li>
+    </ul>
+  </div>
+  <aside class="notes">Drei Klicks, je ein Grund. Jeden kurz anspielen, als wäre er die Antwort. Nach dem dritten: Pause.</aside>
+</section>
+
+<!-- ============ NEIN ============ -->
+<section class="f-th" data-stimmung="th" data-chrome="zahl">
+  <div class="slide mittig">
+    <p class="nein schimmer">Nein.</p>
+  </div>
+  <aside class="notes">Laut und kurz. Nein. Dann leiser: Wir sagen euch am Ende, weshalb. Oder besser, ihr sagt es uns. Erst mal: wer wir überhaupt sind.</aside>
+</section>
+
+<!-- ============ WER SIND WIR ============ -->
+<section class="f-th" data-stimmung="th">
+  <img class="duo-frei" src="assets/fotos/duo-frei.png" alt="Emre Erdogan und Edgar Paul-Ghazaryan">
+  <div class="slide links-mitte">
+    <h2 class="hero" style="font-size:118px;">Wer sind wir<br><span class="schimmer">überhaupt?</span></h2>
+    <div class="namen-duo">
+      <p><b>Emre Erdogan</b><span>Gründer und Geschäftsführer</span></p>
+      <p><b>Edgar Paul-Ghazaryan</b><span>„Eddie“ · COO</span></p>
+    </div>
+  </div>
+  <aside class="notes">Kurze Vorstellung, Länge nach Gefühl. Beide haben hier an der TH BWL studiert, Bachelor und Master, Master fertig Anfang 2024. Persönliches kommt gleich noch, hier nur Name und Rolle. Links Emre, rechts Eddie.</aside>
+</section>
+
+<!-- ============ AGENDA ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="headline">Heute</h2>
+    <div class="agenda">
+      <div class="agenda-zeile"><span class="ring"><b>1</b></span><b>Unsere Geschichte</b></div>
+      <div class="agenda-zeile"><span class="ring"><b>2</b></span><b>Der Reality Check</b></div>
+      <div class="agenda-zeile pause"><span class="strich"></span><b>Pause</b></div>
+      <div class="agenda-zeile"><span class="ring"><b>3</b></span><b>KI-Skills</b></div>
+    </div>
+  </div>
+  <aside class="notes">Der Ablauf in einem Satz pro Punkt. Zweieinhalb Stunden, in der Mitte eine Pause.</aside>
+</section>
+
+<!-- ============ EMRE ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide person-folie">
+    <h2 class="headline">Emre <span class="schimmer">Erdogan</span></h2>
+    <p class="rolle">Gründer und Geschäftsführer</p>
+    <div class="fotoreihe"><figure class="polaroid" style="--d:-5deg;--y:30px;--i:0;"><img src="assets/alt/emre-2.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:3deg;--y:-10px;--i:1;"><img src="assets/alt/emre-1.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:-2deg;--y:40px;--i:2;"><img src="assets/alt/emre-4.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:5deg;--y:0px;--i:3;"><img src="assets/alt/emre-3.jpg" alt="" loading="lazy"></figure></div>
+  </div>
+  <aside class="notes">Emre erzählt seine Geschichte. Kindheit, Familie, Abschluss, Trading. Die Fotos sind die Anker, die Länge ist frei.</aside>
+</section>
+
+<!-- ============ EDDIE ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide person-folie">
+    <h2 class="headline">Edgar <span class="schimmer">Paul-Ghazaryan</span></h2>
+    <p class="rolle">„Eddie“ · COO</p>
+    <div class="fotoreihe"><figure class="polaroid" style="--d:4deg;--y:10px;--i:0;"><img src="assets/alt/eddie-2.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:-4deg;--y:40px;--i:1;"><img src="assets/alt/eddie-1.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:3deg;--y:-15px;--i:2;"><img src="assets/alt/eddie-3.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:-5deg;--y:25px;--i:3;"><img src="assets/alt/eddie-4.jpg" alt="" loading="lazy"></figure></div>
+  </div>
+  <aside class="notes">Eddie erzählt seine Geschichte. Familie, Bruder, VfB-Trikot, Nachmittag in der Sonne. Gleiche Länge wie bei Emre, damit es ausgewogen bleibt.</aside>
+</section>
+
+<!-- ============ UND DAS STUDIUM ============ -->
+<section class="f-th" data-stimmung="neutral" data-chrome="zahl">
+  <div class="fotowand"><img src="assets/alt/studium-1.jpg" alt="" loading="lazy"><img src="assets/alt/studium-2.jpg" alt="" loading="lazy"><img src="assets/alt/studium-3.jpg" alt="" loading="lazy"><img src="assets/alt/studium-4.jpg" alt="" loading="lazy"><img src="assets/alt/studium-5.jpg" alt="" loading="lazy"><img src="assets/alt/studium-6.jpg" alt="" loading="lazy"><img src="assets/alt/studium-7.jpg" alt="" loading="lazy"><img src="assets/alt/studium-8.jpg" alt="" loading="lazy"><img src="assets/alt/studium-9.jpg" alt="" loading="lazy"><img src="assets/alt/studium-10.jpg" alt="" loading="lazy"><img src="assets/alt/studium-11.jpg" alt="" loading="lazy"><img src="assets/alt/studium-12.jpg" alt="" loading="lazy"><img src="assets/alt/studium-13.jpg" alt="" loading="lazy"><img src="assets/alt/studium-14.jpg" alt="" loading="lazy"><img src="assets/alt/studium-15.jpg" alt="" loading="lazy"><img src="assets/alt/studium-16.jpg" alt="" loading="lazy"><img src="assets/alt/studium-17.jpg" alt="" loading="lazy"><img src="assets/alt/studium-18.jpg" alt="" loading="lazy"><img src="assets/alt/studium-19.jpg" alt="" loading="lazy"><img src="assets/alt/studium-20.jpg" alt="" loading="lazy"><img src="assets/alt/studium-21.jpg" alt="" loading="lazy"><img src="assets/alt/studium-22.jpg" alt="" loading="lazy"><img src="assets/alt/studium-23.jpg" alt="" loading="lazy"><img src="assets/alt/studium-24.jpg" alt="" loading="lazy"></div>
+  <div class="schleier-unten stark"></div>
+  <div class="slide unten">
+    <h2 class="hero" style="font-size:120px;">Kennengelernt am <span class="schimmer">ersten Tag.</span></h2>
+  </div>
+  <aside class="notes">September 2019, erster Tag BWL hier an der TH: Da haben wir uns kennengelernt und ab dann zusammen gelernt. Ab März 2020 Corona, Hochschule zu, Zoom bis nachts. Bachelor 2022, dann beide den Master in BWL, fertig Anfang 2024. Nebenbei Werkstudenten: Emre bei PwC als Berater im Public Sector, Eddie im Online-Marketing einer Akademie für Führungskräftetrainings, dort sogar als Seminartrainer, dazu selbstständig mit Content. Gegründet haben wir dann mitten im Master.</aside>
+</section>
+
+<!-- ============ CHAT 28.12.2020 ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <div class="chat-buehne">
+      <div class="chat-text">
+        <p class="label">Ein Chat unter Studenten</p>
+        <h2 class="hero">28.12.<br><span class="schimmer">2020</span></h2>
+      </div>
+      <div class="chat"><div class="chat-datum">28. Dez. 2020</div><div class="blase" style="--i:0;"><span>Ab nächstes Jahr setzen wir uns mal hin und bereden</span><i>12:31<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="blase" style="--i:1;"><span>Ich könnte mir sogar vorstellen social media mangament Firma zu gründen</span><i>12:31<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="blase" style="--i:2;"><span>Lübeck ohne <span class='zensur'>scheiß</span> social media kommt hier bei den Betrieben erst neu an</span><i>12:32<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="blase" style="--i:3;"><span>Weil wirklich ich weiß es aus so persönlichen Quellen Also die meisten selbständigen sind ü50 in Lübeck und haben von social media kein plan</span><i>12:33<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="blase" style="--i:4;"><span>Die wissen gar nicht was das alles bringt</span><i>12:33<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="blase" style="--i:5;"><span>Die posten immernoch lame auf Facebook</span><i>12:33<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="blase" style="--i:6;"><span>Kriegen 3 likes</span><i>12:33<svg viewBox="0 0 16 11" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 7-8" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div></div>
+    </div>
+  </div>
+  <aside class="notes">Dezember 2020, mitten in Corona. Magic Moment eins. Die Nachrichten laufen von allein ein, wie damals. Nicht vorlesen, mitlesen lassen. Beim letzten (Kriegen 3 likes) kommt meist ein Lacher. Dann: Das war die Idee. Ohne Plan, ohne Geld, mitten im Studium. Die Tippfehler sind original.</aside>
+</section>
+
+<!-- ============ GRÜNDUNG ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <h2 class="headline">Gegründet im <span class="schimmer">Double Coffee</span></h2>
+  </div>
+  <figure class="polaroid gruendung" style="left:130px;--d:-4deg;--y:0px;--i:0;"><img src="assets/fotos/double-emre.jpg" alt="Emre am Laptop im Café"><figcaption>Double Coffee</figcaption></figure>
+  <figure class="polaroid gruendung" style="left:560px;--d:3deg;--y:30px;--i:1;"><img src="assets/fotos/double-eddie.jpg" alt="Eddie am Laptop im Café"><figcaption>Double Coffee</figcaption></figure>
+  <figure class="polaroid gruendung" style="left:990px;--d:-2deg;--y:-10px;--i:2;"><div class="platzhalter"><span>Foto folgt:<br>Emre in Schwarzweiß</span></div><figcaption>Ratzeburg, bei Eddie</figcaption></figure>
+  <figure class="polaroid gruendung" style="left:1420px;--d:5deg;--y:20px;--i:3;"><img src="assets/fotos/umzug-briefkasten.jpg" alt="Zettel EDGE am Briefkasten über dem Schild Erdogan"><figcaption>Unser Briefkasten, 2023</figcaption></figure>
+  <aside class="notes">Ende 2022, mitten im Master. Gegründet haben wir nicht im Büro, sondern im Double Coffee und bei Eddie zu Hause in Ratzeburg. Die Idee dahinter: An der Uni haben wir gelernt, dass Dinge empirisch und valide sein müssen. Draußen in der echten Welt lief Marketing aber fast immer aus dem Bauch. Also EDGE: Marketing aus echten Daten, dazu KI. Rechts der Briefkasten: ein Zettel mit Tesafilm über Emres Klingelschild, so sah unser Firmenschild aus. (Platzhalter: das Schwarzweißfoto von Emre aus Ratzeburg einsetzen.)</aside>
+</section>
+
+<!-- ============ ERSTER NAME ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="headline">Fast hießen wir <span class="schimmer">anders</span></h2>
+    <p class="epg-label l1">Eddies Vorschlag:</p>
+    <p class="epg-label l2">Was alle gelesen haben:</p>
+  </div>
+  <div class="epg-szene">
+    <span class="fragment epg-s1" aria-hidden="true"></span>
+    <span class="fragment epg-s2" aria-hidden="true"></span>
+    <img class="epg-karte" src="assets/alt/epg.jpg" alt="EPG Agency">
+    <img class="epg-person emre" src="assets/fotos/emre-frei.png" alt="Emre">
+    <img class="epg-person eddie" src="assets/fotos/eddie-frei.png" alt="Eddie">
+    <svg class="epg-krone" viewBox="0 0 120 80" aria-hidden="true"><path d="M6 72 L14 18 L38 46 L60 6 L82 46 L106 18 L114 72 Z" fill="#F5C542" stroke="#B8860B" stroke-width="3" stroke-linejoin="round"/><circle cx="60" cy="6" r="6" fill="#E4003A"/><circle cx="14" cy="18" r="5" fill="#E4003A"/><circle cx="106" cy="18" r="5" fill="#E4003A"/></svg>
+    <b class="epg-buchstabe b-e">E</b><b class="epg-buchstabe b-p">P</b><b class="epg-buchstabe b-g">G</b>
+    <span class="epg-schild s-emre">Erdogan</span>
+    <span class="epg-schild s-eddie-a">Paul-Ghazaryan</span>
+    <span class="epg-schild s-eddie-b"><i>E</i>dgar <i>P</i>aul-<i>G</i>hazaryan</span>
+    <span class="epg-blase">Und ich?</span>
+  </div>
+  <aside class="notes">Wir haben einen Namen gesucht. Erst nur die Karte zeigen: EPG Agency. Wofür steht EPG? Klick eins: Eddies Vorschlag, ganz ernst gemeint. E für Erdogan, P und G für Paul-Ghazaryan. Beide Gründer in einem Namen, Teamgeist, Symbolik. Klick zwei: Emre hat es dann gemerkt. E, P, G ist einfach Edgar Paul-Ghazaryan. Eddie hatte die Firma nach sich selbst benannt, ohne es zu merken. Emre fliegt raus, Eddie bekommt die Krone. Lacher abwarten, Eddie darf sich verteidigen. Gegründet haben wir dann als EDGE Digital, von cutting edge. EPG gab es nie, ist aber bis heute unser Running Gag.</aside>
+</section>
+
+<!-- ============ DOM ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <h2 class="headline">Und dann kam <span class="schimmer">Dom.</span></h2>
+  </div>
+  <div class="dom-szene">
+    <span class="fragment dom-s1" aria-hidden="true"></span>
+    <img class="dom-person p-emre" src="assets/fotos/emre-frei.png" alt="Emre">
+    <img class="dom-person p-dom" src="assets/fotos/dom-frei.png" alt="Dom">
+    <img class="dom-person p-eddie" src="assets/fotos/eddie-frei.png" alt="Eddie">
+    <b class="dom-b d1">E</b><b class="dom-b d2">D</b><b class="dom-b d3">G</b><b class="dom-b d4">E</b>
+    <span class="epg-schild n-emre">Emre</span>
+    <span class="epg-schild n-dom"><i>D</i>ominique <i>G</i>regor</span>
+    <span class="epg-schild n-eddie">Eddie</span>
+  </div>
+  <aside class="notes">Juni 2025: Dom kommt dazu, unser erster Partner, ab da sind wir zu dritt. Eigentlich kommt EDGE von cutting edge. Klick: Aber schaut mal, was im Nachhinein passiert ist. E wie Emre, D und G wie Dominique Gregor, so heißt Dom mit Vornamen, E wie Eddie. Der Name hat uns gefunden. Nach der EPG-Geschichte ist das unsere Revanche.</aside>
+</section>
+
+<!-- ============ BÜROS ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="headline">Vom Homeoffice in die <span class="schimmer">Marlesgrube</span></h2>
+  <div class="bueros">
+    <figure class="polaroid buero" style="--d:-3deg;--y:20px;--i:0;"><img src="assets/fotos/uebergangsraum.jpg" alt="Wand der Übergangsräume mit EDGE-Logo"><figcaption>Übergangsräume, 2024</figcaption></figure>
+    <figure class="polaroid buero" style="--d:2deg;--y:-10px;--i:1;"><img src="assets/fotos/wolf-fishstreet.jpg" alt="KI-Filmplakat Wolf of Fishstreet"><figcaption>Fischstraße, 2025</figcaption></figure>
+    <figure class="polaroid buero" style="--d:-2deg;--y:10px;--i:2;"><img src="assets/fotos/umzug-sofa-buero.jpg" alt="Das Team auf dem Sofa vor dem neuen Büro"><figcaption>Marlesgrube, 2026</figcaption></figure>
+  </div>
+  <div class="bueros-team"><span>zu zweit</span><span>zu dritt</span><span>ganzes Team</span></div>
+  </div>
+  <aside class="notes">Lange haben wir zu zweit im Homeoffice gearbeitet. Januar 2024: das erste echte Büro, die Übergangsräume, ein Projekt der Wirtschaftsförderung Lübeck. Juli 2025, inzwischen mit Dom zu dritt: die Fischstraße, unser erstes großes Büro. Das Plakat in der Mitte ist unser eigener KI-Witz, The Wolf of Fishstreet. 2026 ist das Team dann richtig gewachsen, und seit dem 1. Oktober sitzen wir in der Marlesgrube, über der HypoVereinsbank am Pferdemarkt. Noch halb Baustelle.</aside>
+</section>
+
+<!-- ============ DIE ANFÄNGE: UMZUG ============ -->
+<section class="f-th" data-stimmung="neutral" data-chrome="zahl">
+  <div class="slide umzug-folie">
+    <span class="umzug-datum">1. Oktober 2026</span>
+    <div class="bento">
+      <figure class="b-sofa" style="--i:0;"><img src="assets/fotos/umzug-sofa-buero.jpg" alt="Drei Männer auf einem grünen Sofa mitten auf der Straße vor dem Büro"></figure>
+      <figure class="b-rathaus" style="--i:1;"><img src="assets/fotos/umzug-rathaus.jpg" alt="Dasselbe Sofa vor dem Lübecker Rathaus"></figure>
+      <figure class="b-schild" style="--i:2;"><img src="assets/fotos/umzug-transporter.jpg" alt="Das eingepackte Sofa im Transporter"></figure>
+      <figure class="b-tisch" style="--i:3;"><img src="assets/fotos/umzug-schreibtisch.jpg" alt="Ein Schreibtisch wird zwischen Kartons aufgebaut"></figure>
+      <figure class="b-regal" style="--i:4;"><img src="assets/fotos/umzug-regal.jpg" alt="Ein Regal wird durchs Fenster getragen"></figure>
+    </div>
+  </div>
+  <aside class="notes">1. Oktober 2026, Umzug in die Marlesgrube. Das grüne Sofa haben wir mitten auf die Straße gestellt, direkt vor die HypoVereinsbank, über der jetzt unser Büro ist. Dasselbe Sofa vorher vor dem Rathaus. Durchs Fenster musste unser großer Digital-Signage-Bildschirm, auf dem unsere Avatare laufen. Eine Geschichte pro Foto reicht.</aside>
+</section>
+
+<!-- ============ TEAM HEUTE ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide team">
+    <h2 class="team-titel">Aus zwei wurde ein <span class="schimmer">Team</span></h2>
+    <div class="seite service">
+  <p class="seiten-titel">AI-Services</p>
+  <figure class="person service gross">
+  <div class="rund"><img src="assets/team/eddie.png" alt="Eddie" width="720" height="720"></div>
+  <figcaption><b>Eddie</b><span>Head of AI-Services</span></figcaption>
+</figure>
+  <div class="reihe"><figure class="person service">
+  <div class="rund"><img src="assets/team/chakira.png" alt="Chakira" width="720" height="720"></div>
+  <figcaption><b>Chakira</b><span>AI Content Creatorin</span></figcaption>
+</figure><figure class="person service">
+  <div class="rund"><img src="assets/team/sohal.png" alt="Sohal" width="720" height="720"></div>
+  <figcaption><b>Sohal</b><span>AI Network Expertin</span></figcaption>
+</figure><figure class="person service">
+  <div class="rund"><img src="assets/team/jorge.png" alt="Jorge" width="720" height="720"></div>
+  <figcaption><b>Jorge</b><span>Data Scientist</span></figcaption>
+</figure></div>
+</div>
+    <div class="mitte">
+      <figure class="person gf gross">
+  <div class="rund"><img src="assets/team/emre.png" alt="Emre" width="720" height="720"></div>
+  <figcaption><b>Emre</b><span>Geschäftsführer</span></figcaption>
+</figure>
+      <figure class="person du gross"><div class="rund"><b>?</b></div><figcaption><b>Du?</b><span>Praktikum, Werkstudium, Abschlussarbeit</span></figcaption></figure>
+    </div>
+    <div class="seite software">
+  <p class="seiten-titel">AI-Software</p>
+  <figure class="person software gross">
+  <div class="rund"><img src="assets/team/dom.png" alt="Dom" width="720" height="720"></div>
+  <figcaption><b>Dom</b><span>Head of AI-Software</span></figcaption>
+</figure>
+  <div class="reihe"><figure class="person software">
+  <div class="rund"><img src="assets/team/mats.png" alt="Mats" width="720" height="720"></div>
+  <figcaption><b>Mats</b><span>Frontend Entwickler</span></figcaption>
+</figure><figure class="person software">
+  <div class="rund"><img src="assets/team/saroj.png" alt="Saroj" width="720" height="720"></div>
+  <figcaption><b>Saroj</b><span>Backend Entwickler</span></figcaption>
+</figure><figure class="person software">
+  <div class="rund"><img src="assets/team/nadira.png" alt="Nadira" width="720" height="720"></div>
+  <figcaption><b>Nadira</b><span>AI und Software Engineer</span></figcaption>
+</figure></div>
+</div>
+  </div>
+  <aside class="notes">Seit Juni 2025 zu dritt, 2026 ist das Team richtig gewachsen. Das Team heute, zwei Bereiche: Services und Software. Kurz jeden Namen sagen. Der leere Kreis in der Mitte: Wer Lust hat, kommt nach dem Vortrag zu uns.</aside>
+</section>
+
+<!-- ============ KAPITEL: REALITY CHECK ============ -->
+<section class="f-th" data-stimmung="th" data-chrome="zahl">
+  <img class="voll" src="assets/illu/hoersaal.jpg" alt="Ein dunkler Hörsaal, dessen Stirnwand sich zur Stadt öffnet">
+  <div class="schleier-links"></div>
+  <div class="slide links-mitte">
+    <p class="label" style="color:var(--th-hell);">Kapitel 2</p>
+    <h2 class="hero" style="margin-top:16px;">Der Reality <span class="schimmer">Check</span></h2>
+  </div>
+  <aside class="notes">Kapitelwechsel. Der Hörsaal, der sich zur Stadt öffnet: Irgendwann ist die Wand einfach weg. Jetzt kommt, was wir gern früher gewusst hätten.</aside>
+</section>
+
+<!-- ============ HANDZEICHEN: NACH DEM STUDIUM ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <p class="handzeichen">Handzeichen</p>
+    <h2 class="headline">Was kommt nach dem <span class="schimmer">Studium?</span></h2>
+    <div class="icons" style="--n:4;"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg><p>Job</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg><p>Master</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg><p>Gründen</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><p>Keine Ahnung</p></div></div>
+  </div>
+  <aside class="notes">Vier Klicks, nach jedem Klick Hände zählen lassen. Bei Keine Ahnung gehen meist die meisten Hände hoch, das ist gut so und der Übergang zu den nächsten Folien.</aside>
+</section>
+
+<!-- ============ THESE 2 ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <figure class="polaroid stapel" style="left:990px;top:calc(var(--extra) + 70px);width:600px;--d:-3deg;--y:0px;--i:0;"><img src="assets/fotos/nachtarbeit.jpg" alt=""><figcaption>irgendwann nachts</figcaption></figure><figure class="polaroid stapel" style="left:1515px;top:calc(var(--extra) + 110px);width:330px;--d:6deg;--y:0px;--i:1;"><img src="assets/fotos/moment-bildschirme.jpg" alt=""><figcaption>Mehr Bildschirme. Weniger Probleme.</figcaption></figure><figure class="polaroid stapel" style="left:950px;top:calc(var(--extra) + 545px);width:300px;--d:-6deg;--y:0px;--i:2;"><img src="assets/fotos/moment-ueberflieger.jpg" alt="Eddie und Emre beim Überflieger-Wettbewerb"><figcaption>Überflieger, Kiel 2023</figcaption></figure><figure class="polaroid stapel" style="left:1275px;top:calc(var(--extra) + 520px);width:265px;--d:3deg;--y:0px;--i:3;"><img src="assets/fotos/moment-gewonnen.jpg" alt="Emre mit der Urkunde vom Social Hackathon"><figcaption>Social Hackathon 2024</figcaption></figure><figure class="polaroid stapel" style="left:1565px;top:calc(var(--extra) + 560px);width:300px;--d:-4deg;--y:0px;--i:4;"><img src="assets/fotos/preis-2025.jpg" alt="Das Team auf der Bühne beim Existenzgründerpreis"><figcaption>Existenzgründerpreis 2025</figcaption></figure>
+  <div class="slide links-mitte">
+    <h2 class="these" style="max-width:760px;">Anfangen schlägt <span class="schimmer">Planen.</span></h2>
+  </div>
+  <aside class="notes">Echte Momente, keine Planung: Nachtschicht mit Decke über den Schultern, mehr Bildschirme, weniger Probleme. Dann die ersten Bühnen: Überflieger-Wettbewerb in Kiel 2023, Social Hackathon 2024 (Urkunde für den besten Prototyp), Existenzgründerpreis der Lübecker Wirtschaft 2025. Nichts davon stand in einem Businessplan, alles kam, weil wir einfach angefangen haben. Eure eigene Geschichte dazu, wann ihr einfach losgelegt habt.</aside>
+</section>
+
+<!-- ============ EMRES WHITEBOARD ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <h2 class="headline" style="font-size:70px;max-width:1350px;">Worin Gründer zu früh <span class="schimmer">investieren</span></h2>
+    <div class="karten"><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Logo</span><span>Website</span><span>Visitenkarten</span></div><div class="seite hinten"><b>Keiner sieht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Büromöbel</span><span>Büro</span><span>Schicke Gegenstände</span></div><div class="seite hinten"><b>Keiner besucht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Investoren</span><span>Testphasen</span></div><div class="seite hinten"><b>Bubble.</b></div></div></div></div>
+  </div>
+  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Tough Talks, unser YouTube-Kanal</figcaption></figure>
+  <aside class="notes">Die drei Punkte stammen aus Emres Whiteboard in den Tough Talks, unserem YouTube-Kanal (oben rechts). Drei Karten, drei Klicks. Vorne das, worin fast jeder Gründer zuerst Zeit und Geld steckt. Umgedreht die Wahrheit: Logo, Website, Visitenkarten, keiner sieht dich. Büro, Möbel, schicke Sachen, keiner besucht dich. Investoren und ewige Testphasen, du lebst in einer Blase. Emre erzählt dazu, was wir selbst falsch gemacht haben.</aside>
+</section>
+
+<!-- ============ THESE 3 ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide links-mitte">
+    <h2 class="these" style="max-width:820px;font-size:108px;">Dein Netzwerk sitzt <span class="schimmer">neben dir.</span></h2>
+  </div>
+  <div class="orbit" data-rx="350" data-ry="330" data-tempo="0.025" data-mitte-x="1420" data-mitte-y="540">
+    <div class="orbit-du">Du</div>
+    <img class="o" src="assets/orbit/team.jpg" alt=""><img class="o" src="assets/orbit/ueberflieger.jpg" alt=""><img class="o" src="assets/orbit/sakkos.jpg" alt=""><img class="o" src="assets/orbit/ihk.jpg" alt=""><img class="o" src="assets/orbit/messe.jpg" alt=""><img class="o" src="assets/orbit/pitch.jpg" alt=""><img class="o" src="assets/orbit/wfl.jpg" alt=""><img class="o" src="assets/orbit/daumen.jpg" alt="">
+  </div>
+  <aside class="notes">Die Fotos, die da kreisen: unser Team, der Überflieger-Wettbewerb, unser erster Messestand, Empfänge, Pitch-Abende, Netzwerkabende. Fast jeder dieser Kontakte fing mit einem Gespräch an, oft mit Leuten, die neben uns saßen. Wir zwei haben uns hier kennengelernt, am ersten Tag im ersten Semester. Einmal kurz nach links und rechts schauen lassen: Das sind vielleicht eure ersten Mitgründer, Kunden oder Chefs.</aside>
+</section>
+
+<!-- ============ THESE 4 ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="these" style="font-size:96px;">Du musst noch nicht wissen, <span class="schimmer">was du willst.</span></h2>
+    <svg class="route" viewBox="0 0 1660 600" aria-label="Unser Weg">
+  <defs><linearGradient id="vl-route" x1="0" y1="0" x2="1660" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E4003A"/><stop offset=".6" stop-color="#FF5C7A"/><stop offset="1" stop-color="#7FD4FF"/></linearGradient></defs>
+  <path class="schein" pathLength="1" d="M60,520 C180,520 220,420 300,470 C380,520 420,600 330,560 C250,520 300,360 430,330 C540,305 600,500 700,470 C800,440 820,250 960,250 C1080,250 1100,400 1220,360 C1360,310 1430,120 1580,70" fill="none" stroke="url(#vl-route)" stroke-width="24" stroke-linecap="round"/>
+  <path class="linie" pathLength="1" d="M60,520 C180,520 220,420 300,470 C380,520 420,600 330,560 C250,520 300,360 430,330 C540,305 600,500 700,470 C800,440 820,250 960,250 C1080,250 1100,400 1220,360 C1360,310 1430,120 1580,70" fill="none" stroke="url(#vl-route)" stroke-width="7" stroke-linecap="round"/>
+  <g class="station" style="--i:0;"><circle cx="60" cy="520" r="11"/><text x="150" y="578" text-anchor="middle">Tag 1, 2019</text></g><g class="station" style="--i:1;"><circle cx="430" cy="330" r="11"/><text x="430" y="296" text-anchor="middle">Corona, 2020</text></g><g class="station" style="--i:2;"><circle cx="700" cy="470" r="11"/><text x="700" y="530" text-anchor="middle">Werkstudenten</text></g><g class="station" style="--i:3;"><circle cx="960" cy="250" r="11"/><text x="960" y="216" text-anchor="middle">Gründung, 2022</text></g><g class="station" style="--i:4;"><circle cx="1220" cy="360" r="11"/><text x="1220" y="420" text-anchor="middle">Master fertig, 2024</text></g><g class="station" style="--i:5;"><circle cx="1580" cy="70" r="16"/><text x="1580" y="40" text-anchor="middle">Heute</text></g>
+</svg>
+  </div>
+  <aside class="notes">Zurück zu den vielen Händen bei Keine Ahnung. Die Linie zeichnet sich von allein: So sah unser Weg aus. Kein Plan, Umwege, eine Schleife ganz am Anfang. Studium, dann der Chat, der erste Name, der sich als Eddies eigener Name herausstellte, die ersten Räume, EDGE, heute. Niemand von uns hätte im Hörsaal diese Linie vorhersagen können. Wichtig ist nur, dass man losgeht. Und dafür gibt es heute ein Werkzeug, das es so noch nie gab. Nach der Pause.</aside>
+</section>
+
+<!-- ============ PAUSE ============ -->
+<section class="f-th" data-stimmung="neutral" data-chrome="zahl">
+  <img class="voll" src="assets/illu/pause.jpg" alt="Der EDGE-Roboter im Friesennerz bewacht in der Mensa das letzte Fischbrötchen"><div class="schleier-links"></div>
+  <div class="slide links-mitte">
+    <h2 class="hero">Pause</h2>
+    <p class="unterzeile" style="font-size:46px;font-weight:600;color:var(--w-70);margin:18px 0 0;">15 Minuten</p>
+  </div>
+  <aside class="notes">Pause ansagen, Uhrzeit für den Wiederbeginn nennen. Der Roboter hat übrigens gerade das letzte Fischbrötchen erwischt, das Blech hinter ihm ist leer. Also: schnell sein. Folie stehen lassen.</aside>
+</section>
+
+<!-- ============ KAPITEL: KI-SKILLS ============ -->
+<section class="f-th" data-stimmung="th" data-chrome="zahl">
+  <img class="voll" src="assets/illu/robo-hoersaal.jpg" alt="Der EDGE-Roboter im roten Hoodie meldet sich im Hörsaal">
+  <div class="schleier-links"></div>
+  <div class="slide links-mitte">
+    <p class="label" style="color:var(--th-hell);">Kapitel 3</p>
+    <h2 class="hero" style="margin-top:16px;font-size:104px;">Dein neuer<br><span class="schimmer">Kommilitone.</span></h2>
+  </div>
+  <aside class="notes">Der Roboter mit der Fischbrötchen-Kappe ist unser Maskottchen aus den KI-Vorträgen. Heute sitzt er im Hörsaal und meldet sich immer zuerst. Überleitung: Wer von euch nutzt ihn schon?</aside>
+</section>
+
+<!-- ============ HANDZEICHEN: WER NUTZT KI ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <p class="handzeichen">Handzeichen</p>
+    <h2 class="headline">Wer nutzt <span class="schimmer">KI?</span></h2>
+    <div class="icons" style="--n:3;"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><p>Schon mal ausprobiert</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><p>Fürs Studium</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg><p>Jeden Tag</p></div></div>
+  </div>
+  <aside class="notes">Drei Klicks, drei Handzeichen. Keine Zahlen nennen, keine Bewertung. Nur: Okay, dann holen wir jetzt alle auf denselben Stand.</aside>
+</section>
+
+<!-- ============ SO ARBEITEN WIR ============ -->
+<section class="f-th so-arbeiten" data-stimmung="neutral" data-chrome="aus">
+  <video class="sa-video" src="assets/video/hotel-lobby.mp4" poster="assets/video/hotel-lobby.jpg" data-autoplay playsinline></video>
+  <div class="slide">
+    <p class="sa-titel">Wenn der Kunde Ja sagt.</p>
+    <div class="sa-aufloesung fragment">
+      <h2 class="hero">Alles <span class="schimmer">KI.</span></h2>
+      <p>Kein einziges Bild davon ist echt.</p>
+    </div>
+    <p class="sa-kennung">KI-generiert · Vorlage: Quavo &amp; Takeoff, A COLORS SHOW (2022)</p>
+  </div>
+  <aside class="notes">Video startet von selbst, 19 Sekunden mit Ton. Kurz wirken lassen. Klick: Auflösung, alles KI. Das ist der Hotel-Lobby-Trend, den viele gerade auf TikTok sehen: Higgsfield hat die Bewegungen von Quavo und Takeoff aus ihrem COLORS-Auftritt von 2022 auf ein ganz normales Foto von uns beiden übertragen. Gedauert hat das ein paar Minuten. Nur live zeigen, nicht posten: die Rechte an Aufnahme und Song liegen bei anderen. Überleitung: Und was kann KI sonst noch?</aside>
+</section>
+
+<!-- ============ WAS KI HEUTE KANN ============ -->
+<section class="f-th ki-folie" data-stimmung="th">
+  <div class="slide">
+    <h2 class="headline">Was KI <span class="schimmer">heute</span> kann</h2>
+    <div class="ki-bento">
+  <figure class="kachel medien k-bild">
+    <img src="assets/fotos/ki-foto-vorher.jpg" alt="Foto des Seminargebäudes der TH Lübeck am Tag">
+    <img class="nachher" src="assets/illu/titel.jpg" alt="Dasselbe Gebäude als KI-Bild bei Nacht">
+    <span class="marke"><i class="m-vor">Foto</i><i class="m-nach">KI-Bild</i></span>
+    <figcaption>Bilder</figcaption>
+  </figure>
+  <figure class="kachel medien k-video">
+    <video src="assets/video/ki-maskottchen.mp4" poster="assets/video/ki-maskottchen.jpg" data-autoplay muted loop playsinline></video>
+    <figcaption>Videos</figcaption>
+  </figure>
+  <figure class="kachel medien k-avatar">
+    <img src="assets/fotos/ki-avatar.jpg" alt="Eddie neben einem KI-Avatar auf einem großen Bildschirm">
+    <figcaption>Avatare</figcaption>
+  </figure>
+  <figure class="kachel k-text">
+    <p class="tipp" data-text="Sehr geehrte Frau Professorin,
+mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus."><span class="getippt">Sehr geehrte Frau Professorin,
+mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span><span class="cursor"></span></p>
+    <figcaption>Schreiben</figcaption>
+  </figure>
+  <figure class="kachel k-stimme">
+    <span class="knopf" aria-hidden="true"></span>
+    <div class="welle"><i style="--h:1.00;"></i><i style="--h:0.82;"></i><i style="--h:0.61;"></i><i style="--h:0.88;"></i><i style="--h:0.68;"></i><i style="--h:0.77;"></i><i style="--h:0.72;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.53;"></i><i style="--h:0.66;"></i><i style="--h:0.75;"></i><i style="--h:0.74;"></i><i style="--h:0.73;"></i><i style="--h:0.51;"></i><i style="--h:0.59;"></i><i style="--h:0.70;"></i><i style="--h:0.60;"></i><i style="--h:0.59;"></i><i style="--h:0.59;"></i><i style="--h:0.57;"></i><i style="--h:0.76;"></i><i style="--h:0.44;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.68;"></i><i style="--h:0.64;"></i><i style="--h:0.75;"></i><i style="--h:0.76;"></i><i style="--h:0.75;"></i><i style="--h:0.66;"></i><i style="--h:0.74;"></i><i style="--h:0.69;"></i><i style="--h:0.76;"></i><i style="--h:0.77;"></i><i style="--h:0.52;"></i><i style="--h:0.54;"></i></div>
+    <audio src="assets/audio/ki-stimme.mp3" preload="auto"></audio>
+    <figcaption>Stimmen</figcaption>
+    <span class="fragment ki-ton"></span>
+  </figure>
+</div>
+  </div>
+  <aside class="notes">Alles hier ist echt und von uns gemacht. Oben links: ein normales Foto vom Seminargebäude, daraus hat die KI das Nachtbild vom Anfang gemacht. Daneben unser Maskottchen, aus einem einzigen Bild ist ein Video geworden. Rechts Eddie neben unserem Avatar am EDGE-Stand auf der Standort-Zukunft-Messe im Juni 2026. Unten links schreibt die KI gerade eine Mail. Klick: die Stimme spielt. Kein Mensch hat das eingesprochen. Überleitung: Und seit diesem Jahr kann KI auch selbst arbeiten, dazu gleich ein Beispiel.</aside>
+</section>
+
+<!-- ============ KURVE ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="headline">Moore's Law gegen <span class="schimmer">KI</span></h2>
+    <svg class="kurve" viewBox="0 0 1520 640" aria-label="Moore's Law gegen KI-Wachstum">
+  <defs><linearGradient id="vl-ki" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#E4003A"/><stop offset="1" stop-color="#FF9FB1"/></linearGradient></defs>
+  <path d="M90,30 L90,560 L1470,560" fill="none" stroke="rgba(244,246,255,.35)" stroke-width="2"/><g class="jahre"><text x="362" y="604" text-anchor="middle">2 J.</text><text x="634" y="604" text-anchor="middle">4 J.</text><text x="906" y="604" text-anchor="middle">6 J.</text><text x="1178" y="604" text-anchor="middle">8 J.</text><text x="1450" y="604" text-anchor="middle">10 J.</text></g>
+  <path class="linie moore" pathLength="1" d="M90.0,554.8 L96.8,554.7 L103.6,554.6 L110.4,554.4 L117.2,554.3 L124.0,554.2 L130.8,554.0 L137.6,553.9 L144.4,553.7 L151.2,553.6 L158.0,553.4 L164.8,553.3 L171.6,553.1 L178.4,553.0 L185.2,552.8 L192.0,552.6 L198.8,552.5 L205.6,552.3 L212.4,552.1 L219.2,551.9 L226.0,551.7 L232.8,551.6 L239.6,551.4 L246.4,551.2 L253.2,550.9 L260.0,550.7 L266.8,550.5 L273.6,550.3 L280.4,550.1 L287.2,549.8 L294.0,549.6 L300.8,549.4 L307.6,549.1 L314.4,548.9 L321.2,548.6 L328.0,548.3 L334.8,548.1 L341.6,547.8 L348.4,547.5 L355.2,547.2 L362.0,546.9 L368.8,546.6 L375.6,546.3 L382.4,546.0 L389.2,545.6 L396.0,545.3 L402.8,544.9 L409.6,544.6 L416.4,544.2 L423.2,543.9 L430.0,543.5 L436.8,543.1 L443.6,542.7 L450.4,542.3 L457.2,541.9 L464.0,541.5 L470.8,541.0 L477.6,540.6 L484.4,540.1 L491.2,539.7 L498.0,539.2 L504.8,538.7 L511.6,538.2 L518.4,537.7 L525.2,537.2 L532.0,536.7 L538.8,536.1 L545.6,535.5 L552.4,535.0 L559.2,534.4 L566.0,533.8 L572.8,533.2 L579.6,532.6 L586.4,531.9 L593.2,531.3 L600.0,530.6 L606.8,529.9 L613.6,529.2 L620.4,528.5 L627.2,527.7 L634.0,527.0 L640.8,526.2 L647.6,525.4 L654.4,524.6 L661.2,523.8 L668.0,522.9 L674.8,522.1 L681.6,521.2 L688.4,520.3 L695.2,519.4 L702.0,518.4 L708.8,517.4 L715.6,516.4 L722.4,515.4 L729.2,514.4 L736.0,513.3 L742.8,512.2 L749.6,511.1 L756.4,510.0 L763.2,508.8 L770.0,507.6 L776.8,506.4 L783.6,505.1 L790.4,503.8 L797.2,502.5 L804.0,501.2 L810.8,499.8 L817.6,498.4 L824.4,496.9 L831.2,495.5 L838.0,494.0 L844.8,492.4 L851.6,490.8 L858.4,489.2 L865.2,487.6 L872.0,485.9 L878.8,484.1 L885.6,482.4 L892.4,480.6 L899.2,478.7 L906.0,476.8 L912.8,474.9 L919.6,472.9 L926.4,470.8 L933.2,468.7 L940.0,466.6 L946.8,464.4 L953.6,462.2 L960.4,459.9 L967.2,457.6 L974.0,455.2 L980.8,452.7 L987.6,450.2 L994.4,447.7 L1001.2,445.0 L1008.0,442.3 L1014.8,439.6 L1021.6,436.8 L1028.4,433.9 L1035.2,430.9 L1042.0,427.9 L1048.8,424.8 L1055.6,421.7 L1062.4,418.4 L1069.2,415.1 L1076.0,411.8 L1082.8,408.3 L1089.6,404.7 L1096.4,401.1 L1103.2,397.4 L1110.0,393.6 L1116.8,389.7 L1123.6,385.7 L1130.4,381.7 L1137.2,377.5 L1144.0,373.2 L1150.8,368.9 L1157.6,364.4 L1164.4,359.8 L1171.2,355.1 L1178.0,350.3 L1184.8,345.4 L1191.6,340.4 L1198.4,335.3 L1205.2,330.0 L1212.0,324.7 L1218.8,319.2 L1225.6,313.5 L1232.4,307.8 L1239.2,301.9 L1246.0,295.9 L1252.8,289.7 L1259.6,283.4 L1266.4,276.9 L1273.2,270.3 L1280.0,263.5 L1286.8,256.6 L1293.6,249.5 L1300.4,242.2 L1307.2,234.8 L1314.0,227.2 L1320.8,219.4 L1327.6,211.5 L1334.4,203.3 L1341.2,195.0 L1348.0,186.4 L1354.8,177.7 L1361.6,168.8 L1368.4,159.6 L1375.2,150.3 L1382.0,140.7 L1388.8,130.9 L1395.6,120.9 L1402.4,110.6 L1409.2,100.1 L1416.0,89.3 L1422.8,78.3 L1429.6,67.1 L1436.4,55.6 L1443.2,43.8 L1450.0,40.0" fill="none" stroke="rgba(244,246,255,.55)" stroke-width="5" stroke-linecap="round"/>
+  <path class="linie ki" pathLength="1" d="M90.0,554.8 L92.3,554.7 L94.5,554.6 L96.8,554.4 L99.0,554.3 L101.3,554.2 L103.6,554.0 L105.8,553.9 L108.1,553.7 L110.3,553.6 L112.6,553.5 L114.8,553.3 L117.1,553.1 L119.4,553.0 L121.6,552.8 L123.9,552.7 L126.1,552.5 L128.4,552.3 L130.7,552.1 L132.9,551.9 L135.2,551.8 L137.4,551.6 L139.7,551.4 L142.0,551.2 L144.2,551.0 L146.5,550.8 L148.7,550.5 L151.0,550.3 L153.2,550.1 L155.5,549.9 L157.8,549.6 L160.0,549.4 L162.3,549.1 L164.5,548.9 L166.8,548.6 L169.1,548.4 L171.3,548.1 L173.6,547.8 L175.8,547.5 L178.1,547.2 L180.4,546.9 L182.6,546.6 L184.9,546.3 L187.1,546.0 L189.4,545.7 L191.7,545.3 L193.9,545.0 L196.2,544.7 L198.4,544.3 L200.7,543.9 L202.9,543.6 L205.2,543.2 L207.5,542.8 L209.7,542.4 L212.0,542.0 L214.2,541.5 L216.5,541.1 L218.8,540.7 L221.0,540.2 L223.3,539.8 L225.5,539.3 L227.8,538.8 L230.1,538.3 L232.3,537.8 L234.6,537.3 L236.8,536.8 L239.1,536.2 L241.3,535.7 L243.6,535.1 L245.9,534.5 L248.1,533.9 L250.4,533.3 L252.6,532.7 L254.9,532.1 L257.2,531.4 L259.4,530.8 L261.7,530.1 L263.9,529.4 L266.2,528.7 L268.5,527.9 L270.7,527.2 L273.0,526.4 L275.2,525.6 L277.5,524.8 L279.7,524.0 L282.0,523.2 L284.3,522.3 L286.5,521.5 L288.8,520.6 L291.0,519.6 L293.3,518.7 L295.6,517.7 L297.8,516.7 L300.1,515.7 L302.3,514.7 L304.6,513.7 L306.9,512.6 L309.1,511.5 L311.4,510.3 L313.6,509.2 L315.9,508.0 L318.2,506.8 L320.4,505.5 L322.7,504.3 L324.9,503.0 L327.2,501.7 L329.4,500.3 L331.7,498.9 L334.0,497.5 L336.2,496.0 L338.5,494.5 L340.7,493.0 L343.0,491.5 L345.3,489.9 L347.5,488.2 L349.8,486.5 L352.0,484.8 L354.3,483.1 L356.6,481.3 L358.8,479.5 L361.1,477.6 L363.3,475.7 L365.6,473.7 L367.8,471.7 L370.1,469.6 L372.4,467.5 L374.6,465.4 L376.9,463.2 L379.1,460.9 L381.4,458.6 L383.7,456.2 L385.9,453.8 L388.2,451.4 L390.4,448.8 L392.7,446.2 L395.0,443.6 L397.2,440.9 L399.5,438.1 L401.7,435.3 L404.0,432.4 L406.2,429.4 L408.5,426.3 L410.8,423.2 L413.0,420.0 L415.3,416.8 L417.5,413.4 L419.8,410.0 L422.1,406.5 L424.3,403.0 L426.6,399.3 L428.8,395.6 L431.1,391.7 L433.4,387.8 L435.6,383.8 L437.9,379.7 L440.1,375.5 L442.4,371.2 L444.6,366.8 L446.9,362.3 L449.2,357.7 L451.4,353.0 L453.7,348.2 L455.9,343.2 L458.2,338.2 L460.5,333.0 L462.7,327.7 L465.0,322.3 L467.2,316.8 L469.5,311.1 L471.8,305.3 L474.0,299.4 L476.3,293.3 L478.5,287.1 L480.8,280.7 L483.1,274.2 L485.3,267.6 L487.6,260.8 L489.8,253.8 L492.1,246.7 L494.3,239.4 L496.6,231.9 L498.9,224.3 L501.1,216.4 L503.4,208.4 L505.6,200.2 L507.9,191.9 L510.2,183.3 L512.4,174.5 L514.7,165.5 L516.9,156.4 L519.2,146.9 L521.5,137.3 L523.7,127.5 L526.0,117.4 L528.2,107.1 L530.5,96.5 L532.7,85.8 L535.0,74.7 L537.3,63.4 L539.5,51.8 L541.8,40.0" fill="none" stroke="url(#vl-ki)" stroke-width="8" stroke-linecap="round"/>
+  <text class="kurven-name ki" x="572" y="60">KI: alle 6 Monate doppelt</text>
+  <text class="kurven-name moore" x="1450" y="544" text-anchor="end">Moore's Law: alle 18 Monate doppelt</text>
+</svg>
+  </div>
+  <aside class="notes">Computer wurden alle 18 Monate doppelt so leistungsfähig, das war schon schnell. KI verdoppelt sich etwa alle sechs Monate. Die Linie läuft von allein ein.</aside>
+</section>
+
+<!-- ============ DAS HANDY IST NUR DAS FENSTER ============ -->
+<section class="f-th" data-stimmung="th">
+  <img class="fenster-bild" src="assets/illu/handy-cloud.jpg" alt="Ein altes Tastenhandy, über eine Lichtlinie mit einem Rechenzentrum verbunden">
+  <div class="fenster-name" style="left:18%;">Nokia 6300 · 8 MB</div>
+  <div class="fenster-name" style="left:83%;">Hier rechnet die KI</div>
+  <div class="slide">
+    <h2 class="headline" style="position:relative;">Claude auf einem Handy von <span class="schimmer">2007</span></h2>
+  </div>
+  <aside class="notes">Ende September hat ein Entwickler aus der Türkei Claude auf sein altes Nokia 6300 von 2007 gebracht. 8 MB Speicher, das Handy kommt nicht mal mehr ins heutige Internet. Er hat in ein paar Tagen eine kleine App geschrieben, die über einen Zwischenserver mit Claude spricht. Video: über 3 Millionen Aufrufe in wenigen Tagen. Der Trick: Die KI rechnet gar nicht im Handy, sondern im Rechenzentrum. Das Handy ist nur der Bildschirm. Heißt für euch: Ihr braucht kein teures Gerät, um die stärksten Modelle der Welt zu nutzen. Und: So eine scheinbar sinnlose Bastelei bringt plötzlich Millionen Aufrufe, so fangen Dinge an.</aside>
+</section>
+
+<!-- ============ WIR FRAGEN SCHLECHT ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide mittig">
+    <p class="zitat">Die KI liefert nicht schlecht.<br><span class="schimmer">Wir fragen schlecht.</span></p>
+  </div>
+  <aside class="notes">Der wichtigste Satz des Kapitels. Stehen lassen. Dann das Beispiel mit der Pizza.</aside>
+</section>
+
+<!-- ============ PIZZA ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <div class="pizza">
+      <div>
+        <p class="label">So fragen die meisten</p>
+        <p class="ansage kurz">„Pizza.“</p>
+        <img src="assets/robo/pizza-schlecht.png" alt="Der Roboter ist enttäuscht">
+      </div>
+      <div class="trennlinie"></div>
+      <div class="fragment">
+        <p class="label gut">So bekommst du, was du willst</p>
+        <p class="ansage lang">„Eine Pizza Margherita, dünner Boden, extra Basilikum, in 20 Minuten an die Mensa, ich zahle mit Karte.“</p>
+        <img src="assets/robo/pizza-gut.png" alt="Der Roboter freut sich">
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Wer nur Pizza sagt, bekommt irgendeine. Klick: Wer genau sagt, was er will, bekommt seine. Genau so funktioniert ein Prompt. Und dafür gibt es einen Kompass.</aside>
+</section>
+
+<!-- ============ KOMPASS ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="headline">Der <span class="schimmer">Kompass</span></h2>
+    <div class="kompass"><div class="kompass-zeile"><span class="kopf">Rolle</span><b>Wer soll die KI sein?</b></div><div class="kompass-zeile"><span class="kopf">Aufgabe</span><b>Was genau soll passieren?</b></div><div class="kompass-zeile"><span class="kopf">Kontext</span><b>Was weißt nur du?</b></div><div class="kompass-zeile"><span class="kopf">„Förmchen“</span><b>In welcher Form?</b></div></div>
+  </div>
+  <aside class="notes">Vier Bausteine, immer dieselben. Danach live in Sekunden zeigen, Prompts stehen auf der Karte zum Mitnehmen. Bewerbung üben: Du bist Personalerin bei einem Lübecker Medizintechnik-Unternehmen. Führ ein Vorstellungsgespräch mit mir, eine Frage nach der anderen. Ich bewerbe mich als Werkstudent im Marketing, 3. Semester BWL. Nach jeder Antwort ehrliches Feedback, höchstens drei Sätze. Zweitens Tutor: Erklär mir Angebot und Nachfrage in drei Sätzen, dann stell mir eine Frage und warte auf meine Antwort. Drittens, als Rückgriff auf unseren Chat von 2020: Du bist eine skeptische Investorin, zerreiß meine Idee, Social-Media-Agentur in Lübeck, nenn die drei größten Risiken. Die KI findet genau die Fragen, die wir damals beantworten mussten. Und wir haben es trotzdem gemacht.</aside>
+</section>
+
+<!-- ============ DEMO: LERNSEITE BAUEN ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <h2 class="headline">KI baut dir ein <span class="schimmer">Werkzeug</span></h2>
+    <div class="fenster gross"><div class="fenster-leiste"><i></i><i></i><i></i><span>lernseite.html · von KI gebaut</span></div><iframe src="demo/lernseite.html" title="Interaktive Lernseite Angebot und Nachfrage" loading="lazy"></iframe></div>
+  </div>
+  <aside class="notes">Magic Moment. Diese Seite hat eine KI aus einem einzigen Satz gebaut: Bau mir eine interaktive Lernseite zu Angebot und Nachfrage, mit zwei Reglern, einer Kurve, die sich live bewegt, und dem Lübecker Weihnachtsmarkt als Beispiel. Live an den Reglern ziehen: Besucher hoch, Preis steigt. Ihr könnt euch eure eigenen Lernwerkzeuge bauen lassen. Der Bau dauert Minuten, deshalb zeigen wir das fertige Ergebnis.</aside>
+</section>
+
+<!-- ============ TURM ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide turm-folie">
+    <h2 class="headline" style="max-width:900px;">Die KI baut nur die <span class="schimmer">Spitze</span></h2>
+    <div class="turm">
+  <div class="block spitze">Prompt</div>
+  <span class="turm-trigger fragment" aria-hidden="true"></span>
+  <div class="unterbau"><div class="block" style="--i:6;--w:64%;">Login</div><div class="block" style="--i:5;--w:70%;">Datenbank</div><div class="block" style="--i:4;--w:76%;">Datenschutz</div><div class="block" style="--i:3;--w:82%;">Hosting</div><div class="block" style="--i:2;--w:88%;">Sicherheit</div><div class="block" style="--i:1;--w:94%;">Backups</div><div class="block" style="--i:0;--w:100%;">Wartung</div></div>
+</div>
+  </div>
+  <aside class="notes">Erst steht nur der leuchtende Block da: Prompt. So wird es auf Instagram verkauft, ein Satz, fertige App. Klick: Darunter wächst der Turm. Login, Datenbank, Datenschutz, Hosting, Sicherheit, Backups, Wartung. Das macht keine KI für euch fertig, das ist echte Arbeit und echte Verantwortung. Bei uns läuft jede App vor dem Start durch eine Prüfliste. Für alle aus der Informatik: Euer Job verschwindet nicht, er rutscht nach unten in den Turm.</aside>
+</section>
+
+<!-- ============ NIE IN DIE KI ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <h2 class="headline">Was nie in die <span class="schimmer">KI</span> gehört</h2>
+    <div class="icons klein" style="--n:6;"><div><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.2"/><path d="M5 17c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4M14 10h5M14 14h4"/></svg><p>Namen</p></div><div><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><p>Adressen</p></div><div><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><p>Telefonnummern</p></div><div><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg><p>Passwörter</p></div><div><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg><p>Gesundheitsdaten</p></div><div><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></svg><p>Firmeninterna</p></div></div>
+  </div>
+  <aside class="notes">Kurz und klar. Firmeninterna heißt auch: Daten aus dem Praktikum oder der Abschlussarbeit im Unternehmen. Und: Die Regeln eurer Prüfungsordnung zu KI gelten immer, im Zweifel fragt eure Dozierenden.</aside>
+</section>
+
+<!-- ============ FAKTENCHECK ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <h2 class="headline">KI erfindet auch mal <span class="schimmer">Quellen.</span></h2>
+    <div class="faktencheck"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg><p>Jede Quelle selbst öffnen</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg><p>Jede Zahl gegenprüfen</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><p>„Sag mir, wenn du es nicht weißt.“</p></div></div>
+  </div>
+  <aside class="notes">Drei Klicks, drei Gewohnheiten. Der dritte Punkt ist ein echter Satz für den Prompt: Wer der KI erlaubt, nichts zu wissen, bekommt seltener erfundene Antworten.</aside>
+</section>
+
+<!-- ============ ERST SELBST DENKEN ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide links-mitte">
+    <p class="label" style="font-size:24px;">MIT Media Lab · 2025 · „Your Brain on ChatGPT“</p>
+    <h2 class="these" style="margin-top:30px;">Erst selbst denken,<br><span class="schimmer">dann KI fragen.</span></h2>
+  </div>
+  <aside class="notes">Die Studie vom MIT: Wer seinen Aufsatz von Anfang an mit KI geschrieben hat, konnte danach kaum einen Satz daraus wiedergeben. Wer erst selbst geschrieben und dann KI genutzt hat, schnitt besser ab. Wichtig: kleine Vorabstudie, 54 Personen, noch nicht begutachtet. Also kein Beweis, aber eine gute Regel fürs Studium.</aside>
+</section>
+
+<!-- ============ STUDIE ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <div class="studie">
+      <p class="label" style="font-size:26px;">Harvard × BCG · 758 Berater · mit KI gegen ohne</p>
+      <p class="riesig schimmer">+40 %<small>Qualität</small></p>
+      <div class="nebenzahlen"><span><b>25 %</b> schneller</span><span><b>12 %</b> mehr geschafft</span></div>
+    </div>
+  </div>
+  <aside class="notes">Die bekannte Studie von Harvard und der Boston Consulting Group (2023). Wer KI richtig nutzt, ist besser, schneller und schafft mehr. Genau das haben wir heute geübt.</aside>
+</section>
+
+<!-- ============ HANDZEICHEN: BERUFE ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <div class="slide">
+    <p class="handzeichen">Handzeichen</p>
+    <h2 class="headline">Wo hilft KI am <span class="schimmer">meisten?</span></h2>
+    <div class="icons" style="--n:4;"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg><p>Programmierer</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg><p>Dolmetscher</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><p>Journalisten</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg><p>Brückenwärter</p></div></div>
+  </div>
+  <aside class="notes">Vier Klicks, nach jedem Hände zählen. Die meisten tippen auf Programmierer. Auflösung auf der nächsten Folie.</aside>
+</section>
+
+<!-- ============ BERUFE: AUFLÖSUNG ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <p class="quelle-klein">MICROSOFT RESEARCH · 200.000 COPILOT-GESPRÄCHE · USA</p>
+    <h2 class="headline" style="margin-top:14px;">Dolmetscher, nicht <span class="schimmer">Programmierer</span></h2>
+    <div class="balken"><div class="balken-zeile"><span class="beruf">Dolmetscher</span><div class="spur"><i style="width:98%;"></i></div><b>0,492</b><span class="platz">Platz 1</span></div><div class="balken-zeile"><span class="beruf">Historiker</span><div class="spur"><i style="width:92%;"></i></div><b>0,462</b><span class="platz">Platz 2</span></div><div class="balken-zeile"><span class="beruf">Journalisten</span><div class="spur"><i style="width:77%;"></i></div><b>0,383</b><span class="platz">Platz 11</span></div><div class="balken-zeile"><span class="beruf">Data Scientists</span><div class="spur"><i style="width:71%;"></i></div><b>0,357</b><span class="platz">Platz 19</span></div><div class="balken-zeile"><span class="beruf">Brückenwärter</span><div class="spur"><i style="width:0%;"></i></div><b>0</b><span class="platz">ganz unten</span></div></div>
+  </div>
+  <aside class="notes">Die Studie hat gemessen, bei welchen Tätigkeiten Menschen sich wirklich von KI helfen lassen. Ganz oben Dolmetscher und Historiker, Programmierer stehen nicht einmal unter den ersten 40. Ganz unten: Brücken- und Schleusenwärter, die haben wir in Lübeck ja genug. Wichtig: Das ist kein Ranking, wer seinen Job verliert. Die Autoren sagen selbst, daraus Jobverlust abzuleiten wäre ein Fehler. Dazu das Beispiel auf der nächsten Folie.</aside>
+</section>
+
+<!-- ============ GELDAUTOMAT ============ -->
+<section class="f-th" data-stimmung="neutral">
+  <img class="voll automat-bild" src="assets/illu/geldautomat.jpg" alt="Ein leuchtender Geldautomat im Dunkeln">
+  <div class="schleier-links"></div>
+  <div class="slide links-mitte">
+    <h2 class="these" style="max-width:1100px;font-size:104px;">Der Geldautomat hat die Kassierer <span class="schimmer">nicht abgeschafft.</span></h2>
+  </div>
+  <aside class="notes">Das Beispiel stammt aus derselben Microsoft-Studie. Der Geldautomat hat die Hauptaufgabe der Bankkassierer übernommen, Geld auszahlen. Trotzdem gab es danach mehr Kassierer, weil Banken günstiger neue Filialen eröffnen konnten und die Leute sich um Beratung kümmerten. KI verändert Aufgaben. Was mit den Jobs passiert, entscheiden Menschen und Unternehmen.</aside>
+</section>
+
+<!-- ============ DREI ZUKÜNFTE ============ -->
+<section class="f-th" data-stimmung="th">
+  <div class="slide">
+    <p class="quelle-klein">ANTHROPIC · SZENARIEN FÜR DIE US-WIRTSCHAFT · KEINE VORHERSAGE</p>
+    <h2 class="headline" style="margin-top:14px;margin-bottom:0;">Was KI bis 2030 <span class="schimmer">bringen könnte</span></h2>
+    <p class="unterzeile-klar">Zusätzliches Wachstum bis 2030, umgerechnet in Jahre normales Wachstum</p>
+    <div class="szenarien"><div class="szenario s0">
+  <p class="wenn"><span>Wenn</span> KI so viel verändert wie damals das Internet</p>
+  <b class="jahre"><small>knapp</small> 1 Jahr</b>
+  <span class="prozent">+1,6 % gegenüber ohne KI</span>
+</div><div class="szenario s1">
+  <p class="wenn"><span>Wenn</span> KI die Hälfte der Büroarbeit erledigt</p>
+  <b class="jahre">4 Jahre</b>
+  <span class="prozent">+8,3 % gegenüber ohne KI</span>
+</div><div class="szenario s2">
+  <p class="wenn"><span>Wenn</span> KI fast jede Büroarbeit besser kann als wir</p>
+  <b class="jahre">14 Jahre</b>
+  <span class="prozent">+32,4 % gegenüber ohne KI</span>
+</div></div>
+    <p class="offen fragment">Welches Szenario es wird, steht <span class="schimmer">noch nicht fest.</span></p>
+  </div>
+  <aside class="notes">Erst Handzeichen: Wer glaubt, KI wird wie das Internet? Wer glaubt, KI macht bald die Hälfte der Büroarbeit? Wer glaubt ans Extrem? Erklärung: Anthropic hat ausgerechnet, wie groß die US-Wirtschaft 2030 ohne KI wäre, und das mit drei Szenarien verglichen. Weil Prozente keiner fühlt, steht groß da, wie viele Jahre normales Wachstum das wären, die US-Wirtschaft wächst sonst um etwa 2 Prozent im Jahr. Wie das Internet: plus 1,6 Prozent, also knapp ein Jahr zusätzlich. Hälfte der Büroarbeit: plus 8,3 Prozent, vier Jahre zusätzlich. Extrem: plus 32,4 Prozent, das wären 14 Jahre Wachstum zusätzlich, und das bis 2030. Klick: Welches Szenario es wird, steht noch nicht fest. Das entscheiden auch die, die heute hier sitzen. Quelle: Anthropic, Scenarios for our Economic Future, September 2026, über 10.000 Befragte.</aside>
+</section>
+
+<!-- ============ WESHALB ZUGEHÖRT ============ -->
+<section class="f-hblau" data-stimmung="neutral">
+  <div class="slide mittig">
+    <h2 class="frage-gross">Weshalb hast du uns<br><span class="schimmer">zugehört?</span></h2>
+  </div>
+  <aside class="notes">Rückgriff auf den Anfang. Ab hier wechselt die Farbe vom TH-Rot ins EDGE-Blau. Frage stellen, Pause lassen.</aside>
+</section>
+
+<!-- ============ DU BESTIMMST DEN GRUND ============ -->
+<section class="f-hblau" data-stimmung="hblau" data-chrome="zahl">
+  <img class="voll" src="assets/illu/finale.jpg" alt="Das Seminargebäude der TH Lübeck im Morgengrauen"><div class="schleier-links"></div>
+  <div class="slide links-mitte">
+    <h2 class="hero" style="font-size:132px;">Du bestimmst<br><span class="schimmer">den Grund.</span></h2>
+  </div>
+  <aside class="notes">Die Schlussbotschaft vom letzten Jahr, bewusst gleich: Ihr habt unsere Geschichten gehört. Die Ereignisse in deinem Leben haben den Sinn, den du ihnen gibst. Also frag dich: Warum warst du heute hier? Das Gebäude vom Anfang, jetzt im Morgengrauen.</aside>
+</section>
+
+<!-- ============ ENDE ============ -->
+<section class="f-hblau" data-stimmung="hblau" data-chrome="zahl">
+  <img class="ende-foto" src="assets/fotos/duo-event.jpg" alt="Emre Erdogan und Edgar Paul-Ghazaryan">
+  <div class="slide schluss">
+    <h2 class="hero">Und jetzt:<br><span class="schimmer">ausprobieren.</span></h2>
+    <div class="kontakt"><img src="assets/logos/edge-logo-white.png" alt="EDGE Digital"><p><b>Emre Erdogan &amp; Edgar Paul-Ghazaryan</b><br>emre@edge-digital.com · edgar@edge-digital.com</p></div>
+  </div>
+  
+  <aside class="notes">Danke sagen, Fragen aufmachen. Gemeinsames Foto mit Herrn Balke nicht vergessen (für die TH-Website und LinkedIn).</aside>
+</section>
+
+</div>
+</div>
+
+<script src="vendor/reveal/reveal.js"></script>
+<script src="vendor/reveal/plugin/notes/notes.js"></script>
+<script>
+/* ?nofrag: Standbild für Prüfläufe und den PDF-Export */
+if (new URLSearchParams(location.search).has('nofrag')) document.body.classList.add('standbild');
+
+/* Hochkant erkennen: schmales Fenster im Hochformat, also ein Handy. Tablets und Beamer bleiben quer. */
+function istHochkant() { return window.innerWidth < 900 && window.innerHeight > window.innerWidth * 1.15; }
+function hochkantSetzen() {
+  var h = istHochkant();
+  if (document.body.classList.contains('hochkant') === h && window.__modusGesetzt) return;
+  window.__modusGesetzt = true;
+  document.body.classList.toggle('hochkant', h);
+  /* Die Formen sitzen rechts im Bild: hochkant wird deshalb der rechte Teil gezeigt, nicht die Mitte */
+  document.querySelectorAll('svg.kunst').forEach(function (s) { s.setAttribute('preserveAspectRatio', h ? 'xMaxYMid slice' : 'xMidYMid slice'); });
+  buehneSetzen();
+}
+/* Quer: die Bühne übernimmt das Seitenverhältnis des Bildschirms, damit im Vollbild nichts abgeschnitten
+   wirkt (MacBook 16:10 hatte sonst oben und unten Balken und harte Bildkanten). Breite bleibt 1920. */
+function buehnenHoehe() {
+  if (istHochkant()) return 1920;
+  return Math.max(1080, Math.min(1440, Math.round(1920 * window.innerHeight / window.innerWidth)));
+}
+function buehneSetzen() {
+  var h = buehnenHoehe(), quer = !istHochkant(), w = document.documentElement.style;
+  w.setProperty('--buehne-h', quer ? h + 'px' : '1920px');
+  w.setProperty('--extra', quer ? Math.round((h - 1080) / 2) + 'px' : '0px');
+  w.setProperty('--buehne-skala', quer ? String(h / 1080) : '1');
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) {
+    var c = Reveal.getConfig();
+    if (c.width !== (quer ? 1920 : 1080) || c.height !== h) Reveal.configure({ width: quer ? 1920 : 1080, height: h });
+  }
+}
+hochkantSetzen();
+window.addEventListener('resize', hochkantSetzen);
+window.addEventListener('resize', buehneSetzen);
+
+Reveal.initialize({
+  hash: true, history: true,
+  transition: 'fade', transitionSpeed: 'default', backgroundTransition: 'none',
+  controls: true, controlsLayout: 'bottom-right', controlsTutorial: false,
+  progress: true, slideNumber: false,
+  center: false, width: istHochkant() ? 1080 : 1920, height: buehnenHoehe(), margin: 0,
+  /* Reveals eigener Scrollmodus für schmale Fenster bleibt aus: wir haben ein eigenes Hochkant Layout */
+  view: null, scrollActivationWidth: 0,
+  plugins: [RevealNotes]
+});
+
+/* Logo, Seitenzahl und Farbstimmung folgen der aktuellen Folie */
+var numEl = document.getElementById('chrome-num');
+function folieUpdate() {
+  var f = Reveal.getCurrentSlide();
+  document.body.classList.toggle('chrome-aus', f.dataset.chrome === 'aus');
+  document.body.classList.toggle('chrome-zahl', f.dataset.chrome === 'zahl');
+  document.body.dataset.stimmung = f.dataset.stimmung || 'neutral';
+  numEl.textContent = String(Reveal.getState().indexh + 1);
+}
+Reveal.on('ready', folieUpdate);
+Reveal.on('slidechanged', folieUpdate);
+
+/* Lange Folien scrollen hochkant in sich (data-prevent-swipe nimmt Reveal dort die Finger weg).
+   Damit man trotzdem weiterblättern kann: eine klar waagerechte Wischgeste blättert, alles andere scrollt. */
+document.querySelectorAll('.slide.rollbar').forEach(function (el) {
+  var x0 = 0, y0 = 0;
+  el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  el.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2) { if (dx < 0) Reveal.next(); else Reveal.prev(); }
+  }, { passive: true });
+});
+/* Beim Betreten immer oben anfangen */
+Reveal.on('slidechanged', function (e) { var r = e.currentSlide.querySelector('.rollbar'); if (r) r.scrollTop = 0; });
+
+/* Logos hängen an der Folienkante, nicht am Fensterrand */
+function chromeAusrichten() {
+  var s = document.querySelector('.reveal .slides'); if (!s) return;
+  var r = s.getBoundingClientRect(), w = document.documentElement.style;
+  w.setProperty('--folie-links', Math.max(0, r.left) + 'px');
+  w.setProperty('--folie-oben', Math.max(0, r.top) + 'px');
+  w.setProperty('--folie-unten', Math.max(0, window.innerHeight - r.bottom) + 'px');
+  w.setProperty('--folie-skala', String(r.height / buehnenHoehe()));
+}
+Reveal.on('ready', chromeAusrichten);
+Reveal.on('resize', chromeAusrichten);
+window.addEventListener('resize', chromeAusrichten);
+</script>
+<script>
+/* Orbit: Fotos laufen auf einer Ellipse um die Mitte. Vorne groß und deckend, hinten klein und blass.
+   Läuft nur auf der sichtbaren Folie, im Standbild (PDF) steht er bei t=0. */
+(function () {
+  var t0 = performance.now(), lauf = null;
+  function setzen(o, t) {
+    var rx = +o.dataset.rx, ry = +o.dataset.ry, tempo = +o.dataset.tempo, mx = +o.dataset.mitteX, my = +o.dataset.mitteY;
+    var bilder = o.querySelectorAll('.o'), n = bilder.length;
+    bilder.forEach(function (b, i) {
+      var w = t * tempo * 2 * Math.PI + i / n * 2 * Math.PI;
+      var x = mx + Math.cos(w) * rx, y = my + Math.sin(w) * ry, tiefe = (Math.sin(w) + 1) / 2;
+      b.style.transform = 'translate(' + (x - 115) + 'px,' + (y - 115) + 'px) scale(' + (0.7 + tiefe * 0.4) + ')';
+      b.style.opacity = 0.5 + tiefe * 0.5;
+      b.style.zIndex = Math.round(tiefe * 10) + (tiefe > 0.5 ? 10 : 0);
+    });
+  }
+  function schleife(jetzt) {
+    var f = Reveal.getCurrentSlide(), o = f && f.querySelector('.orbit');
+    if (!o) { lauf = null; return; }
+    setzen(o, document.body.classList.contains('standbild') ? 0 : (jetzt - t0) / 1000);
+    lauf = requestAnimationFrame(schleife);
+  }
+  function start() {
+    document.querySelectorAll('.orbit').forEach(function (o) { setzen(o, 0); });
+    if (!lauf) lauf = requestAnimationFrame(schleife);
+  }
+  Reveal.on('ready', start); Reveal.on('slidechanged', start);
+})();
+</script>
+<script>
+/* Was KI heute kann: Text tippt sich beim Betreten der Folie, die Stimme startet mit dem nächsten Klick
+   und färbt die Wellenform im Takt. Im Standbild (PDF) steht der fertige Text, nichts spielt. */
+(function () {
+  var standbild = document.body.classList.contains('standbild'), tippLauf = null;
+  function tippen(f) {
+    var p = f && f.querySelector('.tipp');
+    clearTimeout(tippLauf);
+    if (!p || standbild) return;
+    var ziel = p.querySelector('.getippt'), text = p.dataset.text, i = 0;
+    ziel.textContent = '';
+    (function weiter() {
+      ziel.textContent = text.slice(0, i);
+      if (i++ < text.length) tippLauf = setTimeout(weiter, text[i - 2] === ',' || text[i - 2] === '.' ? 260 : 34);
+    })();
+  }
+  function stimme(f) { return f && f.querySelector('.k-stimme'); }
+  function anzeigen(k) {
+    var a = k.querySelector('audio'), balken = k.querySelectorAll('.welle i');
+    var anteil = a.duration ? a.currentTime / a.duration : 0, n = Math.round(anteil * balken.length);
+    balken.forEach(function (b, i) { b.classList.toggle('an', i < n); });
+    if (!a.paused && !a.ended) requestAnimationFrame(function () { anzeigen(k); });
+    else k.classList.remove('spielt');
+  }
+  function spielen(k) {
+    var a = k.querySelector('audio');
+    a.currentTime = 0; a.play();
+    k.classList.add('spielt'); anzeigen(k);
+  }
+  function stopp(k) { if (!k) return; var a = k.querySelector('audio'); a.pause(); k.classList.remove('spielt'); }
+  Reveal.on('fragmentshown', function (e) { if (e.fragment.classList.contains('ki-ton')) spielen(stimme(Reveal.getCurrentSlide())); });
+  Reveal.on('fragmenthidden', function (e) { if (e.fragment.classList.contains('ki-ton')) stopp(stimme(Reveal.getCurrentSlide())); });
+  Reveal.on('slidechanged', function (e) { stopp(stimme(e.previousSlide)); tippen(e.currentSlide); });
+  Reveal.on('ready', function (e) { tippen(e.currentSlide); });
+  document.addEventListener('click', function (e) { var k = e.target.closest && e.target.closest('.k-stimme'); if (k) spielen(k); });
+})();
+</script>
+<script src="kosmos.js"></script>
+</body>
+</html>

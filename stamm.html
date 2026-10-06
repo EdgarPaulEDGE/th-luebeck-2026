@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDGE Digital | Künstliche Intelligenz. Echte Wirkung.</title>
+<meta name="theme-color" content="#030309">
+<!-- Nicht für Suchmaschinen: kein Index, keinen Links folgen, kein Archiv, kein Textausschnitt, keine Bildersuche.
+     Bewusst KEINE robots.txt Sperre: die würde verhindern, dass Crawler diese Anweisung überhaupt lesen. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="vendor/reveal/reveal.css">
+<style>
+/* ============================================================================
+   EDGE DIGITAL · UNTERNEHMENSPRÄSENTATION
+   Stamm: cbl-ueberblick (Raumschwarz, Galaxie, Avenir Next, Schimmer).
+   Dramaturgie: ROT und viele Ecken  >  PINK, weiche Dreiecke  >  LILA, zwei Kreise
+   >  DUNKELBLAU, einzelne Kreise  >  HELLBLAU, nur noch die Kante: die EDGE.
+   Kein box-shadow (decktape PDF Bug). Keine Emojis. Änderungen in bau.py.
+   ========================================================================== */
+
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Regular.ttf") format("truetype"); font-weight: 400; }
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Medium.ttf") format("truetype"); font-weight: 500; }
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-DemiBold.ttf") format("truetype"); font-weight: 600; }
+@font-face { font-family: "Avenir Next LT"; src: url("assets/fonts/AvenirNext-Bold.ttf") format("truetype"); font-weight: 700; }
+
+:root {
+  /* Bühnenhöhe folgt dem Bildschirm: 1080 bei 16:9, 1200 bei 16:10 (MacBook), bis 1440 bei 4:3. Setzt das Skript unten. */
+  --buehne-h: 1080px; --extra: 0px;
+  --raum: #030309;
+  --weiss: #F4F6FF;
+  --w-70: rgba(244, 246, 255, 0.70);
+  --w-45: rgba(244, 246, 255, 0.45);
+  --w-25: rgba(244, 246, 255, 0.25);
+  --hairline: rgba(244, 246, 255, 0.14);
+  --purple: #C15DE6;
+  --blau: #009FF4;
+  --cyan: #00E2E2;
+  /* Schimmer: drei Stopps, pro Farbphase überschrieben */
+  --s1: var(--purple); --s2: var(--blau); --s3: var(--cyan);
+  /* Ringfarben der Teamfolie: bewusst gedämpft */
+  --ring-service: #F04452;
+  --ring-software: #86C8FF;
+  --ring-gf: #B9A2F5;
+  --font: "Avenir Next LT", "Avenir Next", Avenir, "Nunito Sans", "Segoe UI", sans-serif;
+}
+.f-rot   { --s1: #FF1F3D; --s2: #FF4B2B; --s3: #FF8A5C; }
+.f-pink  { --s1: #FF3D9A; --s2: #FF7AC3; --s3: #FFB3DC; }
+.f-lila  { --s1: #8B5CF6; --s2: #B266FF; --s3: #DDA8FF; }
+.f-dblau { --s1: #3D6BFF; --s2: #2F8BFF; --s3: #4FC3FF; }
+.f-hblau { --s1: #4FC3FF; --s2: #7FD4FF; --s3: #C4EEFF; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { background: var(--raum); font-family: var(--font); }
+.reveal-viewport { background: transparent !important; }
+
+/* ---------- Raum-Ebenen: liegen fix HINTER allen Folien ---------- */
+#kosmos { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; }
+/* Je Farbphase eine Stimmungs-Ebene. Beim Folienwechsel blendet nur die
+   Deckkraft um: so wandert die Farbe weich von Rot nach Blau. */
+.stimmung {
+  position: fixed; inset: -20%; z-index: 0; pointer-events: none; filter: blur(70px);
+  opacity: 0; transition: opacity 1.1s ease;
+}
+body[data-stimmung="neutral"] .st-neutral, body[data-stimmung="rot"] .st-rot, body[data-stimmung="pink"] .st-pink,
+body[data-stimmung="lila"] .st-lila, body[data-stimmung="dblau"] .st-dblau, body[data-stimmung="hblau"] .st-hblau { opacity: 1; }
+.st-neutral { background: radial-gradient(38% 30% at 78% 24%, rgba(0,159,244,.10), transparent 70%), radial-gradient(34% 28% at 16% 80%, rgba(193,93,230,.11), transparent 70%); }
+.st-rot   { background: radial-gradient(46% 42% at 80% 46%, rgba(255,31,61,.26), transparent 70%), radial-gradient(30% 26% at 12% 86%, rgba(255,75,43,.14), transparent 70%); }
+.st-pink  { background: radial-gradient(46% 42% at 78% 50%, rgba(255,79,163,.24), transparent 70%), radial-gradient(30% 26% at 14% 84%, rgba(255,150,210,.12), transparent 70%); }
+.st-lila  { background: radial-gradient(46% 42% at 76% 50%, rgba(139,92,246,.30), transparent 70%), radial-gradient(30% 26% at 14% 84%, rgba(193,93,230,.14), transparent 70%); }
+.st-dblau { background: radial-gradient(46% 42% at 78% 50%, rgba(47,91,255,.30), transparent 70%), radial-gradient(30% 26% at 14% 84%, rgba(20,50,200,.16), transparent 70%); }
+.st-hblau { background: radial-gradient(40% 46% at 84% 50%, rgba(127,212,255,.20), transparent 70%); }
+.vignette {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(140% 120% at 50% 42%, transparent 50%, rgba(1,1,4,.88) 100%);
+}
+
+/* ---------- Reveal-Grundgerüst ---------- */
+.reveal { font-family: var(--font); font-size: 30px; color: var(--weiss); }
+.reveal .slides { text-align: left; }
+.reveal .slides > section { padding: 0; height: var(--buehne-h); }
+.reveal .progress { color: var(--weiss); height: 4px; }
+.reveal .controls { color: var(--w-45); }
+
+.slide {
+  width: 1920px; height: 1080px; position: relative;
+  display: flex !important; flex-direction: column;
+  padding: 132px 130px 96px;
+  /* Das 16:9 Layout sitzt mittig auf der höheren Bühne, darüber und darunter läuft nur der Hintergrund weiter */
+  margin-top: var(--extra);
+}
+/* Formen liegen hinter dem Text, innerhalb der Folie */
+.kunst { position: absolute; inset: 0; width: 1920px; height: var(--buehne-h); pointer-events: none; }
+/* Die Kante ist auf 1080 gebaut und bleibt mittig, ihr Schein läuft oben und unten ohnehin ins Nichts aus */
+.kunst.kante { height: 1080px; top: var(--extra); }
+
+body.standbild *, body.standbild *::before, body.standbild *::after { animation-duration: .001s !important; animation-delay: 0s !important; transition: none !important; }
+body.standbild .reveal .controls, body.standbild .reveal .progress { display: none !important; }
+
+/* ---------- Typografie ---------- */
+h1, h2, h3 { margin: 0; font-family: var(--font); }
+.hero {
+  font-size: 150px; line-height: 1.08; letter-spacing: -.025em; font-weight: 700;
+  text-transform: uppercase; margin: 0;
+}
+.headline {
+  font-size: 80px; line-height: 1.12; letter-spacing: -.02em; font-weight: 700;
+  text-transform: uppercase; margin: 0 0 20px; flex-shrink: 0;
+}
+.schimmer {
+  background: linear-gradient(96deg, var(--s1), var(--s2) 52%, var(--s3));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* Unterlängen und das Auslassungszeichen sonst angeschnitten */
+  padding: 0 .06em .08em 0;
+}
+.lead { color: var(--w-70); font-size: 36px; line-height: 1.5; margin: 0; }
+.label { font-weight: 600; font-size: 20px; letter-spacing: .16em; text-transform: uppercase; color: var(--w-45); margin: 0; }
+
+/* ---------- Übergangsfolien: ein Satz, sehr groß, links ---------- */
+.slide.uebergang { justify-content: center; }
+.slide.uebergang::before {
+  /* Dunkler Schleier hinter der Schrift, damit sie über den Formen sicher lesbar bleibt */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.70) 42%, rgba(3,3,9,0) 72%);
+}
+.slide.uebergang .hero { position: relative; }
+
+/* ---------- Deckblatt ---------- */
+.titel-logo { width: 640px; height: auto; display: block; }
+
+/* ---------- Folie 3: sechs Baustellen, kantig ---------- */
+.raster-rot { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 26px; flex: 1; margin-top: 26px; min-height: 0; }
+.kachel-rot {
+  /* Abgeschnittene Ecke statt Rundung: die rote Phase besteht aus Kanten */
+  --schnitt: 34px; padding: 1.5px; min-height: 0;
+  background: linear-gradient(140deg, rgba(255,31,61,.95), rgba(255,75,43,.30) 55%, rgba(255,31,61,.55));
+  clip-path: polygon(0 0, calc(100% - var(--schnitt)) 0, 100% var(--schnitt), 100% 100%, var(--schnitt) 100%, 0 calc(100% - var(--schnitt)));
+}
+.kachel-rot > div {
+  height: 100%; padding: 34px 38px 30px; display: flex; flex-direction: column;
+  background: linear-gradient(160deg, #14070b, #0a060c 60%);
+  clip-path: polygon(0 0, calc(100% - var(--schnitt)) 0, 100% var(--schnitt), 100% 100%, var(--schnitt) 100%, 0 calc(100% - var(--schnitt)));
+}
+/* Icon auf Schwarz gerendert: screen blendet das Schwarz weg, nur das Leuchten bleibt.
+   Fest oben rechts verankert, der Satz hält rechts Abstand. Kein float: lange Titel rutschen sonst darunter. */
+.kr-kopf { display: block; position: relative; }
+.kr-icon { position: absolute; top: -18px; right: -20px; width: 156px; height: 156px; mix-blend-mode: screen; display: block; margin: 0; }
+.kr-titel { margin: 0 0 16px; font-size: 23px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #FF5468; }
+.kr-satz { margin: 0; padding-right: 118px; font-size: 28px; line-height: 1.32; font-weight: 600; color: var(--weiss); }
+.kr-tags { margin: auto 0 0; padding-top: 14px; font-size: 20px; color: var(--w-45); white-space: nowrap; }
+
+/* ---------- Folie 5: Collage, randlos über die ganze Folie ---------- */
+.collage { position: absolute; inset: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
+
+/* Dunkler Schleier nur in den linken Ecken: dort sitzen Logo und Seitenzahl, das Foto darunter ist teils hell */
+.collage-schleier { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(420px 190px at 0 0, rgba(3,3,9,.78), transparent 100%), radial-gradient(240px 150px at 0 100%, rgba(3,3,9,.78), transparent 100%); }
+
+/* ---------- Folie 7: Referenzwand ---------- */
+.slide.wand { padding: 116px 110px 56px; }
+.logos { display: grid; align-items: center; justify-items: center; flex-shrink: 0; }
+.logos > div { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.logos img { display: block; margin: 0; width: auto; height: auto; object-fit: contain; }
+.logos.gross { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 126px; column-gap: 40px; }
+.logos.gross img { max-width: 250px; max-height: 96px; opacity: .96; }
+.logos.klein { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0; }
+.logos.klein > div { width: calc(100% / var(--spalten, 10)); height: 88px; padding: 0 13px; }
+.logos.klein img { max-width: 100%; max-height: 58px; opacity: .84; }
+.trenner { border: none; height: 1px; width: 100%; flex-shrink: 0; margin: 22px 0 18px; background: linear-gradient(90deg, transparent, rgba(178,102,255,.7), transparent); }
+.namen { margin: 20px 0 0; text-align: center; font-size: 21px; line-height: 1.6; color: var(--w-45); font-weight: 500; flex-shrink: 0; }
+/* Preise: bewusst offen gesetzt, ohne Kästen, Rahmen oder Flächen. Nur Name, Logo und Luft. */
+.preise { margin-top: auto; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.preise .label { color: var(--w-45); }
+.preis-reihe { display: flex; align-items: center; justify-content: center; gap: 60px; }
+.preis { display: flex; align-items: center; gap: 11px; color: #C9A6FF; }
+.preis b { font-size: 20px; font-weight: 600; color: var(--weiss); white-space: nowrap; }
+.preis img { height: 23px; width: auto; max-width: 170px; opacity: .8; object-fit: contain; display: block; margin: 0 0 0 4px !important; }
+.preis img[src*="socialhackathon"], .preis img[src*="lnpreis"] { height: 38px; }
+.preis img[src*="sparkasse"] { height: 32px; }
+
+/* ---------- Folie 9: Team. Ruhig halten, die Ringe tragen die Farbe ---------- */
+.slide.team { flex-direction: row !important; padding: 108px 80px 56px; gap: 0; }
+.seite { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.mitte { padding-top: 56px !important; width: 400px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 0 20px; }
+.seiten-titel { margin: 0 0 26px; height: 30px; line-height: 30px; font-size: 25px; font-weight: 600; color: var(--w-70); text-align: center; }
+.person { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.rund {
+  --ring: var(--w-25); position: relative; width: 150px; height: 150px; border-radius: 50%;
+  border: 4px solid var(--ring);
+  /* Glasscheibe wie in der SoulByte Schulung: verschiedene Ursprungsfotos sitzen so in derselben Bildwelt */
+  background: radial-gradient(75% 70% at 50% 12%, rgba(244,246,255,.10), transparent 62%), radial-gradient(80% 80% at 50% 100%, color-mix(in srgb, var(--ring) 16%, transparent), transparent 60%), rgba(12,16,30,.86);
+}
+.rund::before {
+  /* Glow ohne box-shadow: weicher Farbschein hinter dem Kreis */
+  content: ""; position: absolute; inset: -22px; border-radius: 50%; z-index: -1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--ring) 42%, transparent) 46%, transparent 70%);
+}
+.rund img, .rund .leer { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; margin: 0; }
+.rund img { object-fit: cover; object-position: center bottom; display: block; }
+.person.gross .rund { width: 214px; height: 214px; border-width: 5px; }
+.person.gf .rund { width: 214px; height: 214px; border-width: 5px; }
+.person figcaption { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+.person figcaption b { font-size: 25px; font-weight: 700; color: var(--weiss); }
+.person figcaption span { font-size: 18px; line-height: 1.25; color: var(--w-45); max-width: 176px; min-height: 45px; }
+.person.gross figcaption b { font-size: 34px; }
+.person.gross figcaption span, .person.gf figcaption span { font-size: 21px; max-width: none; min-height: 0; color: var(--w-70); }
+.person.gf figcaption b { font-size: 34px; }
+.service .rund { --ring: var(--ring-service); }
+.software .rund { --ring: var(--ring-software); }
+.gf .rund { --ring: var(--ring-gf); }
+/* Gehört nicht zu uns: schwarzer Ring, kein Glow, leicht entsättigt */
+.fremd .rund { --ring: #000; border-color: #000; outline: 1px solid rgba(244,246,255,.16); }
+.fremd .rund::before { display: none; }
+.fremd .rund img { filter: saturate(.55) brightness(.92); }
+.person.fehlt .rund { border-style: dashed; }
+.person.fehlt .leer { display: grid; place-items: center; font-size: 46px; font-weight: 700; color: var(--w-25); }
+.reihe { display: flex; justify-content: center; gap: 26px; margin-top: 16px; }
+.punkte { list-style: none; margin: 16px 0 0; padding: 0; width: 100%; max-width: 640px; }
+.punkte li { position: relative; padding: 6px 0 6px 28px; font-size: 22.5px; line-height: 1.3; white-space: nowrap; color: var(--w-70); border-top: 1px solid var(--hairline); margin: 0; }
+.punkte li:last-child { border-bottom: 1px solid var(--hairline); }
+.punkte li::before { content: ""; position: absolute; left: 4px; top: 16px; width: 9px; height: 9px; border-radius: 50%; }
+.service .punkte li::before { background: var(--ring-service); }
+.software .punkte li::before { background: var(--ring-software); }
+.gag { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.gag-text { margin: 16px 0 0; font-size: 20px; line-height: 1.45; color: var(--w-45); }
+.gag-text b { color: var(--w-70); font-weight: 600; }
+
+/* ---------- Folie 10: Ende ---------- */
+.slide.ende { justify-content: center; padding-right: 700px; padding-bottom: 230px; }
+.slide.ende .hero { font-size: 116px; white-space: nowrap; }
+.slide.ende .lead { margin-top: 34px; max-width: 900px; }
+.kontakt { position: absolute; left: 130px; bottom: 84px; display: flex; align-items: center; gap: 36px; }
+.kontakt img { height: 58px; width: auto; margin: 0; display: block; }
+.kontakt p { margin: 0; font-size: 34px; line-height: 1.35; font-weight: 600; color: #fff; border-left: 1px solid var(--hairline); padding-left: 36px; }
+
+/* ---------- Chrome (fixe Overlays) ---------- */
+.chrome { position: fixed; z-index: 20; pointer-events: none; transition: opacity .3s; }
+.chrome-edge { top: calc(var(--folie-oben, 0px) + 34px * var(--folie-skala, 1)); left: calc(var(--folie-links, 0px) + 56px * var(--folie-skala, 1)); }
+.chrome-edge img { height: calc(50px * var(--folie-skala, 1)); display: block; }
+.chrome-num {
+  bottom: calc(var(--folie-unten, 0px) + 36px * var(--folie-skala, 1)); left: calc(var(--folie-links, 0px) + 60px * var(--folie-skala, 1));
+  font-weight: 600; font-size: calc(21px * var(--folie-skala, 1)); letter-spacing: .12em; color: var(--w-45);
+}
+body.chrome-aus .chrome-edge, body.chrome-aus .chrome-num { opacity: 0; }
+body.chrome-zahl .chrome-edge { opacity: 0; }
+
+/* ============================================================================
+   HOCHKANT (Handy im Hochformat). Schaltet sich per JS ein: body.hochkant, Bühne 1080 x 1920.
+   Das Handy zeigt diese Bühne auf rund 36 Prozent verkleinert. Lesetext braucht hier deshalb
+   mindestens 34px, sonst wird er am Gerät kleiner als 12px. Dichte Folien (.rollbar) scrollen in sich.
+   ========================================================================== */
+.collage-hoch { display: none; }
+body.hochkant .reveal .slides > section { height: 1920px; }
+body.hochkant .slide { width: 1080px; height: 1920px; padding: 190px 70px 130px; }
+body.hochkant .slide.rollbar { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+body.hochkant .slide.rollbar > * { flex-shrink: 0; }
+/* Gescrollter Inhalt blendet unter Logo und Seitenzahl weich aus, statt darunter durchzulaufen */
+body.hochkant .slide.rollbar { -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); mask-image: linear-gradient(180deg, transparent 0, transparent 110px, #000 185px, #000 calc(100% - 120px), transparent calc(100% - 50px)); }
+body.hochkant .kunst { width: 1080px; height: 1920px; }
+body.hochkant .hero { font-size: 94px; }
+body.hochkant .f-lila .hero, body.hochkant .f-dblau .hero { font-size: 76px; }
+body.hochkant .headline { font-size: 70px; }
+body.hochkant .label { font-size: 28px; }
+body.hochkant .lead { font-size: 44px; }
+body.hochkant .slide.uebergang { justify-content: flex-start; padding-top: 330px; }
+body.hochkant .slide.uebergang::before { background: linear-gradient(180deg, rgba(3,3,9,.92) 0%, rgba(3,3,9,.62) 34%, rgba(3,3,9,0) 58%); }
+body.hochkant .titel-logo { width: 780px; }
+body.hochkant .kante { inset: auto; left: -560px; top: 840px; width: 1920px; height: 1080px; }
+body.hochkant section[data-chrome="aus"] .slide { justify-content: flex-start !important; padding-top: 420px; }
+/* Folie 3 */
+body.hochkant .raster-rot { display: flex; flex-direction: column; gap: 26px; flex: none; margin-top: 34px; }
+body.hochkant .kachel-rot > div { padding: 40px 44px 36px; }
+body.hochkant .kr-titel { font-size: 31px; }
+body.hochkant .kr-satz { font-size: 41px; padding-right: 170px; }
+body.hochkant .kr-tags { font-size: 28px; white-space: normal; padding-top: 22px; }
+body.hochkant .kr-icon { width: 190px; height: 190px; }
+/* Folie 5 */
+body.hochkant .collage { display: none; }
+body.hochkant .collage-hoch { display: block; position: absolute; inset: 0; }
+body.hochkant .collage-hoch > div { height: 960px; background-image: url("assets/collage/collage.jpg"); background-size: 2160px auto; background-repeat: no-repeat; }
+/* Folie 7 */
+body.hochkant .slide.wand { padding: 190px 60px 130px; }
+body.hochkant .logos.gross { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 178px; column-gap: 34px; }
+body.hochkant .logos.gross img { max-width: 290px; max-height: 128px; }
+body.hochkant .logos.klein > div { width: 33.333%; height: 138px; padding: 0 22px; }
+body.hochkant .logos.klein img { max-height: 92px; }
+body.hochkant .preise { margin-top: 60px; gap: 30px; }
+body.hochkant .preis-reihe { flex-direction: column; gap: 34px; }
+body.hochkant .preis b { font-size: 36px; white-space: normal; text-align: center; }
+body.hochkant .preis img { height: 46px; max-width: 300px; }
+body.hochkant .preis img[src*="socialhackathon"], body.hochkant .preis img[src*="lnpreis"] { height: 74px; }
+body.hochkant .preis img[src*="sparkasse"] { height: 64px; }
+/* Folie 9: erst Emre, dann Service, dann Software, zum Schluss der Gag */
+body.hochkant .slide.team { flex-direction: column !important; align-items: center; padding: 190px 60px 130px; }
+body.hochkant .mitte { display: contents; }
+body.hochkant .person.gf { order: -2; }
+body.hochkant .gag { order: 99; margin-top: 90px; }
+body.hochkant .seite { flex: none; width: 100%; margin-top: 90px; }
+body.hochkant .seiten-titel { font-size: 40px; height: auto; line-height: 1.3; margin-bottom: 36px; }
+body.hochkant .rund { width: 250px; height: 250px; border-width: 6px; }
+body.hochkant .person.gross .rund, body.hochkant .person.gf .rund { width: 360px; height: 360px; border-width: 7px; }
+body.hochkant .person figcaption b { font-size: 40px; }
+body.hochkant .person figcaption span { font-size: 29px; max-width: 290px; min-height: 0; }
+body.hochkant .person.gross figcaption b, body.hochkant .person.gf figcaption b { font-size: 52px; }
+body.hochkant .person.gross figcaption span, body.hochkant .person.gf figcaption span { font-size: 34px; }
+body.hochkant .reihe { gap: 40px; margin-top: 44px; }
+body.hochkant .punkte { max-width: none; margin-top: 44px; }
+body.hochkant .punkte li { font-size: 35px; white-space: normal; padding: 16px 0 16px 44px; }
+body.hochkant .punkte li::before { top: 34px; width: 14px; height: 14px; }
+body.hochkant .gag-text { font-size: 33px; }
+/* Folie 10 */
+body.hochkant .slide.ende { justify-content: flex-start; padding: 330px 70px 0; }
+body.hochkant .slide.ende .hero { font-size: 100px; }
+body.hochkant .slide.ende .lead { max-width: none; }
+body.hochkant .kontakt { left: 70px; bottom: 170px; flex-direction: column; align-items: flex-start; gap: 30px; }
+body.hochkant .kontakt img { height: 84px; }
+body.hochkant .kontakt p { border-left: none; padding-left: 0; font-size: 46px; }
+/* Logo und Seitenzahl */
+body.hochkant .chrome-edge img { height: calc(64px * var(--folie-skala, 1)); }
+body.hochkant .chrome-num { font-size: calc(26px * var(--folie-skala, 1)); }
+</style>
+</head>
+<body data-stimmung="neutral">
+
+<canvas id="kosmos"></canvas>
+<div class="stimmung st-neutral"></div><div class="stimmung st-rot"></div><div class="stimmung st-pink"></div>
+<div class="stimmung st-lila"></div><div class="stimmung st-dblau"></div><div class="stimmung st-hblau"></div>
+<div class="vignette"></div>
+
+<div class="chrome chrome-edge"><img src="assets/logos/edge-logo-white.png" alt="EDGE Digital"></div>
+<div class="chrome chrome-num" id="chrome-num"></div>
+
+<div class="reveal">
+<div class="slides">
+<!--FOLIEN-->
+</div>
+</div>
+
+<script src="vendor/reveal/reveal.js"></script>
+<script src="vendor/reveal/plugin/notes/notes.js"></script>
+<script>
+/* ?nofrag: Standbild für Prüfläufe und den PDF-Export */
+if (new URLSearchParams(location.search).has('nofrag')) document.body.classList.add('standbild');
+
+/* Hochkant erkennen: schmales Fenster im Hochformat, also ein Handy. Tablets und Beamer bleiben quer. */
+function istHochkant() { return window.innerWidth < 900 && window.innerHeight > window.innerWidth * 1.15; }
+function hochkantSetzen() {
+  var h = istHochkant();
+  if (document.body.classList.contains('hochkant') === h && window.__modusGesetzt) return;
+  window.__modusGesetzt = true;
+  document.body.classList.toggle('hochkant', h);
+  /* Die Formen sitzen rechts im Bild: hochkant wird deshalb der rechte Teil gezeigt, nicht die Mitte */
+  document.querySelectorAll('svg.kunst').forEach(function (s) { s.setAttribute('preserveAspectRatio', h ? 'xMaxYMid slice' : 'xMidYMid slice'); });
+  buehneSetzen();
+}
+/* Quer: die Bühne übernimmt das Seitenverhältnis des Bildschirms, damit im Vollbild nichts abgeschnitten
+   wirkt (MacBook 16:10 hatte sonst oben und unten Balken und harte Bildkanten). Breite bleibt 1920. */
+function buehnenHoehe() {
+  if (istHochkant()) return 1920;
+  return Math.max(1080, Math.min(1440, Math.round(1920 * window.innerHeight / window.innerWidth)));
+}
+function buehneSetzen() {
+  var h = buehnenHoehe(), quer = !istHochkant(), w = document.documentElement.style;
+  w.setProperty('--buehne-h', quer ? h + 'px' : '1920px');
+  w.setProperty('--extra', quer ? Math.round((h - 1080) / 2) + 'px' : '0px');
+  w.setProperty('--buehne-skala', quer ? String(h / 1080) : '1');
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) {
+    var c = Reveal.getConfig();
+    if (c.width !== (quer ? 1920 : 1080) || c.height !== h) Reveal.configure({ width: quer ? 1920 : 1080, height: h });
+  }
+}
+hochkantSetzen();
+window.addEventListener('resize', hochkantSetzen);
+window.addEventListener('resize', buehneSetzen);
+
+Reveal.initialize({
+  hash: true, history: true,
+  transition: 'fade', transitionSpeed: 'default', backgroundTransition: 'none',
+  controls: true, controlsLayout: 'bottom-right', controlsTutorial: false,
+  progress: true, slideNumber: false,
+  center: false, width: istHochkant() ? 1080 : 1920, height: buehnenHoehe(), margin: 0,
+  /* Reveals eigener Scrollmodus für schmale Fenster bleibt aus: wir haben ein eigenes Hochkant Layout */
+  view: null, scrollActivationWidth: 0,
+  plugins: [RevealNotes]
+});
+
+/* Logo, Seitenzahl und Farbstimmung folgen der aktuellen Folie */
+var numEl = document.getElementById('chrome-num');
+function folieUpdate() {
+  var f = Reveal.getCurrentSlide();
+  document.body.classList.toggle('chrome-aus', f.dataset.chrome === 'aus');
+  document.body.classList.toggle('chrome-zahl', f.dataset.chrome === 'zahl');
+  document.body.dataset.stimmung = f.dataset.stimmung || 'neutral';
+  numEl.textContent = String(Reveal.getState().indexh + 1);
+}
+Reveal.on('ready', folieUpdate);
+Reveal.on('slidechanged', folieUpdate);
+
+/* Lange Folien scrollen hochkant in sich (data-prevent-swipe nimmt Reveal dort die Finger weg).
+   Damit man trotzdem weiterblättern kann: eine klar waagerechte Wischgeste blättert, alles andere scrollt. */
+document.querySelectorAll('.slide.rollbar').forEach(function (el) {
+  var x0 = 0, y0 = 0;
+  el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  el.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2) { if (dx < 0) Reveal.next(); else Reveal.prev(); }
+  }, { passive: true });
+});
+/* Beim Betreten immer oben anfangen */
+Reveal.on('slidechanged', function (e) { var r = e.currentSlide.querySelector('.rollbar'); if (r) r.scrollTop = 0; });
+
+/* Logos hängen an der Folienkante, nicht am Fensterrand */
+function chromeAusrichten() {
+  var s = document.querySelector('.reveal .slides'); if (!s) return;
+  var r = s.getBoundingClientRect(), w = document.documentElement.style;
+  w.setProperty('--folie-links', Math.max(0, r.left) + 'px');
+  w.setProperty('--folie-oben', Math.max(0, r.top) + 'px');
+  w.setProperty('--folie-unten', Math.max(0, window.innerHeight - r.bottom) + 'px');
+  w.setProperty('--folie-skala', String(r.height / buehnenHoehe()));
+}
+Reveal.on('ready', chromeAusrichten);
+Reveal.on('resize', chromeAusrichten);
+window.addEventListener('resize', chromeAusrichten);
+</script>
+<script src="kosmos.js"></script>
+</body>
+</html>

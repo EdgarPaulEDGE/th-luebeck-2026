@@ -312,7 +312,7 @@ body.standbild .polaroid.master { transform: rotate(-4deg) !important; }
 .karte.visible .innen, body.standbild .karte .innen { transform: rotateY(180deg); }
 .karte .seite { position: absolute; inset: 0; border-radius: 22px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px; text-align: center; }
 .karte .vorn { background: rgba(244,246,255,.06); border: 1.5px solid rgba(244,246,255,.2); }
-.karte .vorn span { font-size: 46px; font-weight: 700; color: var(--w-70); }
+.karte .vorn span { font-size: 46px; font-weight: 700; color: var(--w-70); white-space: nowrap; }
 .karte .hinten { transform: rotateY(180deg); background: linear-gradient(150deg, #FF5C7A, #E4003A 55%, #9A0027); }
 .karte .hinten b { font-size: 64px; line-height: 1.1; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: -.01em; }
 .polaroid.quelle-foto { position: absolute; right: 70px; top: calc(var(--extra) + 36px); width: 320px; margin: 0; padding: 10px 10px 30px; }
@@ -337,6 +337,8 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .epg-szene, .dom-szene { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; pointer-events: none; }
 .epg-s1, .epg-s2, .dom-s1 { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .epg-karte { position: absolute; left: 1570px; top: 50px; width: 300px; background: #fff; padding: 20px 24px; border-radius: 10px; transform: rotate(-4deg); margin: 0 !important; }
+.epg-person, .dom-person { -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 99%); mask-image: linear-gradient(180deg, #000 72%, transparent 99%); }
+.epg-person.emre, .dom-person.p-emre { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%), linear-gradient(180deg, #000 72%, transparent 99%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%), linear-gradient(180deg, #000 72%, transparent 99%); mask-composite: intersect; }
 .epg-person { position: absolute; bottom: 0; height: 700px; width: auto; margin: 0 !important; max-width: none !important; max-height: none !important; transition: transform 1s cubic-bezier(.5,0,.2,1), opacity .8s; }
 .epg-person.emre { left: 560px; }
 .epg-person.eddie { left: 1080px; z-index: 1; }
@@ -347,7 +349,7 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .s-emre { left: 803px; top: 690px; }
 .s-eddie-a, .s-eddie-b { left: 1359px; top: 700px; }
 .epg-krone { position: absolute; left: 1299px; top: 318px; width: 120px; height: 80px; opacity: 0; transform: translateY(-260px) rotate(-30deg); transition: transform .8s cubic-bezier(.3,1.5,.4,1), opacity .3s; z-index: 2; }
-.epg-blase { position: absolute; left: 250px; top: 430px; padding: 14px 26px 18px; background: #fff; color: #231F28; border-radius: 26px; font-family: "Caveat", cursive; font-weight: 700; font-size: 58px; opacity: 0; transition: opacity .4s .7s; z-index: 3; }
+.epg-blase { position: absolute; left: 560px; top: 360px; padding: 14px 26px 18px; background: #fff; color: #231F28; border-radius: 26px; font-family: "Caveat", cursive; font-weight: 700; font-size: 58px; opacity: 0; transition: opacity .4s .7s; z-index: 3; }
 .epg-blase::after { content: ""; position: absolute; left: 30px; bottom: -18px; border: 12px solid transparent; border-top: 16px solid #fff; border-left-width: 4px; }
 .epg-label { position: absolute; left: 130px; top: 250px; margin: 0; font-family: "Caveat", cursive; font-weight: 700; font-size: 64px; color: var(--th-hell); opacity: 0; transition: opacity .4s; }
 /* Klick 1: Eddies Vorschlag */
@@ -358,7 +360,7 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .epg-szene:has(.epg-s1.visible) .s-emre, .epg-szene:has(.epg-s1.visible) .s-eddie-a { opacity: 1; }
 .slide:has(~ .epg-szene .epg-s1.visible) .l1 { opacity: 1; }
 /* Klick 2: was alle gelesen haben */
-.epg-szene:has(.epg-s2.visible) .emre, body.standbild .epg-szene .emre { transform: translateX(-660px) rotate(-14deg); }
+.epg-szene:has(.epg-s2.visible) .emre, body.standbild .epg-szene .emre { transform: translateX(-420px) rotate(-9deg); }
 .epg-szene:has(.epg-s2.visible) .s-emre, .epg-szene:has(.epg-s2.visible) .s-eddie-a { opacity: 0; }
 .epg-szene:has(.epg-s2.visible) .s-eddie-b, .epg-szene:has(.epg-s2.visible) .epg-blase { opacity: 1; }
 .epg-szene:has(.epg-s2.visible) .b-e, body.standbild .epg-szene .b-e { transform: translate(1170px, 0px) rotate(-6deg); }
@@ -469,7 +471,7 @@ body.standbild .polaroid { animation: none !important; }
 /* So arbeiten wir: KI-Video vollflächig, auf Klick die Auflösung */
 .sa-video { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; background: #F2F2F2; }
 .sa-titel { position: absolute; left: 60px; top: 50px; margin: 0; padding: 10px 24px 12px; border-radius: 14px; background: rgba(21,18,28,.86); font-size: 40px; font-weight: 700; letter-spacing: -.01em; text-transform: uppercase; }
-.sa-aufloesung { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(8,6,12,.84); }
+.sa-aufloesung { position: absolute; inset: calc(-1 * var(--extra)) 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(8,6,12,.84); }
 .sa-aufloesung .hero { font-size: 190px; }
 .sa-aufloesung p { margin: 18px 0 0; font-size: 44px; color: var(--w-70); }
 .sa-kennung { position: absolute; right: 150px; bottom: 26px; margin: 0; padding: 6px 14px; border-radius: 8px; background: rgba(21,18,28,.7); font-size: 20px; letter-spacing: .04em; color: rgba(244,246,255,.85); }
@@ -630,14 +632,15 @@ body.standbild .wachstum .alt { opacity: .28; }
 
 /* Eisberg: über Wasser nur der Prompt, auf Klick taucht alles darunter auf.
    Bild und Begriffe teilen sich eine 1920 x 1080 Bühne, damit Wasserlinie (y 258) und Eisblock (Mitte x 1320) zusammenpassen. */
-.eisberg-buehne { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; }
-.eisberg-buehne > img { position: absolute; inset: 0; width: 1920px; height: 1080px; margin: 0 !important; max-width: none !important; max-height: none !important; }
-.eis-wasser { position: absolute; left: 0; top: 262px; width: 1920px; height: 818px; background: linear-gradient(180deg, rgba(1,4,18,.55) 0, rgba(1,4,18,.97) 70px, #01040F 100%); transition: opacity 1.6s ease; }
+.eisberg-buehne { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); background: linear-gradient(180deg, #04030D 0, #04030D 50%, #01040F 50%, #01040F 100%); }
+.eis-innen { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; }
+.eis-innen > img { position: absolute; inset: 0; width: 1920px; height: 1080px; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.eis-wasser { position: absolute; left: 0; top: 262px; width: 1920px; height: calc(818px + var(--extra)); background: linear-gradient(180deg, rgba(1,4,18,.55) 0, rgba(1,4,18,.97) 70px, #01040F 100%); transition: opacity 1.6s ease; }
 .eisberg-trigger { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .eis-spitze { position: absolute; left: 1320px; top: 52px; transform: translateX(-50%); padding: 10px 28px; border-radius: 10px; background: linear-gradient(135deg, #E4003A, #FF5C7A); color: #fff; font-size: 32px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; filter: drop-shadow(0 0 26px rgba(228,0,58,.6)); }
 .eis-schicht { position: absolute; left: 1320px; top: var(--y); transform: translate(-50%, 18px); padding: 8px 24px; border-radius: 10px; background: rgba(1,4,18,.55); border: 1.5px solid rgba(190,225,255,.35); color: #EAF4FF; font-size: 28px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; opacity: 0; transition: opacity .5s, transform .5s; }
-.eisberg-buehne:has(.eisberg-trigger.visible) .eis-wasser { opacity: 0; }
-.eisberg-buehne:has(.eisberg-trigger.visible) .eis-schicht { opacity: 1; transform: translate(-50%, 0); transition-delay: calc(.9s + var(--i) * .12s); }
+.eis-innen:has(.eisberg-trigger.visible) .eis-wasser { opacity: 0; }
+.eis-innen:has(.eisberg-trigger.visible) .eis-schicht { opacity: 1; transform: translate(-50%, 0); transition-delay: calc(.9s + var(--i) * .12s); }
 body.standbild .eis-wasser { opacity: 0; }
 body.standbild .eis-schicht { opacity: 1; transform: translate(-50%, 0); }
 body.hochkant .eisberg-buehne { transform: scale(.5625); transform-origin: top left; top: 1100px; }
@@ -723,8 +726,8 @@ body.hochkant .orbit { top: 600px; left: -840px; }
 .offen { font-size: 52px; font-weight: 700; margin: 10px 0 0; }
 
 /* Ende */
-.ende-foto { position: absolute; right: 0; top: 0; width: 900px; height: var(--buehne-h); object-fit: cover; object-position: 50% 35%; margin: 0 !important; max-width: none !important; max-height: none !important;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 34%); mask-image: linear-gradient(90deg, transparent 0, #000 34%); }
+.ende-foto { position: absolute; right: 0; top: 0; width: 960px; height: var(--buehne-h); object-fit: cover; object-position: 35% 50%; margin: 0 !important; max-width: none !important; max-height: none !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 20%); mask-image: linear-gradient(90deg, transparent 0, #000 20%); }
 body.hochkant .ende-foto { width: 1080px; height: 900px; top: auto; bottom: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 40%); mask-image: linear-gradient(180deg, transparent 0, #000 40%); }
 .slide.schluss { justify-content: center; }
 .slide.schluss .hero { font-size: 112px; max-width: 1100px; }
@@ -801,13 +804,13 @@ def eisberg():
     """Prompt über Wasser, darunter der Unterbau, von oben nach unten im Eisblock. Erscheint auf Klick."""
     unter = list(reversed(TURM))
     schichten = "".join(f'<div class="eis-schicht" style="--i:{k};--y:{336 + k * 80}px;">{s}</div>' for k, s in enumerate(unter))
-    return f'''<div class="eisberg-buehne">
+    return f'''<div class="eisberg-buehne"><div class="eis-innen">
   <img src="assets/illu/eisberg.jpg" alt="Ein Eisberg: kleine Spitze über Wasser, riesige Masse darunter">
   <div class="eis-wasser"></div>
   <div class="eis-spitze">Prompt</div>
   <span class="eisberg-trigger fragment" aria-hidden="true"></span>
   {schichten}
-</div>'''
+</div></div>'''
 
 
 # Unsere Route: Punkte im SVG (1660 x 600), mit Umweg und Schleife. Nur belegte Stationen.
@@ -1227,16 +1230,16 @@ def bau():
 <!-- ============ DIE ANFÄNGE: UMZUG ============ -->
 <section class="f-th" data-stimmung="neutral" data-chrome="zahl">
   <div class="slide umzug-folie">
-    <span class="umzug-datum">1. Oktober 2026</span>
+    <span class="umzug-datum">27. September 2026</span>
     <div class="bento">
-      <figure class="b-sofa" style="--i:0;"><img src="assets/fotos/umzug-sofa-buero.jpg" alt="Drei Männer auf einem grünen Sofa mitten auf der Straße vor dem Büro"></figure>
-      <figure class="b-rathaus" style="--i:1;"><img src="assets/fotos/umzug-rathaus.jpg" alt="Dasselbe Sofa vor dem Lübecker Rathaus"></figure>
-      <figure class="b-schild" style="--i:2;"><img src="assets/fotos/umzug-transporter.jpg" alt="Das eingepackte Sofa im Transporter"></figure>
-      <figure class="b-tisch" style="--i:3;"><img src="assets/fotos/umzug-schreibtisch.jpg" alt="Ein Schreibtisch wird zwischen Kartons aufgebaut"></figure>
-      <figure class="b-regal" style="--i:4;"><img src="assets/fotos/umzug-regal.jpg" alt="Ein Regal wird durchs Fenster getragen"></figure>
+      <figure class="b-sofa" style="--i:0;"><img src="assets/fotos/umzug-team-sofa.jpg" alt="Das ganze Team zu fünft auf dem grünen Sofa vor der HypoVereinsbank"></figure>
+      <figure class="b-rathaus" style="--i:1;"><img src="assets/fotos/umzug-im-transporter.jpg" alt="Eddie und Dom mit dem eingepackten Sofa im Transporter"></figure>
+      <figure class="b-schild" style="--i:2;"><img src="assets/fotos/umzug-sofa-boden.jpg" alt="Das eingepackte Sofa im alten Büro, daneben liegt jemand auf dem Boden"></figure>
+      <figure class="b-tisch" style="--i:3;"><img src="assets/fotos/umzug-treppe.jpg" alt="Ein Kollege trägt eine Teppichrolle durchs Treppenhaus"></figure>
+      <figure class="b-regal" style="--i:4;"><img src="assets/fotos/umzug-ankunft.jpg" alt="Der Transporter vor dem neuen Büro, Emre wartet am Fenster"></figure>
     </div>
   </div>
-  {notizen("1. Oktober 2026, Umzug in die Marlesgrube. Das grüne Sofa haben wir mitten auf die Straße gestellt, direkt vor die HypoVereinsbank, über der jetzt unser Büro ist. Dasselbe Sofa vorher vor dem Rathaus. Durchs Fenster musste unser großer Digital-Signage-Bildschirm, auf dem unsere Avatare laufen. Eine Geschichte pro Foto reicht.")}
+  {notizen("Der Umzugstag, 27. September 2026. Erst das grüne Sofa im alten Büro eingepackt, irgendwann lag jemand einfach daneben auf dem Boden. Dann ab in den Transporter, Eddie und Dom mit Daumen hoch. Vor der Marlesgrube wartet Emre am Fenster, und alles muss durchs Treppenhaus nach oben. Am Ende sitzt das ganze Team auf dem Sofa vor der HypoVereinsbank, über der jetzt unser Büro ist. Seit dem 1. Oktober arbeiten wir dort. Eine Geschichte pro Foto reicht.")}
 </section>
 
 <!-- ============ TEAM HEUTE ============ -->
@@ -1274,7 +1277,7 @@ def bau():
 
 <!-- ============ THESE 2 ============ -->
 <section class="f-th" data-stimmung="neutral">
-  <figure class="polaroid stapel" style="left:990px;top:calc(var(--extra) + 70px);width:600px;--d:-3deg;--y:0px;--i:0;"><img src="assets/fotos/nachtarbeit.jpg" alt=""><figcaption>irgendwann nachts</figcaption></figure><figure class="polaroid stapel" style="left:1515px;top:calc(var(--extra) + 110px);width:330px;--d:6deg;--y:0px;--i:1;"><img src="assets/fotos/moment-bildschirme.jpg" alt=""><figcaption>Mehr Bildschirme. Weniger Probleme.</figcaption></figure><figure class="polaroid stapel" style="left:950px;top:calc(var(--extra) + 545px);width:300px;--d:-6deg;--y:0px;--i:2;"><img src="assets/fotos/moment-ueberflieger.jpg" alt="Eddie und Emre beim Überflieger-Wettbewerb"><figcaption>Überflieger, Kiel 2023</figcaption></figure><figure class="polaroid stapel" style="left:1275px;top:calc(var(--extra) + 520px);width:265px;--d:3deg;--y:0px;--i:3;"><img src="assets/fotos/moment-gewonnen.jpg" alt="Emre mit der Urkunde vom Social Hackathon"><figcaption>Social Hackathon 2024</figcaption></figure><figure class="polaroid stapel" style="left:1565px;top:calc(var(--extra) + 560px);width:300px;--d:-4deg;--y:0px;--i:4;"><img src="assets/fotos/preis-2025.jpg" alt="Das Team auf der Bühne beim Existenzgründerpreis"><figcaption>Existenzgründerpreis 2025</figcaption></figure>
+  <figure class="polaroid stapel" style="left:990px;top:calc(var(--extra) + 70px);width:600px;--d:-3deg;--y:0px;--i:0;"><img src="assets/fotos/nachtarbeit.jpg" alt=""><figcaption>irgendwann nachts</figcaption></figure><figure class="polaroid stapel" style="left:1515px;top:calc(var(--extra) + 110px);width:330px;--d:6deg;--y:0px;--i:1;"><img src="assets/fotos/moment-bildschirme.jpg" alt=""><figcaption>Mehr Bildschirme.<br>Weniger Probleme.</figcaption></figure><figure class="polaroid stapel" style="left:950px;top:calc(var(--extra) + 545px);width:300px;--d:-6deg;--y:0px;--i:2;"><img src="assets/fotos/moment-ueberflieger.jpg" alt="Eddie und Emre beim Überflieger-Wettbewerb"><figcaption>Überflieger, Kiel 2023</figcaption></figure><figure class="polaroid stapel" style="left:1275px;top:calc(var(--extra) + 520px);width:265px;--d:3deg;--y:0px;--i:3;"><img src="assets/fotos/moment-gewonnen.jpg" alt="Emre mit der Urkunde vom Social Hackathon"><figcaption>Social Hackathon 2024</figcaption></figure><figure class="polaroid stapel" style="left:1565px;top:calc(var(--extra) + 560px);width:300px;--d:-4deg;--y:0px;--i:4;"><img src="assets/fotos/preis-2025.jpg" alt="Das Team auf der Bühne beim Existenzgründerpreis"><figcaption>Existenzgründerpreis 2025</figcaption></figure>
   <div class="slide links-mitte">
     <h2 class="these" style="max-width:760px;">Anfangen schlägt <span class="schimmer">Planen.</span></h2>
   </div>
@@ -1287,7 +1290,7 @@ def bau():
     <h2 class="headline" style="font-size:70px;max-width:1350px;">Worin Gründer zu früh <span class="schimmer">investieren</span></h2>
     <div class="karten"><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Logo</span><span>Website</span><span>Visitenkarten</span></div><div class="seite hinten"><b>Keiner sieht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Büromöbel</span><span>Büro</span><span>Schicke Gegenstände</span></div><div class="seite hinten"><b>Keiner besucht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Investoren</span><span>Testphasen</span></div><div class="seite hinten"><b>Bubble.</b></div></div></div></div>
   </div>
-  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Tough Talks, ein Format unseres<br>YouTube-Kanals</figcaption></figure>
+  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Tough Talks, ein Format<br>unseres YouTube-Kanals</figcaption></figure>
   {notizen("Die drei Punkte stammen aus Emres Whiteboard in den Tough Talks, einem Format unseres YouTube-Kanals (oben rechts). Drei Karten, drei Klicks. Vorne das, worin fast jeder Gründer zuerst Zeit und Geld steckt. Umgedreht die Wahrheit: Logo, Website, Visitenkarten, keiner sieht dich. Büro, Möbel, schicke Sachen, keiner besucht dich. Investoren und ewige Testphasen, du lebst in einer Blase. Emre erzählt dazu, was wir selbst falsch gemacht haben.")}
 </section>
 
@@ -1538,7 +1541,7 @@ def bau():
 
 <!-- ============ ENDE ============ -->
 <section class="f-hblau" data-stimmung="hblau" data-chrome="zahl">
-  <img class="ende-foto" src="assets/fotos/duo-event.jpg" alt="Emre Erdogan und Edgar Paul-Ghazaryan">
+  <img class="ende-foto" src="assets/fotos/duo-event-hoch.jpg" alt="Emre Erdogan und Edgar Paul-Ghazaryan">
   <div class="slide schluss">
     <h2 class="hero">Und jetzt:<br><span class="schimmer">ausprobieren.</span></h2>
     <div class="kontakt"><img src="assets/logos/edge-logo-white.png" alt="EDGE Digital"><p><b>Emre Erdogan &amp; Edgar Paul-Ghazaryan</b><br>{KONTAKT}</p></div>
@@ -1554,15 +1557,15 @@ def bau():
 .bento figure { margin: 0; border-radius: 14px; overflow: hidden; min-height: 0; background: #111; }
 .bento img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0 !important; max-width: none !important; max-height: none !important; }
 .bento .b-sofa { grid-column: 1; grid-row: 1 / 3; }
-.bento .b-sofa img { object-position: 40% 70%; }
+.bento .b-sofa img { object-position: 50% 78%; }
 .bento .b-rathaus { grid-column: 2 / 4; grid-row: 1; }
-.bento .b-rathaus img { object-position: 50% 62%; }
+.bento .b-rathaus img { object-position: 50% 40%; }
 .bento .b-schild { grid-column: 2; grid-row: 2; }
-.bento .b-schild img { object-position: 50% 50%; }
+.bento .b-schild img { object-position: 30% 55%; }
 .bento .b-tisch { grid-column: 3; grid-row: 2; }
-.bento .b-tisch img { object-position: 50% 45%; }
+.bento .b-tisch img { object-position: 60% 45%; }
 .bento .b-regal { grid-column: 4; grid-row: 1 / 3; }
-.bento .b-regal img { object-position: 45% 50%; }
+.bento .b-regal img { object-position: 60% 55%; }
 .reveal section.present .bento figure { animation: kachel-ein .6s calc(.1s + var(--i) * .12s) cubic-bezier(.2,.8,.3,1) both; }
 @keyframes kachel-ein { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
 body.standbild .bento figure { animation: none !important; }

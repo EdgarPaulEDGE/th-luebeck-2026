@@ -326,6 +326,7 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .polaroid .platzhalter span { font-family: var(--font); font-size: 26px; font-weight: 600; color: #6B6475; text-align: center; line-height: 1.3; }
 .polaroid figcaption { margin-top: 8px; font-size: 30px; }
 .platzhalter-foto { position: absolute; right: 200px; top: calc(var(--extra) + 170px); width: 560px; margin: 0; padding: 16px 16px 20px; }
+.platzhalter-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%; }
 
 /* Gründung: vier Polaroids nebeneinander */
 .polaroid.gruendung { position: absolute; top: calc(var(--extra) + 330px); width: 380px; margin: 0; padding: 14px 14px 18px; }
@@ -385,9 +386,9 @@ body.standbild .dom-b, body.standbild .dom-szene .epg-schild { opacity: 1 !impor
 body.standbild .dom-szene .epg-schild { transform: translateX(-50%) rotate(-3deg) !important; }
 
 /* Büros: drei Stationen */
-.bueros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; margin-top: 50px; padding: 0 30px; }
+.bueros { display: grid; grid-template-columns: repeat(5, 1fr); gap: 34px; margin-top: 60px; padding: 0 10px; }
 .polaroid.buero { margin: 0; padding: 14px 14px 18px; }
-.polaroid.buero img { width: 100%; height: 520px; object-fit: cover; object-position: 50% 35%; }
+.polaroid.buero img { width: 100%; height: 480px; object-fit: cover; object-position: 50% 45%; }
 .bueros-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; padding: 0 30px; margin-top: 36px; text-align: center; }
 .bueros-team span { font-size: 30px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--w-45); }
 .bueros-team span:last-child { color: var(--th-hell); }
@@ -537,14 +538,14 @@ body.standbild .alles-ki figure { animation: none !important; }
 .zitat { font-size: 104px; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; margin: 0; max-width: 1640px; text-transform: uppercase; }
 
 /* Pizza (aus dem Stamm) */
-.pizza { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 70px; flex: 1; align-items: stretch; }
+.pizza { display: grid; grid-template-columns: auto 1px auto; justify-content: center; gap: 90px; flex: 1; align-items: stretch; }
 .pizza .trennlinie { background: linear-gradient(180deg, transparent, rgba(244,246,255,.25), transparent); }
 .pizza > div:not(.trennlinie) { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .pizza .label { margin-bottom: 26px; }
 .pizza .label.gut { color: var(--th-hell); }
 .pizza .ansage { min-height: 170px; display: flex; align-items: center; justify-content: center; margin: 0; font-weight: 700; }
 .pizza .ansage.kurz { font-size: 88px; }
-.pizza .ansage.lang { font-size: 34px; line-height: 1.4; max-width: 780px; font-weight: 600; }
+.pizza .ansage.lang { font-size: 34px; line-height: 1.4; white-space: nowrap; font-weight: 600; }
 .pizza img { height: 420px; width: auto; display: block; margin: 20px 0 !important; }
 
 /* Kompass */
@@ -606,6 +607,7 @@ body.standbild .alles-ki figure { animation: none !important; }
 
 /* Das Handy ist nur das Fenster */
 .fenster-bild { position: absolute; left: 0; top: calc(var(--extra) + 60px); width: 1920px; height: 1080px; object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.fenster-erklaerung { position: absolute; left: 890px; top: calc(var(--extra) + 470px); transform: translateX(-50%); white-space: nowrap; margin: 0; text-align: center; font-size: 34px; line-height: 1.45; font-weight: 600; color: var(--w-90, rgba(244,246,255,.9)); text-shadow: 0 2px 18px rgba(0,0,0,.9); }
 .fenster-name { position: absolute; top: calc(var(--extra) + 60px + 1080px * .86); transform: translateX(-50%); font-size: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; padding: 6px 16px; border-radius: 8px; background: rgba(3,3,9,.78); }
 
 /* Seit letztem November: Wand wächst */
@@ -626,18 +628,19 @@ body.standbild .alles-ki figure { animation: none !important; }
 body.standbild .wachstum .neu { opacity: 1; transform: none; animation: none; }
 body.standbild .wachstum .alt { opacity: .28; }
 
-/* Turm: Prompt oben, Unterbau wächst auf Klick */
-.turm-folie { flex-direction: row !important; align-items: center; justify-content: space-between; }
-.turm-folie .headline { align-self: center; }
-.turm { position: relative; width: 760px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.turm-trigger { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.turm .block { height: 84px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 34px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
-.turm .spitze { width: 46%; background: linear-gradient(135deg, #E4003A, #FF5C7A); color: #fff; filter: drop-shadow(0 0 30px rgba(228,0,58,.6)); }
-.unterbau { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.unterbau .block { width: var(--w); background: rgba(244,246,255,.06); border: 1.5px solid rgba(244,246,255,.22); color: var(--w-70); opacity: 0; transform: translateY(40px); }
-.turm:has(.turm-trigger.visible) .unterbau .block { animation: hochkommen .5s calc(var(--i) * .12s) cubic-bezier(.2,.8,.3,1.1) forwards; }
-body.standbild .unterbau .block { opacity: 1; transform: none; animation: none; }
-body.hochkant .turm-folie { flex-direction: column !important; }
+/* Eisberg: über Wasser nur der Prompt, auf Klick taucht alles darunter auf.
+   Bild und Begriffe teilen sich eine 1920 x 1080 Bühne, damit Wasserlinie (y 258) und Eisblock (Mitte x 1320) zusammenpassen. */
+.eisberg-buehne { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; }
+.eisberg-buehne > img { position: absolute; inset: 0; width: 1920px; height: 1080px; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.eis-wasser { position: absolute; left: 0; top: 262px; width: 1920px; height: 818px; background: linear-gradient(180deg, rgba(1,4,18,.55) 0, rgba(1,4,18,.97) 70px, #01040F 100%); transition: opacity 1.6s ease; }
+.eisberg-trigger { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.eis-spitze { position: absolute; left: 1320px; top: 52px; transform: translateX(-50%); padding: 10px 28px; border-radius: 10px; background: linear-gradient(135deg, #E4003A, #FF5C7A); color: #fff; font-size: 32px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; filter: drop-shadow(0 0 26px rgba(228,0,58,.6)); }
+.eis-schicht { position: absolute; left: 1320px; top: var(--y); transform: translate(-50%, 18px); padding: 8px 24px; border-radius: 10px; background: rgba(1,4,18,.55); border: 1.5px solid rgba(190,225,255,.35); color: #EAF4FF; font-size: 28px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; opacity: 0; transition: opacity .5s, transform .5s; }
+.eisberg-buehne:has(.eisberg-trigger.visible) .eis-wasser { opacity: 0; }
+.eisberg-buehne:has(.eisberg-trigger.visible) .eis-schicht { opacity: 1; transform: translate(-50%, 0); transition-delay: calc(.9s + var(--i) * .12s); }
+body.standbild .eis-wasser { opacity: 0; }
+body.standbild .eis-schicht { opacity: 1; transform: translate(-50%, 0); }
+body.hochkant .eisberg-buehne { transform: scale(.5625); transform-origin: top left; top: 1100px; }
 
 /* Route: krumme Linie durch echte Stationen */
 .route { width: 100%; height: auto; margin-top: auto; overflow: visible; }
@@ -705,6 +708,7 @@ body.hochkant .orbit { top: 600px; left: -840px; }
 .automat-bild { object-position: 70% 50%; }
 
 /* Drei Zukünfte: Bedingung oben, Ergebnis in Jahren groß */
+.fussquelle { position: absolute; right: 130px; bottom: 34px; margin: 0; font-size: 19px; letter-spacing: .02em; color: rgba(244,246,255,.42); }
 .unterzeile-klar { font-size: 34px; color: var(--w-70); margin: 10px 0 0; font-weight: 500; }
 .szenarien { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 60px; margin-top: auto; margin-bottom: auto; }
 .szenario { display: flex; flex-direction: column; padding-top: 28px; border-top: 2px solid var(--hairline); }
@@ -793,14 +797,16 @@ def wachstum(logos):
 </div>'''
 
 
-def turm():
-    """Unterbau von oben (schmal) nach unten (breit) gesetzt, wächst aber von unten nach oben ein."""
-    oben_nach_unten = list(reversed(TURM))
-    bloecke = "".join(f'<div class="block" style="--i:{len(TURM) - 1 - k};--w:{64 + k * 6}%;">{t}</div>' for k, t in enumerate(oben_nach_unten))
-    return f'''<div class="turm">
-  <div class="block spitze">Prompt</div>
-  <span class="turm-trigger fragment" aria-hidden="true"></span>
-  <div class="unterbau">{bloecke}</div>
+def eisberg():
+    """Prompt über Wasser, darunter der Unterbau, von oben nach unten im Eisblock. Erscheint auf Klick."""
+    unter = list(reversed(TURM))
+    schichten = "".join(f'<div class="eis-schicht" style="--i:{k};--y:{336 + k * 80}px;">{s}</div>' for k, s in enumerate(unter))
+    return f'''<div class="eisberg-buehne">
+  <img src="assets/illu/eisberg.jpg" alt="Ein Eisberg: kleine Spitze über Wasser, riesige Masse darunter">
+  <div class="eis-wasser"></div>
+  <div class="eis-spitze">Prompt</div>
+  <span class="eisberg-trigger fragment" aria-hidden="true"></span>
+  {schichten}
 </div>'''
 
 
@@ -832,11 +838,10 @@ def balken():
 
 
 def zukuenfte():
-    """Drei Szenarien: oben die Bedingung, groß das Ergebnis in Jahren normalem Wachstum, klein die Prozentzahl."""
+    """Drei Szenarien: oben die Bedingung, groß das Ergebnis in Jahren normalem Wachstum. Die Prozentzahlen stehen nur in den Notizen."""
     spalten = "".join(f'''<div class="szenario s{i}">
   <p class="wenn"><span>Wenn</span> {satz}</p>
   <b class="jahre">{jahre}</b>
-  <span class="prozent">+{str(wert).replace(".", ",")} % gegenüber ohne KI</span>
 </div>''' for i, (satz, wert, jahre) in enumerate(ZUKUENFTE))
     return f'<div class="szenarien">{spalten}</div>'
 
@@ -1026,8 +1031,8 @@ def bau():
   <div class="slide links-mitte">
     <h2 class="hero" style="font-size:124px;">Wir sind<br><span class="schimmer">wieder da.</span></h2>
   </div>
-  <figure class="polaroid platzhalter-foto" style="--d:4deg;--y:0px;--i:0;"><div class="platzhalter"><span>Foto vom Vortrag<br>November 2025</span></div><figcaption>Projektwoche 2025</figcaption></figure>
-  {notizen("Rückgriff aufs letzte Jahr: gleiche Projektwoche, gleiche Hochschule. Dank an Herrn Balke für die zweite Einladung. (Platzhalter: Foto vom Vortrag im November 2025 einsetzen, sobald Emre es raussucht.)")}
+  <figure class="polaroid platzhalter-foto" style="--d:4deg;--y:0px;--i:0;"><img src="assets/fotos/projektwoche-2025.jpg" alt="Emre, Herr Balke und Eddie vor der Tafel mit TH x EDGE"><figcaption>Projektwoche 2025</figcaption></figure>
+  {notizen("Rückgriff aufs letzte Jahr: gleiche Projektwoche, gleiche Hochschule. Dank an Herrn Balke für die zweite Einladung. Das Foto ist vom letzten Mal, mit Herrn Balke in der Mitte.")}
 </section>
 
 <!-- ============ WESHALB ZUHÖREN ============ -->
@@ -1143,7 +1148,6 @@ def bau():
   <div class="slide">
     <div class="chat-buehne">
       <div class="chat-text">
-        <p class="label">Ein Chat unter Studenten</p>
         <h2 class="hero">28.12.<br><span class="schimmer">2020</span></h2>
       </div>
       {chat()}
@@ -1159,7 +1163,7 @@ def bau():
   </div>
   <figure class="polaroid gruendung" style="left:130px;--d:-4deg;--y:0px;--i:0;"><img src="assets/fotos/double-emre.jpg" alt="Emre am Laptop im Café"><figcaption>Double Coffee</figcaption></figure>
   <figure class="polaroid gruendung" style="left:560px;--d:3deg;--y:30px;--i:1;"><img src="assets/fotos/double-eddie.jpg" alt="Eddie am Laptop im Café"><figcaption>Double Coffee</figcaption></figure>
-  <figure class="polaroid gruendung" style="left:990px;--d:-2deg;--y:-10px;--i:2;"><div class="platzhalter"><span>Foto folgt:<br>Emre in Schwarzweiß</span></div><figcaption>Ratzeburg, bei Eddie</figcaption></figure>
+  <figure class="polaroid gruendung" style="left:990px;--d:-2deg;--y:-10px;--i:2;"><img src="assets/fotos/ratzeburg-2022.jpg" alt="Emre unter einer Decke am Schreibtisch in Eddies Zimmer in Ratzeburg"><figcaption>Ratzeburg, bei Eddie</figcaption></figure>
   <figure class="polaroid gruendung" style="left:1420px;--d:5deg;--y:20px;--i:3;"><img src="assets/fotos/umzug-briefkasten.jpg" alt="Zettel EDGE am Briefkasten über dem Schild Erdogan"><figcaption>Unser Briefkasten, 2023</figcaption></figure>
   {notizen("Ende 2022, mitten im Master. Gegründet haben wir nicht im Büro, sondern im Double Coffee und bei Eddie zu Hause in Ratzeburg. Die Idee dahinter: An der Uni haben wir gelernt, dass Dinge empirisch und valide sein müssen. Draußen in der echten Welt lief Marketing aber fast immer aus dem Bauch. Also EDGE: Marketing aus echten Daten, dazu KI. Rechts der Briefkasten: ein Zettel mit Tesafilm über Emres Klingelschild, so sah unser Firmenschild aus. (Platzhalter: das Schwarzweißfoto von Emre aus Ratzeburg einsetzen.)")}
 </section>
@@ -1210,13 +1214,14 @@ def bau():
   <div class="slide">
     <h2 class="headline">Vom Homeoffice in die <span class="schimmer">Marlesgrube</span></h2>
   <div class="bueros">
-    <figure class="polaroid buero" style="--d:-3deg;--y:20px;--i:0;"><img src="assets/fotos/uebergangsraum.jpg" alt="Wand der Übergangsräume mit EDGE-Logo"><figcaption>Übergangsräume, 2024</figcaption></figure>
-    <figure class="polaroid buero" style="--d:2deg;--y:-10px;--i:1;"><img src="assets/fotos/wolf-fishstreet.jpg" alt="KI-Filmplakat Wolf of Fishstreet"><figcaption>Fischstraße, 2025</figcaption></figure>
-    <figure class="polaroid buero" style="--d:-2deg;--y:10px;--i:2;"><img src="assets/fotos/umzug-sofa-buero.jpg" alt="Das Team auf dem Sofa vor dem neuen Büro"><figcaption>Marlesgrube, 2026</figcaption></figure>
+    <figure class="polaroid buero" style="--d:-3deg;--y:20px;--i:0;"><img src="assets/fotos/ohne-buero-2022.jpg" alt="Laptop mit Videocall, Emre im Hoodie auf dem Bildschirm"><figcaption>Ohne Büro, 2022</figcaption></figure>
+    <figure class="polaroid buero" style="--d:2deg;--y:-6px;--i:1;"><img src="assets/fotos/bus-2023.jpg" alt="Nachts im Bus, Arbeit am Laptop"><figcaption>Im Bus, 2023</figcaption></figure>
+    <figure class="polaroid buero" style="--d:-2deg;--y:14px;--i:2;"><img src="assets/fotos/erster-raum-2024.jpg" alt="Eddie im leeren ersten Raum mit Bogenfenstern"><figcaption>Übergangsräume, 2024</figcaption></figure>
+    <figure class="polaroid buero" style="--d:3deg;--y:-10px;--i:3;"><img src="assets/fotos/fischstrasse-2025.jpg" alt="Emre am Schreibtisch im Loft in der Fischstraße"><figcaption>Fischstraße, 2025</figcaption></figure>
+    <figure class="polaroid buero" style="--d:-2deg;--y:8px;--i:4;"><img src="assets/fotos/umzug-sofa-buero.jpg" alt="Das grüne Sofa vor dem neuen Büro"><figcaption>Marlesgrube, 2026</figcaption></figure>
   </div>
-  <div class="bueros-team"><span>zu zweit</span><span>zu dritt</span><span>ganzes Team</span></div>
   </div>
-  {notizen("Lange haben wir zu zweit im Homeoffice gearbeitet. Januar 2024: das erste echte Büro, die Übergangsräume, ein Projekt der Wirtschaftsförderung Lübeck. Juli 2025, inzwischen mit Dom zu dritt: die Fischstraße, unser erstes großes Büro. Das Plakat in der Mitte ist unser eigener KI-Witz, The Wolf of Fishstreet. 2026 ist das Team dann richtig gewachsen, und seit dem 1. Oktober sitzen wir in der Marlesgrube, über der HypoVereinsbank am Pferdemarkt. Noch halb Baustelle.")}
+  {notizen("Ein Bild pro Jahr. 2022 gab es kein Büro, gearbeitet wurde über Videocalls. 2023 haben wir sogar im Bus gearbeitet. 2024 der erste eigene Raum, die Übergangsräume, ein Projekt der Wirtschaftsförderung Lübeck. Juli 2025, inzwischen mit Dom zu dritt: die Fischstraße, unser erstes großes Büro. Und seit dem 1. Oktober 2026 sitzen wir in der Marlesgrube, über der HypoVereinsbank am Pferdemarkt.")}
 </section>
 
 <!-- ============ DIE ANFÄNGE: UMZUG ============ -->
@@ -1253,8 +1258,7 @@ def bau():
   <img class="voll" src="assets/illu/hoersaal.jpg" alt="Ein dunkler Hörsaal, dessen Stirnwand sich zur Stadt öffnet">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
-    <p class="label" style="color:var(--th-hell);">Kapitel 2</p>
-    <h2 class="hero" style="margin-top:16px;">Der Reality <span class="schimmer">Check</span></h2>
+    <h2 class="hero">Der Reality <span class="schimmer">Check</span></h2>
   </div>
   {notizen("Kapitelwechsel. Der Hörsaal, der sich zur Stadt öffnet: Irgendwann ist die Wand einfach weg. Jetzt kommt, was wir gern früher gewusst hätten.")}
 </section>
@@ -1262,7 +1266,6 @@ def bau():
 <!-- ============ HANDZEICHEN: NACH DEM STUDIUM ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
-    <p class="handzeichen">Handzeichen</p>
     <h2 class="headline">Was kommt nach dem <span class="schimmer">Studium?</span></h2>
     <div class="icons" style="--n:4;">{icons_studium}</div>
   </div>
@@ -1284,14 +1287,14 @@ def bau():
     <h2 class="headline" style="font-size:70px;max-width:1350px;">Worin Gründer zu früh <span class="schimmer">investieren</span></h2>
     <div class="karten"><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Logo</span><span>Website</span><span>Visitenkarten</span></div><div class="seite hinten"><b>Keiner sieht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Büromöbel</span><span>Büro</span><span>Schicke Gegenstände</span></div><div class="seite hinten"><b>Keiner besucht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Investoren</span><span>Testphasen</span></div><div class="seite hinten"><b>Bubble.</b></div></div></div></div>
   </div>
-  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Tough Talks, unser YouTube-Kanal</figcaption></figure>
-  {notizen("Die drei Punkte stammen aus Emres Whiteboard in den Tough Talks, unserem YouTube-Kanal (oben rechts). Drei Karten, drei Klicks. Vorne das, worin fast jeder Gründer zuerst Zeit und Geld steckt. Umgedreht die Wahrheit: Logo, Website, Visitenkarten, keiner sieht dich. Büro, Möbel, schicke Sachen, keiner besucht dich. Investoren und ewige Testphasen, du lebst in einer Blase. Emre erzählt dazu, was wir selbst falsch gemacht haben.")}
+  <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Tough Talks, ein Format unseres<br>YouTube-Kanals</figcaption></figure>
+  {notizen("Die drei Punkte stammen aus Emres Whiteboard in den Tough Talks, einem Format unseres YouTube-Kanals (oben rechts). Drei Karten, drei Klicks. Vorne das, worin fast jeder Gründer zuerst Zeit und Geld steckt. Umgedreht die Wahrheit: Logo, Website, Visitenkarten, keiner sieht dich. Büro, Möbel, schicke Sachen, keiner besucht dich. Investoren und ewige Testphasen, du lebst in einer Blase. Emre erzählt dazu, was wir selbst falsch gemacht haben.")}
 </section>
 
 <!-- ============ THESE 3 ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide links-mitte">
-    <h2 class="these" style="max-width:820px;font-size:108px;">Dein Netzwerk sitzt <span class="schimmer">neben dir.</span></h2>
+    <h2 class="these" style="font-size:96px;white-space:nowrap;">Dein Netzwerk<br>sitzt<br><span class="schimmer">neben dir.</span></h2>
   </div>
   <div class="orbit" data-rx="350" data-ry="330" data-tempo="0.025" data-mitte-x="1420" data-mitte-y="540">
     <div class="orbit-du">Du</div>
@@ -1324,8 +1327,7 @@ def bau():
   <img class="voll" src="assets/illu/robo-hoersaal.jpg" alt="Der EDGE-Roboter im roten Hoodie meldet sich im Hörsaal">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
-    <p class="label" style="color:var(--th-hell);">Kapitel 3</p>
-    <h2 class="hero" style="margin-top:16px;font-size:104px;">Dein neuer<br><span class="schimmer">Kommilitone.</span></h2>
+    <h2 class="hero" style="font-size:104px;">Dein neuer<br><span class="schimmer">Kommilitone.</span></h2>
   </div>
   {notizen("Der Roboter mit der Fischbrötchen-Kappe ist unser Maskottchen aus den KI-Vorträgen. Heute sitzt er im Hörsaal und meldet sich immer zuerst. Überleitung: Wer von euch nutzt ihn schon?")}
 </section>
@@ -1333,7 +1335,6 @@ def bau():
 <!-- ============ HANDZEICHEN: WER NUTZT KI ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
-    <p class="handzeichen">Handzeichen</p>
     <h2 class="headline">Wer nutzt <span class="schimmer">KI?</span></h2>
     <div class="icons" style="--n:3;">{icons_ki}</div>
   </div>
@@ -1377,6 +1378,7 @@ def bau():
   <img class="fenster-bild" src="assets/illu/handy-cloud.jpg" alt="Ein altes Tastenhandy, über eine Lichtlinie mit einem Rechenzentrum verbunden">
   <div class="fenster-name" style="left:{HANDY_X}%;">Nokia 6300 · 8 MB</div>
   <div class="fenster-name" style="left:{SERVER_X}%;">Hier rechnet die KI</div>
+  <p class="fenster-erklaerung">Ein Entwickler hat Claude<br>auf sein Nokia von 2007 gebracht.<br>Gerechnet wird im Rechenzentrum,<br>das Handy ist nur der Bildschirm.</p>
   <div class="slide">
     <h2 class="headline" style="position:relative;">Claude auf einem Handy von <span class="schimmer">2007</span></h2>
   </div>
@@ -1403,7 +1405,7 @@ def bau():
       <div class="trennlinie"></div>
       <div class="fragment">
         <p class="label gut">So bekommst du, was du willst</p>
-        <p class="ansage lang">„Eine Pizza Margherita, dünner Boden, extra Basilikum, in 20 Minuten an die Mensa, ich zahle mit Karte.“</p>
+        <p class="ansage lang">„Eine Pizza Margherita, dünner Boden,<br>extra Basilikum, in 20 Minuten an die Mensa,<br>ich zahle mit Karte.“</p>
         <img src="assets/robo/pizza-gut.png" alt="Der Roboter freut sich">
       </div>
     </div>
@@ -1429,13 +1431,13 @@ def bau():
   {notizen("Magic Moment. Diese Seite hat eine KI aus einem einzigen Satz gebaut: Bau mir eine interaktive Lernseite zu Angebot und Nachfrage, mit zwei Reglern, einer Kurve, die sich live bewegt, und dem Lübecker Weihnachtsmarkt als Beispiel. Live an den Reglern ziehen: Besucher hoch, Preis steigt. Ihr könnt euch eure eigenen Lernwerkzeuge bauen lassen. Der Bau dauert Minuten, deshalb zeigen wir das fertige Ergebnis.")}
 </section>
 
-<!-- ============ TURM ============ -->
+<!-- ============ EISBERG ============ -->
 <section class="f-th" data-stimmung="neutral">
-  <div class="slide turm-folie">
-    <h2 class="headline" style="max-width:900px;">Die KI baut nur die <span class="schimmer">Spitze</span></h2>
-    {turm()}
+  {eisberg()}
+  <div class="slide links-mitte">
+    <h2 class="headline">Die KI baut<br>nur die <span class="schimmer">Spitze.</span></h2>
   </div>
-  {notizen("Erst steht nur der leuchtende Block da: Prompt. So wird es auf Instagram verkauft, ein Satz, fertige App. Klick: Darunter wächst der Turm. Login, Datenbank, Datenschutz, Hosting, Sicherheit, Backups, Wartung. Das macht keine KI für euch fertig, das ist echte Arbeit und echte Verantwortung. Bei uns läuft jede App vor dem Start durch eine Prüfliste. Für alle aus der Informatik: Euer Job verschwindet nicht, er rutscht nach unten in den Turm.")}
+  {notizen("Erst sieht man nur die Spitze über Wasser: Prompt. So wird es auf Instagram verkauft, ein Satz, fertige App. Klick: Darunter taucht der Rest auf. Login, Datenbank, Datenschutz, Hosting, Sicherheit, Backups, Wartung. Das macht keine KI für euch fertig, das ist echte Arbeit und echte Verantwortung. Bei uns läuft jede App vor dem Start durch eine Prüfliste. Für alle aus der Informatik: Euer Job verschwindet nicht, er liegt unter Wasser.")}
 </section>
 
 <!-- ============ NIE IN DIE KI ============ -->
@@ -1459,8 +1461,8 @@ def bau():
 <!-- ============ ERST SELBST DENKEN ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide links-mitte">
-    <p class="label" style="font-size:24px;">MIT Media Lab · 2025 · „Your Brain on ChatGPT“</p>
-    <h2 class="these" style="margin-top:30px;">Erst selbst denken,<br><span class="schimmer">dann KI fragen.</span></h2>
+    <h2 class="these">Erst selbst denken,<br><span class="schimmer">dann KI fragen.</span></h2>
+    <p class="fussquelle">Quelle: MIT Media Lab, „Your Brain on ChatGPT“, 2025</p>
   </div>
   {notizen("Die Studie vom MIT: Wer seinen Aufsatz von Anfang an mit KI geschrieben hat, konnte danach kaum einen Satz daraus wiedergeben. Wer erst selbst geschrieben und dann KI genutzt hat, schnitt besser ab. Wichtig: kleine Vorabstudie, 54 Personen, noch nicht begutachtet. Also kein Beweis, aber eine gute Regel fürs Studium.")}
 </section>
@@ -1469,10 +1471,10 @@ def bau():
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
     <div class="studie">
-      <p class="label" style="font-size:26px;">Harvard × BCG · 758 Berater · mit KI gegen ohne</p>
       <p class="riesig schimmer">+40 %<small>Qualität</small></p>
       <div class="nebenzahlen"><span><b>25 %</b> schneller</span><span><b>12 %</b> mehr geschafft</span></div>
     </div>
+    <p class="fussquelle">Quelle: Harvard Business School und Boston Consulting Group, 758 Berater mit und ohne KI, 2023</p>
   </div>
   {notizen("Die bekannte Studie von Harvard und der Boston Consulting Group (2023). Wer KI richtig nutzt, ist besser, schneller und schafft mehr. Genau das haben wir heute geübt.")}
 </section>
@@ -1480,7 +1482,6 @@ def bau():
 <!-- ============ HANDZEICHEN: BERUFE ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
-    <p class="handzeichen">Handzeichen</p>
     <h2 class="headline">Wo hilft KI am <span class="schimmer">meisten?</span></h2>
     <div class="icons" style="--n:4;">{icons_berufe}</div>
   </div>
@@ -1490,9 +1491,9 @@ def bau():
 <!-- ============ BERUFE: AUFLÖSUNG ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide">
-    <p class="quelle-klein">MICROSOFT RESEARCH · 200.000 COPILOT-GESPRÄCHE · USA</p>
-    <h2 class="headline" style="margin-top:14px;">Dolmetscher, nicht <span class="schimmer">Programmierer</span></h2>
+    <h2 class="headline">Dolmetscher, nicht <span class="schimmer">Programmierer</span></h2>
     {balken()}
+    <p class="fussquelle">Quelle: Microsoft Research, 200.000 Copilot-Gespräche aus den USA, 2025</p>
   </div>
   {notizen("Die Studie hat gemessen, bei welchen Tätigkeiten Menschen sich wirklich von KI helfen lassen. Ganz oben Dolmetscher und Historiker, Programmierer stehen nicht einmal unter den ersten 40. Ganz unten: Brücken- und Schleusenwärter, die haben wir in Lübeck ja genug. Wichtig: Das ist kein Ranking, wer seinen Job verliert. Die Autoren sagen selbst, daraus Jobverlust abzuleiten wäre ein Fehler. Dazu das Beispiel auf der nächsten Folie.")}
 </section>
@@ -1510,11 +1511,10 @@ def bau():
 <!-- ============ DREI ZUKÜNFTE ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide">
-    <p class="quelle-klein">ANTHROPIC · SZENARIEN FÜR DIE US-WIRTSCHAFT · KEINE VORHERSAGE</p>
-    <h2 class="headline" style="margin-top:14px;margin-bottom:0;">Was KI bis 2030 <span class="schimmer">bringen könnte</span></h2>
-    <p class="unterzeile-klar">Zusätzliches Wachstum bis 2030, umgerechnet in Jahre normales Wachstum</p>
+    <h2 class="headline" style="margin-bottom:0;">Was KI bis 2030 <span class="schimmer">bringen könnte</span></h2>
     {zukuenfte()}
     <p class="offen fragment">Welches Szenario es wird, steht <span class="schimmer">noch nicht fest.</span></p>
+    <p class="fussquelle">Quelle: Anthropic, „Scenarios for our Economic Future“, September 2026</p>
   </div>
   {notizen("Erst Handzeichen: Wer glaubt, KI wird wie das Internet? Wer glaubt, KI macht bald die Hälfte der Büroarbeit? Wer glaubt ans Extrem? Erklärung: Anthropic hat ausgerechnet, wie groß die US-Wirtschaft 2030 ohne KI wäre, und das mit drei Szenarien verglichen. Weil Prozente keiner fühlt, steht groß da, wie viele Jahre normales Wachstum das wären, die US-Wirtschaft wächst sonst um etwa 2 Prozent im Jahr. Wie das Internet: plus 1,6 Prozent, also knapp ein Jahr zusätzlich. Hälfte der Büroarbeit: plus 8,3 Prozent, vier Jahre zusätzlich. Extrem: plus 32,4 Prozent, das wären 14 Jahre Wachstum zusätzlich, und das bis 2030. Klick: Welches Szenario es wird, steht noch nicht fest. Das entscheiden auch die, die heute hier sitzen. Quelle: Anthropic, Scenarios for our Economic Future, September 2026, über 10.000 Befragte.")}
 </section>

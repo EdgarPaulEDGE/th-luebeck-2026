@@ -579,7 +579,7 @@ section:has(> .schleier-frage) .schleier-links { display: none; }
 .sa-hinweis { position: absolute; inset: 0; display: none; place-items: center; margin: 0; font-size: 60px; font-weight: 700; }
 .so-arbeiten.ohne-video .sa-hinweis { display: grid; }
 .so-arbeiten.ohne-video .sa-video, .so-arbeiten.ohne-video .sa-kennung { display: none; }
-.sa-video { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); object-fit: contain; background: #000; margin: 0 !important; max-width: none !important; max-height: none !important; background: #F2F2F2; }
+.sa-video { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; background: #000; margin: 0 !important; max-width: none !important; max-height: none !important; }
 .sa-titel { position: absolute; left: 60px; top: 50px; margin: 0; padding: 10px 24px 12px; border-radius: 14px; background: rgba(21,18,28,.86); font-size: 40px; font-weight: 700; letter-spacing: -.01em; text-transform: uppercase; }
 .sa-aufloesung { position: absolute; inset: calc(-1 * var(--extra)) 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(8,6,12,.84); }
 .sa-aufloesung .hero { font-size: 190px; }
@@ -1548,9 +1548,9 @@ def bau():
     <div class="sa-aufloesung fragment">
       <h2 class="hero">Alles <span class="schimmer">KI.</span></h2>
     </div>
-    <p class="sa-kennung">KI-generiert · Vorlage: Grand Theft Auto VI, Rockstar Games</p>
+    <p class="sa-kennung">KI-generiert · Musik: Launch-Trailer Grand Theft Auto VI, Rockstar Games</p>
   </div>
-  {notizen("Video startet von selbst, 30 Sekunden mit Ton. GTA VI kommt am 19. November, also neun Tage nach diesem Vortrag. Klick: Auflösung, alles KI. Higgsfield hat in den echten Trailer-Szenen die Gesichter getauscht, Emre spielt Jason, Eddie spielt Lucia. Nur live zeigen, das Video ist nicht öffentlich und nicht im geteilten Link.")}
+  {notizen("Video startet von selbst, 30 Sekunden mit Ton. GTA VI kommt am 19. November, also neun Tage nach diesem Vortrag. Klick: Auflösung, alles KI. Unser eigener Trailer im GTA-Stil: Jede Szene ist ein KI-Bild aus unseren Fotos, die Bewegung kommt von Kling, die Musik aus dem echten Launch-Trailer. Nur live zeigen, das Video ist nicht öffentlich und nicht im geteilten Link.")}
 </section>
 
 <!-- ============ WAS KI HEUTE KANN ============ -->

@@ -328,9 +328,9 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .polaroid .platzhalter { aspect-ratio: 4 / 5; display: grid; place-items: center; border: 3px dashed #B9B2C2; background: #E9E5EE; }
 .polaroid .platzhalter span { font-family: var(--font); font-size: 26px; font-weight: 600; color: #6B6475; text-align: center; line-height: 1.3; }
 .polaroid figcaption { margin-top: 8px; font-size: 30px; }
-.platzhalter-foto { position: absolute; right: 110px; top: calc(var(--extra) + 56px); width: 690px; margin: 0; padding: 16px 16px 20px; }
+.platzhalter-foto { position: absolute; right: 110px; top: calc(var(--extra) + 200px); width: 690px; margin: 0; padding: 16px 16px 20px; }
 .platzhalter-foto figcaption { font-size: 44px; margin-top: 10px; }
-.platzhalter-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%; }
+.polaroid.platzhalter-foto img { display: block; width: 100%; height: 586px; object-fit: cover; object-position: 50% 0%; }
 
 /* Gründung: vier Polaroids nebeneinander */
 .polaroid.gruendung { position: absolute; top: calc(var(--extra) + 330px); width: 380px; margin: 0; padding: 14px 14px 18px; }
@@ -864,6 +864,7 @@ body.hochkant .namen-buehne, body.hochkant .namen-buehne .wurde { flex-direction
 body.hochkant .fotowand { width: 1080px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr); }
 body.hochkant .fotoreihe { grid-template-columns: 1fr 1fr; }
 body.hochkant .polaroid img { height: 420px; }
+body.hochkant .platzhalter-foto { top: calc(var(--extra) + 56px); }
 body.hochkant .slide.team { flex-direction: column !important; align-items: center; padding: 260px 60px 130px; }
 body.hochkant .mitte { display: contents; }
 body.hochkant .seite { flex: none; width: 100%; margin-top: 70px; }

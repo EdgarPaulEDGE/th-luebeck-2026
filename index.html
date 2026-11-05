@@ -369,7 +369,7 @@ body[data-stimmung="th"] .st-th { opacity: 1; }
 .nein { font-size: 420px; line-height: .9; font-weight: 700; letter-spacing: -.04em; margin: 0; }
 .vielleicht { position: relative; font-size: 96px; font-weight: 700; letter-spacing: -.02em; margin: 0; }
 .weil-liste { list-style: none; margin: 60px 0 0; padding: 0; }
-.weil-liste li { font-size: 62px; line-height: 1.2; font-weight: 600; padding: 24px 0 24px 0; border-top: 1px solid var(--hairline); color: var(--weiss); }
+.weil-liste li { font-size: 74px; line-height: 1.2; font-weight: 600; padding: 24px 0 24px 0; border-top: 1px solid var(--hairline); color: var(--weiss); }
 .weil-liste li:last-child { border-bottom: 1px solid var(--hairline); }
 .weil-liste li span { color: var(--w-45); font-weight: 500; }
 
@@ -390,9 +390,11 @@ body[data-stimmung="th"] .st-th { opacity: 1; }
 body.hochkant .duo-frei { height: 900px; right: -60px; }
 
 /* Agenda */
-.agenda { display: flex; flex-direction: column; gap: 34px; margin-top: 70px; }
+.agenda { display: flex; flex-direction: column; gap: 76px; margin: auto 0; }
+.agenda .ring { width: 150px; height: 150px; }
+.agenda .ring b { font-size: 66px; }
 .agenda-zeile { display: flex; align-items: center; gap: 44px; }
-.agenda-zeile b { font-size: 72px; font-weight: 700; text-transform: uppercase; letter-spacing: -.015em; }
+.agenda-zeile b { font-size: 96px; line-height: 1.05; white-space: nowrap; font-weight: 700; text-transform: uppercase; letter-spacing: -.015em; }
 .agenda-zeile.pause b { font-size: 40px; color: var(--w-45); font-weight: 600; letter-spacing: .1em; }
 .agenda-zeile.pause .strich { width: 92px; display: flex; justify-content: center; }
 .agenda-zeile.pause .strich::before { content: ""; width: 2px; height: 46px; background: var(--hairline); }
@@ -443,19 +445,19 @@ body.standbild .polaroid.master { transform: rotate(-4deg) !important; }
 .polaroid.stapel img { height: auto; }
 
 /* Karten drehen auf Klick (Kniff aus dem Charta-Deck) */
-.karten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: auto; margin-bottom: auto; perspective: 2400px; }
+.karten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: auto; margin-bottom: 0; perspective: 2400px; }
 .reveal .slides section .fragment.karte { opacity: 1 !important; visibility: inherit !important; }
-.karte { height: 470px; }
+.karte { height: 440px; }
 .karte .innen { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.3,.8,.25,1); }
 .karte.visible .innen, body.standbild .karte .innen { transform: rotateY(180deg); }
 .karte .seite { position: absolute; inset: 0; border-radius: 22px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px; text-align: center; }
 .karte .vorn { background: rgba(244,246,255,.06); border: 1.5px solid rgba(244,246,255,.2); }
 .karte .vorn span { font-size: 46px; font-weight: 700; color: var(--w-70); white-space: nowrap; }
 .karte .hinten { transform: rotateY(180deg); background: linear-gradient(150deg, #FF5C7A, #E4003A 55%, #9A0027); }
-.karte .hinten b { font-size: 64px; line-height: 1.1; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: -.01em; }
-.polaroid.quelle-foto { position: absolute; right: 70px; top: calc(var(--extra) + 36px); width: 320px; margin: 0; padding: 10px 10px 30px; }
+.karte .hinten b { font-size: 54px; line-height: 1.12; white-space: nowrap; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: -.01em; }
+.polaroid.quelle-foto { position: absolute; right: 90px; top: calc(var(--extra) + 74px); width: 450px; margin: 0; padding: 12px 12px 26px; }
 .polaroid.quelle-foto img { height: auto; }
-.polaroid.quelle-foto figcaption { margin-top: 6px; font-size: 27px; }
+.polaroid.quelle-foto figcaption { margin-top: 8px; font-size: 36px; }
 body.hochkant .karten { grid-template-columns: 1fr; }
 
 
@@ -463,7 +465,8 @@ body.hochkant .karten { grid-template-columns: 1fr; }
 .polaroid .platzhalter { aspect-ratio: 4 / 5; display: grid; place-items: center; border: 3px dashed #B9B2C2; background: #E9E5EE; }
 .polaroid .platzhalter span { font-family: var(--font); font-size: 26px; font-weight: 600; color: #6B6475; text-align: center; line-height: 1.3; }
 .polaroid figcaption { margin-top: 8px; font-size: 30px; }
-.platzhalter-foto { position: absolute; right: 200px; top: calc(var(--extra) + 170px); width: 560px; margin: 0; padding: 16px 16px 20px; }
+.platzhalter-foto { position: absolute; right: 110px; top: calc(var(--extra) + 56px); width: 690px; margin: 0; padding: 16px 16px 20px; }
+.platzhalter-foto figcaption { font-size: 44px; margin-top: 10px; }
 .platzhalter-foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%; }
 
 /* Gründung: vier Polaroids nebeneinander */
@@ -538,7 +541,7 @@ body.standbild .dom-szene .epg-schild { transform: translateX(-50%) rotate(-3deg
 /* Persönliche Folien */
 .person-folie { justify-content: flex-start; }
 .person-folie .headline { font-size: 104px; margin-bottom: 0; }
-.person-folie .rolle { font-size: 30px; color: var(--w-45); letter-spacing: .06em; margin: 8px 0 0; font-weight: 600; }
+.person-folie .rolle { font-size: 40px; color: var(--w-70); letter-spacing: 0; margin: 8px 0 0; font-weight: 600; }
 .fotoreihe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: auto; margin-bottom: auto; padding: 0 10px; }
 /* Polaroids: weißer Rand, leicht schräg, fallen beim Folienwechsel nacheinander ein */
 .polaroid { margin: 0; background: #F6F3EE; padding: 16px 16px 58px; border-radius: 3px; transform: translateY(var(--y)) rotate(var(--d)); }
@@ -546,6 +549,98 @@ body.standbild .dom-szene .epg-schild { transform: translateX(-50%) rotate(-3deg
 .reveal section.present .polaroid { animation: einfallen .7s calc(.15s + var(--i) * .16s) cubic-bezier(.2,.8,.3,1.15) both; }
 @keyframes einfallen { from { opacity: 0; transform: translateY(calc(var(--y) - 120px)) rotate(calc(var(--d) * 3)); } to { opacity: 1; transform: translateY(var(--y)) rotate(var(--d)); } }
 body.standbild .polaroid { animation: none !important; }
+
+/* Roboter in Containern: je ein eigenes Motiv, steht sofort da */
+.slide:has(> .robo-karten) { padding: 104px 70px 50px; }
+.slide:has(> .robo-karten) .headline { padding-left: 60px; }
+.robo-karten { display: flex; justify-content: center; gap: 28px; margin: auto 0; }
+.robo-karte { margin: 0; display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; border: 2px solid rgba(244,246,255,.24); background: linear-gradient(180deg, rgba(228,0,58,.34), rgba(12,10,20,.96) 70%); }
+.robo-karten.n4 .robo-karte { width: 424px; }
+.robo-karten.n3 .robo-karte { width: 516px; }
+.robo-karte img { display: block; width: 100%; height: auto; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.robo-karten.n4 img { aspect-ratio: 3 / 4; object-fit: cover; }
+.robo-karten.n3 img { aspect-ratio: 4 / 5; object-fit: cover; }
+.robo-karte figcaption { padding: 22px 16px 26px; text-align: center; font-size: 50px; line-height: 1.1; font-weight: 700; white-space: nowrap; }
+.robo-karten.n3 figcaption { font-size: 44px; }
+body.hochkant .slide:has(> .robo-karten) { padding: 190px 40px 130px; }
+body.hochkant .robo-karten { flex-wrap: wrap; gap: 24px; }
+body.hochkant .robo-karten.n4 .robo-karte, body.hochkant .robo-karten.n3 .robo-karte { width: 480px; }
+body.hochkant .robo-karte figcaption { font-size: 38px; }
+
+/* Kompass: Scheibe steht, Nadel läuft auf eigener Ebene, jede Richtung leuchtet, wenn die Nadel auf sie zeigt */
+.kompass-buehne { position: absolute; inset: 0; pointer-events: none; }
+.kompass-scheibe, .kompass-nadel { position: absolute; left: 650px; top: 288px; width: 620px; height: 620px; margin: 0 !important; max-width: none !important; max-height: none !important; }
+.kompass-scheibe { border-radius: 50%; }
+.kompass-nadel { left: 646px; top: 291px; transform-origin: 50% 49.2%; }
+.reveal section.present .kompass-nadel { animation: nadel 16s 1.5s infinite; }
+@keyframes nadel {
+  0%, 20% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.35,1.7,.5,1); }
+  25%, 45% { transform: rotate(90deg); animation-timing-function: cubic-bezier(.35,1.7,.5,1); }
+  50%, 70% { transform: rotate(180deg); animation-timing-function: cubic-bezier(.35,1.7,.5,1); }
+  75%, 95% { transform: rotate(270deg); animation-timing-function: cubic-bezier(.35,1.7,.5,1); }
+  100% { transform: rotate(360deg); }
+}
+.rose { position: absolute; display: flex; flex-direction: column; gap: 4px; }
+.rose b { font-size: 74px; line-height: 1.02; font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; color: var(--th-hell); white-space: nowrap; }
+.rose span { font-size: 42px; line-height: 1.15; font-weight: 600; color: #fff; white-space: nowrap; }
+.rose.nord { left: 960px; top: 138px; transform: translateX(-50%); align-items: center; text-align: center; }
+.rose.sued { left: 960px; top: 912px; transform: translateX(-50%); align-items: center; text-align: center; }
+.rose.ost { left: 1300px; top: 598px; transform: translateY(-50%); }
+.rose.west { right: 1300px; top: 598px; transform: translateY(-50%); align-items: flex-end; text-align: right; }
+.reveal section.present .rose { animation: rose-an 16s 1.5s infinite; }
+.reveal section.present .rose.ost { animation-delay: 5.5s; }
+.reveal section.present .rose.sued { animation-delay: 9.5s; }
+.reveal section.present .rose.west { animation-delay: 13.5s; }
+@keyframes rose-an { 0%, 24% { opacity: 1; } 26%, 98% { opacity: .62; } 100% { opacity: 1; } }
+body.standbild .kompass-nadel, body.standbild .rose { animation: none !important; opacity: 1; }
+body.hochkant .kompass-scheibe { left: 240px; top: calc(var(--extra) + 620px); width: 600px; height: 600px; }
+body.hochkant .kompass-nadel { left: 236px; top: calc(var(--extra) + 623px); width: 600px; height: 600px; }
+body.hochkant .rose b { font-size: 60px; }
+body.hochkant .rose span { font-size: 36px; }
+body.hochkant .rose.nord { left: 540px; top: calc(var(--extra) + 410px); }
+body.hochkant .rose.sued { left: 540px; top: calc(var(--extra) + 1250px); }
+body.hochkant .rose.ost { left: auto; right: 60px; top: calc(var(--extra) + 1480px); align-items: flex-end; text-align: right; }
+body.hochkant .rose.west { right: auto; left: 60px; top: calc(var(--extra) + 1480px); align-items: flex-start; text-align: left; }
+
+body.hochkant .agenda .ring { width: 90px; height: 90px; }
+body.hochkant .agenda .ring b { font-size: 40px; }
+body.hochkant .agenda-zeile { gap: 26px; }
+body.hochkant .agenda-zeile b { font-size: 54px; }
+body.hochkant section:has(> .eisberg-buehne) .slide { justify-content: flex-start !important; padding-top: 300px; }
+.so-arbeiten.ohne-video .sa-aufloesung { display: none; }
+
+/* Quellen: große Symbole im Stil der Sülfeld-Präsi */
+.ikon-reihe { display: flex; justify-content: space-between; gap: 40px; margin: auto 0; }
+.ikon-ding { flex: 1 1 0; margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 48px; }
+.ikon-kreis { position: relative; width: 290px; height: 290px; border-radius: 50%; display: grid; place-items: center; color: #fff; border: 5px solid #FF5C7A; background: radial-gradient(75% 70% at 50% 12%, rgba(244,246,255,.12), transparent 62%), radial-gradient(80% 80% at 50% 100%, rgba(228,0,58,.3), transparent 60%), rgba(12,16,30,.86); }
+.ikon-kreis::before { content: ""; position: absolute; inset: -30px; border-radius: 50%; z-index: -1; background: radial-gradient(circle, rgba(255,92,122,.4) 46%, transparent 70%); }
+.ikon-kreis .icon { width: 146px; height: 146px; color: #fff; filter: none; }
+.ikon-ding figcaption { font-size: 58px; line-height: 1.14; font-weight: 700; white-space: nowrap; }
+body.hochkant .ikon-reihe { flex-direction: column; align-items: center; gap: 70px; }
+body.hochkant .ikon-ding figcaption { font-size: 56px; }
+
+/* Wo hilft KI: Lichtbalken mit Symbol vorn, fahren beim Öffnen von selbst los */
+.rennen { display: flex; flex-direction: column; gap: 30px; margin: auto 0; }
+.rennen-zeile { display: grid; grid-template-columns: 420px 1fr 170px; align-items: center; gap: 26px; }
+.rennen-zeile .beruf { font-size: 54px; line-height: 1.05; font-weight: 700; white-space: nowrap; }
+.rennen-zeile:first-child .beruf, .rennen-zeile:first-child .zahl { color: var(--th-hell); }
+.bahn { position: relative; height: 104px; border-radius: 52px; background: rgba(244,246,255,.07); }
+.fuell { position: absolute; left: 0; top: 0; bottom: 0; width: calc(104px + (100% - 104px) * var(--w)); border-radius: 52px; overflow: hidden; background: linear-gradient(90deg, #7A0020, #E4003A 55%, #FF7E95); }
+.fuell::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%); transform: translateX(-100%); }
+.kopf { position: absolute; top: 0; left: calc((100% - 104px) * var(--w)); width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #E4003A; }
+.kopf .icon { width: 58px; height: 58px; color: #C4002F; filter: none; }
+.zahl { font-size: 60px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.reveal section.present .fuell { animation: rennen-fuell 1.5s var(--spaet) cubic-bezier(.2,.8,.2,1) backwards; }
+.reveal section.present .kopf { animation: rennen-kopf 1.5s var(--spaet) cubic-bezier(.2,.8,.2,1) backwards; }
+.reveal section.present .fuell::after { animation: rennen-glanz 1.4s calc(var(--spaet) + 1.2s) ease-out; }
+@keyframes rennen-fuell { from { width: 104px; } }
+@keyframes rennen-kopf { from { left: 0; } }
+@keyframes rennen-glanz { to { transform: translateX(100%); } }
+body.hochkant .rennen-zeile { grid-template-columns: 1fr 150px; gap: 12px 20px; }
+body.hochkant .rennen-zeile .beruf { grid-column: 1 / -1; }
+body.hochkant .rennen { gap: 46px; }
+.schleier-frage { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 62% at 50% 50%, rgba(3,3,9,.74), rgba(3,3,9,.3) 72%, rgba(3,3,9,.18)); }
+section:has(> .schleier-frage) .schleier-links { display: none; }
 
 /* Team heute */
 .slide.team { flex-direction: row !important; padding: 172px 60px 60px; gap: 0; }
@@ -606,7 +701,7 @@ body.standbild .polaroid { animation: none !important; }
 .icons .icon { width: 150px; height: 150px; color: var(--th-hell); filter: drop-shadow(0 0 16px rgba(228,0,58,.5)); }
 .icons p { margin: 30px 0 0; font-size: 38px; font-weight: 700; letter-spacing: .02em; line-height: 1.25; }
 .icons.klein .icon { width: 180px; height: 180px; }
-.icons.klein p { font-size: 28px; letter-spacing: .06em; text-transform: uppercase; }
+.icons.klein p { font-size: 36px; letter-spacing: 0; }
 .handzeichen { display: inline-flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--th-hell); margin: 0 0 18px; }
 
 /* Reality-Check-Thesen */
@@ -618,7 +713,10 @@ body.standbild .polaroid { animation: none !important; }
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 36%); mask-image: linear-gradient(90deg, transparent 0, #000 36%); }
 
 /* So arbeiten wir: KI-Video vollflächig, auf Klick die Auflösung */
-.sa-video { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; background: #F2F2F2; }
+.sa-hinweis { position: absolute; inset: 0; display: none; place-items: center; margin: 0; font-size: 60px; font-weight: 700; }
+.so-arbeiten.ohne-video .sa-hinweis { display: grid; }
+.so-arbeiten.ohne-video .sa-video, .so-arbeiten.ohne-video .sa-kennung { display: none; }
+.sa-video { position: absolute; left: 0; top: 0; width: 1920px; height: var(--buehne-h); object-fit: contain; background: #000; margin: 0 !important; max-width: none !important; max-height: none !important; background: #F2F2F2; }
 .sa-titel { position: absolute; left: 60px; top: 50px; margin: 0; padding: 10px 24px 12px; border-radius: 14px; background: rgba(21,18,28,.86); font-size: 40px; font-weight: 700; letter-spacing: -.01em; text-transform: uppercase; }
 .sa-aufloesung { position: absolute; inset: calc(-1 * var(--extra)) 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(8,6,12,.84); }
 .sa-aufloesung .hero { font-size: 190px; }
@@ -631,7 +729,7 @@ body.standbild .polaroid { animation: none !important; }
 .kachel { position: relative; margin: 0; overflow: hidden; border-radius: 22px; background: #0F0C16; border: 1px solid rgba(244,246,255,.09); }
 .k-bild { grid-area: bild; } .k-video { grid-area: video; } .k-avatar { grid-area: avatar; } .k-text { grid-area: text; } .k-stimme { grid-area: stimme; }
 .kachel > img, .kachel > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; }
-.kachel figcaption { position: absolute; left: 24px; bottom: 18px; z-index: 3; font-size: 22px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #fff; }
+.kachel figcaption { position: absolute; left: 24px; bottom: 18px; z-index: 3; font-size: 32px; font-weight: 700; color: #fff; }
 .kachel.medien::after { content: ""; position: absolute; inset: auto 0 0 0; height: 38%; z-index: 2; background: linear-gradient(180deg, transparent, rgba(5,4,10,.78)); pointer-events: none; }
 /* Bild: das Foto blendet langsam ins KI-Bild über, das Etikett wechselt mit */
 .k-bild .nachher { opacity: 0; }
@@ -689,15 +787,16 @@ body.standbild .alles-ki figure { animation: none !important; }
 .zitat { font-size: 104px; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; margin: 0; max-width: 1640px; text-transform: uppercase; }
 
 /* Pizza (aus dem Stamm) */
-.pizza { display: grid; grid-template-columns: auto 1px auto; justify-content: center; gap: 90px; flex: 1; align-items: stretch; }
+.pizza { display: grid; grid-template-columns: auto 1px auto; justify-content: center; gap: 70px; flex: 1; align-items: stretch; min-height: 0; }
+.slide:has(> .pizza) { padding-top: 76px; padding-bottom: 46px; }
 .pizza .trennlinie { background: linear-gradient(180deg, transparent, rgba(244,246,255,.25), transparent); }
 .pizza > div:not(.trennlinie) { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.pizza .label { margin-bottom: 26px; }
+.pizza .label { margin-bottom: 18px; font-size: 44px; letter-spacing: 0; text-transform: none; font-weight: 600; color: var(--w-70); }
 .pizza .label.gut { color: var(--th-hell); }
-.pizza .ansage { min-height: 170px; display: flex; align-items: center; justify-content: center; margin: 0; font-weight: 700; }
-.pizza .ansage.kurz { font-size: 88px; }
-.pizza .ansage.lang { font-size: 34px; line-height: 1.4; white-space: nowrap; font-weight: 600; }
-.pizza img { height: 420px; width: auto; display: block; margin: 20px 0 !important; }
+.pizza .ansage { min-height: 216px; display: flex; align-items: center; justify-content: center; margin: 0; font-weight: 700; }
+.pizza .ansage.kurz { font-size: 132px; }
+.pizza .ansage.lang { font-size: 48px; line-height: 1.32; white-space: nowrap; font-weight: 600; }
+.pizza img { height: 600px; width: auto; display: block; margin: 10px 0 0 !important; }
 
 /* Kompass */
 .kompass { display: flex; flex-direction: column; margin-top: auto; margin-bottom: auto; }
@@ -758,8 +857,8 @@ body.standbild .alles-ki figure { animation: none !important; }
 
 /* Das Handy ist nur das Fenster */
 .fenster-bild { position: absolute; left: 0; top: calc(var(--extra) + 60px); width: 1920px; height: 1080px; object-fit: cover; margin: 0 !important; max-width: none !important; max-height: none !important; }
-.fenster-erklaerung { position: absolute; left: 890px; top: calc(var(--extra) + 470px); transform: translateX(-50%); white-space: nowrap; margin: 0; text-align: center; font-size: 34px; line-height: 1.45; font-weight: 600; color: var(--w-90, rgba(244,246,255,.9)); text-shadow: 0 2px 18px rgba(0,0,0,.9); }
-.fenster-name { position: absolute; top: calc(var(--extra) + 60px + 1080px * .86); transform: translateX(-50%); font-size: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; padding: 6px 16px; border-radius: 8px; background: rgba(3,3,9,.78); }
+.fenster-erklaerung { position: absolute; left: 935px; top: calc(var(--extra) + 470px); transform: translateX(-50%); white-space: nowrap; margin: 0; text-align: center; font-size: 38px; line-height: 1.4; font-weight: 600; color: var(--w-90, rgba(244,246,255,.92)); text-shadow: 0 2px 18px rgba(0,0,0,.9); }
+.fenster-name { position: absolute; top: calc(var(--extra) + 60px + 1080px * .86); transform: translateX(-50%); font-size: 38px; font-weight: 700; white-space: nowrap; padding: 6px 16px; border-radius: 8px; background: rgba(3,3,9,.78); }
 
 /* Seit letztem November: Wand wächst */
 .wachstum-folie { padding-bottom: 70px; }
@@ -786,8 +885,8 @@ body.standbild .wachstum .alt { opacity: .28; }
 .eis-innen > img { position: absolute; inset: 0; width: 1920px; height: 1080px; margin: 0 !important; max-width: none !important; max-height: none !important; }
 .eis-wasser { position: absolute; left: 0; top: 262px; width: 1920px; height: calc(818px + var(--extra)); background: linear-gradient(180deg, rgba(1,4,18,.55) 0, rgba(1,4,18,.97) 70px, #01040F 100%); transition: opacity 1.6s ease; }
 .eisberg-trigger { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.eis-spitze { position: absolute; left: 1320px; top: 52px; transform: translateX(-50%); padding: 10px 28px; border-radius: 10px; background: linear-gradient(135deg, #E4003A, #FF5C7A); color: #fff; font-size: 32px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; filter: drop-shadow(0 0 26px rgba(228,0,58,.6)); }
-.eis-schicht { position: absolute; left: 1320px; top: var(--y); transform: translate(-50%, 18px); padding: 8px 24px; border-radius: 10px; background: rgba(1,4,18,.55); border: 1.5px solid rgba(190,225,255,.35); color: #EAF4FF; font-size: 28px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; opacity: 0; transition: opacity .5s, transform .5s; }
+.eis-spitze { position: absolute; left: 1320px; top: 52px; transform: translateX(-50%); padding: 10px 28px; border-radius: 10px; background: linear-gradient(135deg, #E4003A, #FF5C7A); color: #fff; font-size: 38px; font-weight: 700; filter: drop-shadow(0 0 26px rgba(228,0,58,.6)); }
+.eis-schicht { position: absolute; left: 1320px; top: var(--y); transform: translate(-50%, 18px); padding: 8px 24px; border-radius: 10px; background: rgba(1,4,18,.55); border: 1.5px solid rgba(190,225,255,.35); color: #EAF4FF; font-size: 32px; font-weight: 700; white-space: nowrap; opacity: 0; transition: opacity .5s, transform .5s; }
 .eis-innen:has(.eisberg-trigger.visible) .eis-wasser { opacity: 0; }
 .eis-innen:has(.eisberg-trigger.visible) .eis-schicht { opacity: 1; transform: translate(-50%, 0); transition-delay: calc(.9s + var(--i) * .12s); }
 body.standbild .eis-wasser { opacity: 0; }
@@ -841,7 +940,7 @@ body.hochkant .nervt { flex-direction: column !important; }
 /* Orbit: echte Fotos kreisen um „Du“ (Idee aus dem Charta-Deck) */
 .orbit { position: absolute; left: 0; top: var(--extra); width: 1920px; height: 1080px; pointer-events: none; }
 .orbit .o { position: absolute; left: 0; top: 0; width: 230px; height: 230px; border-radius: 50%; object-fit: cover; margin: 0 !important; max-width: none !important; border: 4px solid rgba(244,246,255,.9); will-change: transform; }
-.orbit-du { position: absolute; left: 1420px; top: 540px; width: 260px; height: 260px; margin: -130px 0 0 -130px; border-radius: 50%; display: grid; place-items: center;
+.orbit-du { position: absolute; left: 1490px; top: 540px; width: 260px; height: 260px; margin: -130px 0 0 -130px; border-radius: 50%; display: grid; place-items: center;
   background: radial-gradient(circle at 35% 30%, #FF5C7A, #E4003A 60%, #9A0027); font-size: 76px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #fff; filter: drop-shadow(0 0 40px rgba(228,0,58,.6)); }
 body.hochkant .orbit { top: 600px; left: -840px; }
 
@@ -880,9 +979,9 @@ body.hochkant .orbit { top: 600px; left: -840px; }
 body.hochkant .ende-foto { width: 1080px; height: 900px; top: auto; bottom: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 40%); mask-image: linear-gradient(180deg, transparent 0, #000 40%); }
 .slide.schluss { justify-content: center; }
 .slide.schluss .hero { font-size: 112px; max-width: 1100px; }
-.slide.schluss .kontakt { position: static; margin-top: 80px; display: flex; align-items: center; gap: 36px; }
-.slide.schluss .kontakt img { width: 280px; height: auto; margin: 0; }
-.slide.schluss .kontakt p { margin: 0; font-size: 28px; line-height: 1.55; color: var(--w-70); border-left: 1px solid var(--hairline); padding-left: 36px; font-weight: 500; }
+.slide.schluss .kontakt { position: static; margin-top: 80px; display: flex; align-items: center; gap: 30px; }
+.slide.schluss .kontakt img { width: 220px; height: auto; margin: 0; }
+.slide.schluss .kontakt p { margin: 0; font-size: 28px; line-height: 1.55; color: var(--w-70); font-weight: 500; }
 .slide.schluss .kontakt p b { color: var(--weiss); }
 .qr { position: absolute; right: 130px; top: calc(var(--extra) + 300px); display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .qr img { width: 300px; height: 300px; border-radius: 16px; background: #fff; padding: 16px; margin: 0 !important; }
@@ -968,7 +1067,7 @@ body.hochkant .headline[style*="max-width:1350px"] { max-width: 650px !important
 body.hochkant .polaroid.quelle-foto { right: 46px; top: calc(var(--extra) + 160px); width: 290px; }
 body.hochkant .polaroid.quelle-foto figcaption { font-size: 25px; }
 body.hochkant .karte { height: 320px; }
-body.hochkant .orbit { top: calc(var(--extra) + 820px); left: -880px; }
+body.hochkant .orbit { top: calc(var(--extra) + 820px); left: -950px; }
 body.hochkant img.voll.foto-rechts { top: auto; bottom: 0; width: 1080px; height: 1250px; object-position: 88% 50%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
 body.hochkant section:has(> img.foto-rechts) .schleier-links { display: none; }
 body.hochkant section:has(> img.foto-rechts) .slide { justify-content: flex-start !important; padding-top: 420px; }
@@ -1040,17 +1139,16 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
     </div>
     <div>
       <h1 class="hero">Ehemalige Studierende.<br>Heute <span class="schimmer">Unternehmer.</span></h1>
-      <p class="unterzeile">Der Reality Check</p>
-      <div class="ecken"><span>Emre Erdogan &amp; Edgar Paul-Ghazaryan</span><span>Projektwoche · 10. November 2026</span></div>
+      <p class="unterzeile">Projektwoche · 10. November 2026</p>
     </div>
   </div>
-  <aside class="notes">Ankommen lassen. Noch nichts sagen, bis es ruhig ist. Dann begrüßen Emre und Eddie gemeinsam, Dank an Herrn Balke. Kurz: zweieinhalb Stunden, eine Pause, zwischendurch Handzeichen, sonst müsst ihr nichts tun. Bild: das neue Seminargebäude bei Nacht, mit KI gebaut (wird später aufgelöst).</aside>
+  <aside class="notes">Ankommen lassen. Noch nichts sagen, bis es ruhig ist. Dann begrüßen Emre und Eddie gemeinsam, Dank an Herrn Balke. Kurz: zwischendurch Handzeichen, sonst müsst ihr nichts tun. Bild: das neue Seminargebäude bei Nacht, mit KI gebaut (wird später aufgelöst).</aside>
 </section>
 
 <!-- ============ WIEDER DA ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide links-mitte">
-    <h2 class="hero" style="font-size:124px;">Wir sind<br><span class="schimmer">wieder da.</span></h2>
+    <h2 class="hero" style="font-size:136px;">Wir sind<br><span class="schimmer">wieder da.</span></h2>
   </div>
   <figure class="polaroid platzhalter-foto" style="--d:4deg;--y:0px;--i:0;"><img src="assets/fotos/projektwoche-2025.jpg" alt="Emre, Herr Balke und Eddie vor der Tafel mit TH x EDGE"><figcaption>Projektwoche 2025</figcaption></figure>
   <aside class="notes">Rückgriff aufs letzte Jahr: gleiche Projektwoche, gleiche Hochschule. Dank an Herrn Balke für die zweite Einladung. Das Foto ist vom letzten Mal, mit Herrn Balke in der Mitte.</aside>
@@ -1059,7 +1157,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <!-- ============ WESHALB ZUHÖREN ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide mittig">
-    <h2 class="frage-gross">Weshalb solltest du<br>uns <span class="schimmer">zuhören?</span></h2>
+    <h2 class="frage-gross">Weshalb solltest<br>du uns <span class="schimmer">zuhören?</span></h2>
   </div>
   <aside class="notes">Die Frage vom letzten Jahr, bewusst wieder als Einstieg. Stehen lassen, zwei Sekunden Stille. Dann: Vielleicht weil …</aside>
 </section>
@@ -1069,7 +1167,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
   <img class="voll" src="assets/collage/collage.jpg" alt="Collage aus Bühnen, Preisverleihungen und Events">
   <div class="schleier-unten"></div>
   <div class="slide unten">
-    <p class="vielleicht schatten">Vielleicht weil …</p>
+    <p class="vielleicht schatten" style="font-size:136px;">Vielleicht weil …</p>
   </div>
   <aside class="notes">Nicht kommentieren, nur kurz wirken lassen. Bühnen, Preise, Hände schütteln. Ein, zwei Sätze, welche Bühne euch am meisten bedeutet hat. Dann weiter: oder weil …</aside>
 </section>
@@ -1077,11 +1175,11 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <!-- ============ ODER WEIL: LOGOWAND ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide wand">
-    <div class="wand-kopf"><p class="vielleicht">… oder weil …</p></div>
+    <div class="wand-kopf"><p class="vielleicht" style="font-size:112px;">… oder weil …</p></div>
     <div class="logos gross"><div><img src="assets/logos/ref-sparkasse.png" alt="Sparkasse zu Lübeck" width="547" height="240"></div><div><img src="assets/logos/ref-ihk.png" alt="IHK zu Lübeck" width="324" height="96"></div><div><img src="assets/logos/ref-staatskanzlei.png" alt="Staatskanzlei Schleswig-Holstein" width="640" height="94"></div><div><img src="assets/logos/ref-hansestadt.png" alt="Hansestadt Lübeck" width="237" height="240"></div><div><img src="assets/logos/ref-ln.png" alt="Lübecker Nachrichten" width="188" height="188"></div><div><img src="assets/logos/ref-collins.png" alt="Collins Aerospace" width="640" height="110"></div><div><img src="assets/logos/ref-deutschebank.png" alt="Deutsche Bank" width="240" height="240"></div><div><img src="assets/logos/ref-wfluebeck.png" alt="Wirtschaftsförderung Lübeck" width="441" height="240"></div><div><img src="assets/logos/ref-wfl.png" alt="WFL Herzogtum Lauenburg" width="410" height="240"></div><div><img src="assets/logos/ref-hansebelt.png" alt="HanseBelt" width="640" height="229"></div><div><img src="assets/logos/ref-exrohr.png" alt="ExRohr" width="640" height="179"></div><div><img src="assets/logos/ref-cbl.png" alt="Convention Bureau Lübeck" width="498" height="240"></div><div><img src="assets/logos/ref-ltm.png" alt="Lübeck Travemünde Marketing" width="307" height="240"></div><div><img src="assets/logos/ref-ksk.png" alt="Kreissparkasse Herzogtum Lauenburg" width="640" height="160"></div><div><img src="assets/logos/ref-hamann.png" alt="Hugo Hamann Firmengruppe" width="640" height="192"></div><div><img src="assets/logos/ref-diakonie.png" alt="Diakonie Nord Nord Ost" width="611" height="240"></div><div><img src="assets/logos/ref-norva24.png" alt="Norva24" width="640" height="108"></div><div><img src="assets/logos/ref-vs.png" alt="Vereinigte Stadtwerke" width="379" height="240"></div></div>
     <hr class="trenner">
     <div class="logos klein" style="--spalten:11;"><div><img src="assets/logos/ref-wks.png" alt="WKS Kreis Segeberg" width="452" height="193"></div><div><img src="assets/logos/ref-swm.png" alt="Wirtschaftsförderung Südwestmecklenburg" width="201" height="134"></div><div><img src="assets/logos/ref-digitalesmv.png" alt="digitales MV" width="263" height="215"></div><div><img src="assets/logos/ref-kish.png" alt="KI.SH" width="640" height="196"></div><div><img src="assets/logos/ref-behne.png" alt="Behne" width="356" height="240"></div><div><img src="assets/logos/ref-segler.png" alt="Kommunaltechnik Segler" width="640" height="143"></div><div><img src="assets/logos/ref-falkenhagen.png" alt="Rohrreinigung Falkenhagen" width="640" height="149"></div><div><img src="assets/logos/ref-kt.png" alt="Kanal Türpe" width="640" height="103"></div><div><img src="assets/logos/ref-willidamm.png" alt="Willi Damm" width="200" height="142"></div><div><img src="assets/logos/ref-buhck.png" alt="Buhck Gruppe" width="640" height="125"></div><div><img src="assets/logos/ref-mayer.png" alt="MAYER" width="146" height="146"></div><div><img src="assets/logos/ref-inlingua.png" alt="inlingua" width="640" height="139"></div><div><img src="assets/logos/ref-mediamagneten.png" alt="mediamagneten" width="640" height="173"></div><div><img src="assets/logos/ref-sterac.png" alt="STERAC" width="640" height="163"></div><div><img src="assets/logos/ref-elvis.png" alt="ELVIS Eis" width="443" height="240"></div><div><img src="assets/logos/ref-aerztekammer.png" alt="Ärztekammer Schleswig-Holstein" width="538" height="240"></div><div><img src="assets/logos/ref-apart.png" alt="APART" width="640" height="146"></div><div><img src="assets/logos/ref-baumstark.png" alt="Baumstark Pflege" width="209" height="240"></div><div><img src="assets/logos/ref-cordula.png" alt="Cordula Ahrens" width="222" height="240"></div><div><img src="assets/logos/ref-vfb.png" alt="VfB Lübeck" width="200" height="200"></div><div><img src="assets/logos/ref-easyfitness.png" alt="EasyFitness" width="640" height="178"></div><div><img src="assets/logos/ref-gogroon.png" alt="GO GRØØN" width="640" height="170"></div><div><img src="assets/logos/ref-it4b.png" alt="IT4B Digital Summit" width="640" height="64"></div><div><img src="assets/logos/ref-witzleben.png" alt="Jan von Witzleben" width="329" height="240"></div><div><img src="assets/logos/ref-kitzmann.png" alt="Kitzmann" width="640" height="208"></div><div><img src="assets/logos/ref-lachclash.png" alt="Lach Clash" width="239" height="240"></div><div><img src="assets/logos/ref-thomar.png" alt="ThoMar" width="324" height="215"></div><div><img src="assets/logos/ref-praktikum-hansebelt.png" alt="Praktikum HanseBelt" width="366" height="240"></div><div><img src="assets/logos/ref-egoh.png" alt="EGOH" width="640" height="200"></div><div><img src="assets/logos/ref-geesthacht.png" alt="Stadtwerke Geesthacht" width="528" height="240"></div><div><img src="assets/logos/ref-digitalfueralle.png" alt="Digital für alle" width="440" height="240"></div><div><img src="assets/logos/ref-rotary.png" alt="Rotary Club" width="638" height="240"></div><div><img src="assets/logos/ref-k2konzept.png" alt="K2Konzept" width="640" height="79"></div><div><img src="assets/logos/ref-energiecluster.png" alt="Energiecluster" width="640" height="127"></div><div><img src="assets/logos/ref-hdd.png" alt="Haus des Döners" width="640" height="178"></div><div><img src="assets/logos/ref-sprungtuch.png" alt="Sprungtuch" width="239" height="240"></div><div><img src="assets/logos/ref-tq.png" alt="TQ" width="240" height="240"></div><div><img src="assets/logos/ref-css.png" alt="Change School Summit" width="464" height="240"></div><div><img src="assets/logos/ref-hansefriseur.png" alt="HanseFriseur" width="232" height="240"></div><div><img src="assets/logos/ref-epunkt.png" alt="Forum Ehrenamt" width="134" height="47"></div><div><img src="assets/logos/ref-vfl.png" alt="VfL Lübeck-Schwartau" width="197" height="240"></div></div>
-    <div class="preise"><span class="label">Gewonnen, ausgezeichnet, nominiert</span><div class="preis-reihe"><span class="preis"><b>Existenzgründerpreis</b><img src="assets/logos/ref-lnpreis.png" alt=""></span><span class="preis"><b>Gründerpreis der Sparkasse zu Lübeck</b><img src="assets/logos/ref-sparkasse.png" alt=""></span><span class="preis"><b>Social Hackathon</b><img src="assets/logos/ref-socialhackathon.png" alt=""></span><span class="preis"><b>Überflieger Wettbewerb</b><img src="assets/logos/ref-startupsh.png" alt=""></span></div></div>
+    <div class="preise"><div class="preis-reihe"><span class="preis"><b>Existenzgründerpreis</b><img src="assets/logos/ref-lnpreis.png" alt=""></span><span class="preis"><b>Gründerpreis der Sparkasse zu Lübeck</b><img src="assets/logos/ref-sparkasse.png" alt=""></span><span class="preis"><b>Social Hackathon</b><img src="assets/logos/ref-socialhackathon.png" alt=""></span><span class="preis"><b>Überflieger Wettbewerb</b><img src="assets/logos/ref-startupsh.png" alt=""></span></div></div>
   </div>
   <aside class="notes">Die Wand wirken lassen. Kein Logo einzeln erklären. Höchstens: Sparkasse, IHK, Staatskanzlei, die Stadt Lübeck. Die Preise unten nur nennen, nicht feiern.</aside>
 </section>
@@ -1089,35 +1187,22 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <!-- ============ GANZ BESTIMMT ABER WEIL ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide links-mitte">
-    <p class="vielleicht">… ganz bestimmt aber weil …</p>
+    <p class="vielleicht" style="font-size:112px;">… ganz bestimmt aber weil …</p>
     <ul class="weil-liste">
-      <li class="fragment">wir auf <span>derselben</span> Hochschule waren wie ihr?</li>
-      <li class="fragment">wir erfolgreich sind in dem, was wir tun?</li>
-      <li class="fragment">wir dich inspirieren können?</li>
+      <li>wir auf <span>derselben</span> Hochschule waren wie ihr?</li>
+      <li>wir erfolgreich sind in dem, was wir tun?</li>
+      <li>wir dich inspirieren können?</li>
     </ul>
   </div>
-  <aside class="notes">Drei Klicks, je ein Grund. Jeden kurz anspielen, als wäre er die Antwort. Nach dem dritten: Pause.</aside>
+  <aside class="notes">Alle drei Gründe stehen sofort da. Jeden kurz anspielen, als wäre er die Antwort. Nach dem dritten: Pause.</aside>
 </section>
 
 <!-- ============ NEIN ============ -->
 <section class="f-th" data-stimmung="th" data-chrome="zahl">
   <div class="slide mittig">
-    <p class="nein schimmer">Nein.</p>
+    <p class="nein schimmer">NEIN.</p>
   </div>
-  <aside class="notes">Laut und kurz. Nein. Dann leiser: Wir sagen euch am Ende, weshalb. Oder besser, ihr sagt es uns. Erst mal: wer wir überhaupt sind.</aside>
-</section>
-
-<!-- ============ WER SIND WIR ============ -->
-<section class="f-th" data-stimmung="th">
-  <img class="duo-frei" src="assets/fotos/duo-frei.png" alt="Emre Erdogan und Edgar Paul-Ghazaryan">
-  <div class="slide links-mitte">
-    <h2 class="hero" style="font-size:118px;">Wer sind wir<br><span class="schimmer">überhaupt?</span></h2>
-    <div class="namen-duo">
-      <p><b>Emre Erdogan</b><span>Gründer und Geschäftsführer</span></p>
-      <p><b>Edgar Paul-Ghazaryan</b><span>„Eddie“ · COO</span></p>
-    </div>
-  </div>
-  <aside class="notes">Kurze Vorstellung, Länge nach Gefühl. Beide haben hier an der TH BWL studiert, Bachelor und Master, Master fertig Anfang 2024. Persönliches kommt gleich noch, hier nur Name und Rolle. Links Emre, rechts Eddie.</aside>
+  <aside class="notes">Laut und kurz. Nein. Dann leiser: Wir sagen euch am Ende, weshalb. Oder besser, ihr sagt es uns. Erst mal: der Plan für heute.</aside>
 </section>
 
 <!-- ============ AGENDA ============ -->
@@ -1127,18 +1212,17 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
     <div class="agenda">
       <div class="agenda-zeile"><span class="ring"><b>1</b></span><b>Unsere Geschichte</b></div>
       <div class="agenda-zeile"><span class="ring"><b>2</b></span><b>Der Reality Check</b></div>
-      <div class="agenda-zeile pause"><span class="strich"></span><b>Pause</b></div>
-      <div class="agenda-zeile"><span class="ring"><b>3</b></span><b>KI-Skills</b></div>
+      <div class="agenda-zeile"><span class="ring"><b>3</b></span><b>Dein neuer <span class="schimmer">Kommilitone</span></b></div>
     </div>
   </div>
-  <aside class="notes">Der Ablauf in einem Satz pro Punkt. Zweieinhalb Stunden, in der Mitte eine Pause.</aside>
+  <aside class="notes">Der Ablauf in einem Satz pro Punkt. Keine Pause eingeplant. Punkt drei ist die KI, und zwar so, dass klar wird, wie wichtig sie für euch wird.</aside>
 </section>
 
 <!-- ============ EMRE ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide person-folie">
     <h2 class="headline">Emre <span class="schimmer">Erdogan</span></h2>
-    <p class="rolle">Gründer und Geschäftsführer</p>
+    <p class="rolle">Gründer und CEO</p>
     <div class="fotoreihe"><figure class="polaroid" style="--d:-5deg;--y:30px;--i:0;"><img src="assets/alt/emre-2.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:3deg;--y:-10px;--i:1;"><img src="assets/alt/emre-1.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:-2deg;--y:40px;--i:2;"><img src="assets/alt/emre-4.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:5deg;--y:0px;--i:3;"><img src="assets/alt/emre-3.jpg" alt="" loading="lazy"></figure></div>
   </div>
   <aside class="notes">Emre erzählt seine Geschichte. Kindheit, Familie, Abschluss, Trading. Die Fotos sind die Anker, die Länge ist frei.</aside>
@@ -1148,7 +1232,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <section class="f-th" data-stimmung="neutral">
   <div class="slide person-folie">
     <h2 class="headline">Edgar <span class="schimmer">Paul-Ghazaryan</span></h2>
-    <p class="rolle">„Eddie“ · COO</p>
+    <p class="rolle">Gründer und COO</p>
     <div class="fotoreihe"><figure class="polaroid" style="--d:4deg;--y:10px;--i:0;"><img src="assets/alt/eddie-2.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:-4deg;--y:40px;--i:1;"><img src="assets/alt/eddie-1.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:3deg;--y:-15px;--i:2;"><img src="assets/alt/eddie-3.jpg" alt="" loading="lazy"></figure><figure class="polaroid" style="--d:-5deg;--y:25px;--i:3;"><img src="assets/alt/eddie-4.jpg" alt="" loading="lazy"></figure></div>
   </div>
   <aside class="notes">Eddie erzählt seine Geschichte. Familie, Bruder, VfB-Trikot, Nachmittag in der Sonne. Gleiche Länge wie bei Emre, damit es ausgewogen bleibt.</aside>
@@ -1159,7 +1243,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
   <div class="fotowand"><img src="assets/alt/studium-1.jpg" alt="" loading="lazy"><img src="assets/alt/studium-2.jpg" alt="" loading="lazy"><img src="assets/alt/studium-3.jpg" alt="" loading="lazy"><img src="assets/alt/studium-4.jpg" alt="" loading="lazy"><img src="assets/alt/studium-5.jpg" alt="" loading="lazy"><img src="assets/alt/studium-6.jpg" alt="" loading="lazy"><img src="assets/alt/studium-7.jpg" alt="" loading="lazy"><img src="assets/alt/studium-8.jpg" alt="" loading="lazy"><img src="assets/alt/studium-9.jpg" alt="" loading="lazy"><img src="assets/alt/studium-10.jpg" alt="" loading="lazy"><img src="assets/alt/studium-11.jpg" alt="" loading="lazy"><img src="assets/alt/studium-12.jpg" alt="" loading="lazy"><img src="assets/alt/studium-13.jpg" alt="" loading="lazy"><img src="assets/alt/studium-14.jpg" alt="" loading="lazy"><img src="assets/alt/studium-15.jpg" alt="" loading="lazy"><img src="assets/alt/studium-16.jpg" alt="" loading="lazy"><img src="assets/alt/studium-17.jpg" alt="" loading="lazy"><img src="assets/alt/studium-18.jpg" alt="" loading="lazy"><img src="assets/alt/studium-19.jpg" alt="" loading="lazy"><img src="assets/alt/studium-20.jpg" alt="" loading="lazy"><img src="assets/alt/studium-21.jpg" alt="" loading="lazy"><img src="assets/alt/studium-22.jpg" alt="" loading="lazy"><img src="assets/alt/studium-23.jpg" alt="" loading="lazy"><img src="assets/alt/studium-24.jpg" alt="" loading="lazy"></div>
   <div class="schleier-unten stark"></div>
   <div class="slide unten">
-    <h2 class="hero kennen-titel" style="font-size:120px;">Kennengelernt am <span class="schimmer">ersten Tag.</span></h2>
+    <h2 class="hero kennen-titel" style="font-size:120px;">Kennengelernt am<br><span class="schimmer">ersten Tag.</span></h2>
   </div>
   <aside class="notes">September 2019, erster Tag BWL hier an der TH: Da haben wir uns kennengelernt und ab dann zusammen gelernt. Ab März 2020 Corona, Hochschule zu, Zoom bis nachts. Bachelor 2022, dann beide den Master in BWL, fertig Anfang 2024. Nebenbei Werkstudenten: Emre bei PwC als Berater im Public Sector, Eddie im Online-Marketing einer Akademie für Führungskräftetrainings, dort sogar als Seminartrainer, dazu selbstständig mit Content. Gegründet haben wir dann mitten im Master.</aside>
 </section>
@@ -1323,9 +1407,9 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
     <h2 class="headline">Was kommt nach dem <span class="schimmer">Studium?</span></h2>
-    <div class="icons" style="--n:4;"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg><p>Job</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg><p>Master</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg><p>Gründen</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><p>Keine Ahnung</p></div></div>
+    <div class="robo-karten n4"><figure class="robo-karte" style="--spaet:0.05s;"><img src="assets/robo/karte-job.jpg" alt=""><figcaption>Job</figcaption></figure><figure class="robo-karte" style="--spaet:0.15s;"><img src="assets/robo/karte-master.jpg" alt=""><figcaption>Master</figcaption></figure><figure class="robo-karte" style="--spaet:0.25s;"><img src="assets/robo/karte-gruenden.jpg" alt=""><figcaption>Gründen</figcaption></figure><figure class="robo-karte" style="--spaet:0.35s;"><img src="assets/robo/karte-ahnung.jpg" alt=""><figcaption>Keine Ahnung</figcaption></figure></div>
   </div>
-  <aside class="notes">Vier Klicks, nach jedem Klick Hände zählen lassen. Bei Keine Ahnung gehen meist die meisten Hände hoch, das ist gut so und der Übergang zu den nächsten Folien.</aside>
+  <aside class="notes">Alle vier stehen sofort da, der Reihe nach Hände zählen lassen. Bei Keine Ahnung gehen meist die meisten Hände hoch, das ist gut so und der Übergang zu den nächsten Folien.</aside>
 </section>
 
 <!-- ============ THESE 2 ============ -->
@@ -1340,8 +1424,8 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <!-- ============ EMRES WHITEBOARD ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide">
-    <h2 class="headline" style="font-size:70px;max-width:1350px;">Worin Gründer zu früh <span class="schimmer">investieren</span></h2>
-    <div class="karten"><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Logo</span><span>Website</span><span>Visitenkarten</span></div><div class="seite hinten"><b>Keiner sieht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Büromöbel</span><span>Büro</span><span>Schicke Gegenstände</span></div><div class="seite hinten"><b>Keiner besucht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Investoren</span><span>Testphasen</span></div><div class="seite hinten"><b>Bubble.</b></div></div></div></div>
+    <h2 class="headline" style="font-size:78px;max-width:1350px;">Worin Gründer<br>zu früh <span class="schimmer">investieren</span></h2>
+    <div class="karten"><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Logo</span><span>Website</span><span>Visitenkarten</span></div><div class="seite hinten"><b>Keiner<br>sieht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Büromöbel</span><span>Büro</span><span>Schicke Gegenstände</span></div><div class="seite hinten"><b>Keiner<br>besucht dich.</b></div></div></div><div class="karte fragment"><div class="innen"><div class="seite vorn"><span>Investoren</span><span>Testphasen</span></div><div class="seite hinten"><b>Bubble.</b></div></div></div></div>
   </div>
   <figure class="polaroid quelle-foto" style="--d:5deg;--y:0px;--i:0;"><img src="assets/fotos/tough-talks.jpg" alt="Emre am Whiteboard in den Tough Talks"><figcaption>Das sagte sogar Emre<br>in seinen Tough Talks …</figcaption></figure>
   <aside class="notes">Die drei Punkte stammen aus Emres Whiteboard in den Tough Talks, einem Format unseres YouTube-Kanals (oben rechts). Drei Karten, drei Klicks. Vorne das, worin fast jeder Gründer zuerst Zeit und Geld steckt. Umgedreht die Wahrheit: Logo, Website, Visitenkarten, keiner sieht dich. Büro, Möbel, schicke Sachen, keiner besucht dich. Investoren und ewige Testphasen, du lebst in einer Blase. Emre erzählt dazu, was wir selbst falsch gemacht haben.</aside>
@@ -1350,9 +1434,9 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <!-- ============ THESE 3 ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide links-mitte">
-    <h2 class="these" style="font-size:96px;white-space:nowrap;">Dein Netzwerk<br>sitzt<br><span class="schimmer">neben dir.</span></h2>
+    <h2 class="these" style="font-size:88px;white-space:nowrap;">Dein Netzwerk<br>sitzt <span class="schimmer">neben dir.</span></h2>
   </div>
-  <div class="orbit" data-rx="350" data-ry="330" data-tempo="0.025" data-mitte-x="1420" data-mitte-y="540">
+  <div class="orbit" data-rx="305" data-ry="330" data-tempo="0.025" data-mitte-x="1490" data-mitte-y="540">
     <div class="orbit-du">Du</div>
     <img class="o" src="assets/orbit/team.jpg" alt=""><img class="o" src="assets/orbit/ueberflieger.jpg" alt=""><img class="o" src="assets/orbit/sakkos.jpg" alt=""><img class="o" src="assets/orbit/ihk.jpg" alt=""><img class="o" src="assets/orbit/messe.jpg" alt=""><img class="o" src="assets/orbit/pitch.jpg" alt=""><img class="o" src="assets/orbit/wfl.jpg" alt=""><img class="o" src="assets/orbit/daumen.jpg" alt="">
   </div>
@@ -1362,7 +1446,7 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <!-- ============ THESE 4 ============ -->
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
-    <h2 class="these" style="font-size:96px;">Du musst noch nicht wissen, <span class="schimmer">was du willst.</span></h2>
+    <h2 class="these" style="font-size:96px;">Du musst noch nicht<br>wissen, <span class="schimmer">was du willst.</span></h2>
     <svg class="route" viewBox="0 0 1660 600" aria-label="Unser Weg">
   <defs><linearGradient id="vl-route" x1="0" y1="0" x2="1660" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E4003A"/><stop offset=".6" stop-color="#FF5C7A"/><stop offset="1" stop-color="#7FD4FF"/></linearGradient></defs>
   <path class="schein" pathLength="1" d="M60,520 C180,520 220,420 300,470 C380,520 420,600 330,560 C250,520 300,360 430,330 C540,305 600,500 700,470 C800,440 820,250 960,250 C1080,250 1100,400 1220,360 C1360,310 1430,120 1580,70" fill="none" stroke="url(#vl-route)" stroke-width="24" stroke-linecap="round"/>
@@ -1371,16 +1455,6 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 </svg>
   </div>
   <aside class="notes">Zurück zu den vielen Händen bei Keine Ahnung. Die Linie zeichnet sich von allein: So sah unser Weg aus. Kein Plan, Umwege, eine Schleife ganz am Anfang. Studium, dann der Chat, der erste Name, der sich als Eddies eigener Name herausstellte, die ersten Räume, EDGE, heute. Niemand von uns hätte im Hörsaal diese Linie vorhersagen können. Wichtig ist nur, dass man losgeht. Und dafür gibt es heute ein Werkzeug, das es so noch nie gab. Nach der Pause.</aside>
-</section>
-
-<!-- ============ PAUSE ============ -->
-<section class="f-th" data-stimmung="neutral" data-chrome="zahl">
-  <img class="voll foto-rechts" src="assets/illu/pause.jpg" alt="Der EDGE-Roboter im Friesennerz bewacht in der Mensa das letzte Fischbrötchen"><div class="schleier-links"></div>
-  <div class="slide links-mitte">
-    <h2 class="hero">Pause</h2>
-    <p class="unterzeile" style="font-size:46px;font-weight:600;color:var(--w-70);margin:18px 0 0;">15 Minuten</p>
-  </div>
-  <aside class="notes">Pause ansagen, Uhrzeit für den Wiederbeginn nennen. Der Roboter hat übrigens gerade das letzte Fischbrötchen erwischt, das Blech hinter ihm ist leer. Also: schnell sein. Folie stehen lassen.</aside>
 </section>
 
 <!-- ============ KAPITEL: KI-SKILLS ============ -->
@@ -1397,23 +1471,22 @@ body.hochkant .band-anfang { grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr
 <section class="f-th" data-stimmung="neutral">
   <div class="slide">
     <h2 class="headline">Wer nutzt <span class="schimmer">KI?</span></h2>
-    <div class="icons" style="--n:3;"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><p>Schon mal ausprobiert</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><p>Fürs Studium</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg><p>Jeden Tag</p></div></div>
+    <div class="robo-karten n3"><figure class="robo-karte" style="--spaet:0.05s;"><img src="assets/robo/karte-probiert.jpg" alt=""><figcaption>Schon mal ausprobiert</figcaption></figure><figure class="robo-karte" style="--spaet:0.15s;"><img src="assets/robo/karte-studium.jpg" alt=""><figcaption>Fürs Studium</figcaption></figure><figure class="robo-karte" style="--spaet:0.25s;"><img src="assets/robo/karte-taeglich.jpg" alt=""><figcaption>Jeden Tag</figcaption></figure></div>
   </div>
-  <aside class="notes">Drei Klicks, drei Handzeichen. Keine Zahlen nennen, keine Bewertung. Nur: Okay, dann holen wir jetzt alle auf denselben Stand.</aside>
+  <aside class="notes">Alle drei stehen sofort da, drei Handzeichen. Keine Zahlen nennen, keine Bewertung. Nur: Okay, dann holen wir jetzt alle auf denselben Stand.</aside>
 </section>
 
-<!-- ============ SO ARBEITEN WIR ============ -->
+<!-- ============ GTA ============ -->
 <section class="f-th so-arbeiten" data-stimmung="neutral" data-chrome="aus">
-  <video class="sa-video" src="assets/video/hotel-lobby.mp4" poster="assets/video/hotel-lobby.jpg" data-autoplay playsinline></video>
+  <video class="sa-video" src="assets/video/gta.mp4" poster="assets/video/gta.jpg" data-autoplay playsinline onerror="this.closest('section').classList.add('ohne-video')"></video>
+  <p class="sa-hinweis">Dieses Video läuft nur im Vortrag.</p>
   <div class="slide">
-    <p class="sa-titel">Wenn der Kunde Ja sagt.</p>
     <div class="sa-aufloesung fragment">
       <h2 class="hero">Alles <span class="schimmer">KI.</span></h2>
-      <p>Kein einziges Bild davon ist echt.</p>
     </div>
-    <p class="sa-kennung">KI-generiert · Vorlage: Quavo &amp; Takeoff, A COLORS SHOW (2022)</p>
+    <p class="sa-kennung">KI-generiert · Vorlage: Grand Theft Auto VI, Rockstar Games</p>
   </div>
-  <aside class="notes">Video startet von selbst, 19 Sekunden mit Ton. Kurz wirken lassen. Klick: Auflösung, alles KI. Das ist der Hotel-Lobby-Trend, den viele gerade auf TikTok sehen: Higgsfield hat die Bewegungen von Quavo und Takeoff aus ihrem COLORS-Auftritt von 2022 auf ein ganz normales Foto von uns beiden übertragen. Gedauert hat das ein paar Minuten. Nur live zeigen, nicht posten: die Rechte an Aufnahme und Song liegen bei anderen. Überleitung: Und was kann KI sonst noch?</aside>
+  <aside class="notes">Video startet von selbst, 30 Sekunden mit Ton. GTA VI kommt am 19. November, also neun Tage nach diesem Vortrag. Klick: Auflösung, alles KI. Higgsfield hat in den echten Trailer-Szenen die Gesichter getauscht, Emre spielt Jason, Eddie spielt Lucia. Nur live zeigen, das Video ist nicht öffentlich und nicht im geteilten Link.</aside>
 </section>
 
 <!-- ============ WAS KI HEUTE KANN ============ -->
@@ -1443,7 +1516,7 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
   </figure>
   <figure class="kachel k-stimme">
     <span class="knopf" aria-hidden="true"></span>
-    <div class="welle"><i style="--h:1.00;"></i><i style="--h:0.82;"></i><i style="--h:0.61;"></i><i style="--h:0.88;"></i><i style="--h:0.68;"></i><i style="--h:0.77;"></i><i style="--h:0.72;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.53;"></i><i style="--h:0.66;"></i><i style="--h:0.75;"></i><i style="--h:0.74;"></i><i style="--h:0.73;"></i><i style="--h:0.51;"></i><i style="--h:0.59;"></i><i style="--h:0.70;"></i><i style="--h:0.60;"></i><i style="--h:0.59;"></i><i style="--h:0.59;"></i><i style="--h:0.57;"></i><i style="--h:0.76;"></i><i style="--h:0.44;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.68;"></i><i style="--h:0.64;"></i><i style="--h:0.75;"></i><i style="--h:0.76;"></i><i style="--h:0.75;"></i><i style="--h:0.66;"></i><i style="--h:0.74;"></i><i style="--h:0.69;"></i><i style="--h:0.76;"></i><i style="--h:0.77;"></i><i style="--h:0.52;"></i><i style="--h:0.54;"></i></div>
+    <div class="welle"><i style="--h:0.84;"></i><i style="--h:1.00;"></i><i style="--h:0.60;"></i><i style="--h:0.96;"></i><i style="--h:0.84;"></i><i style="--h:0.80;"></i><i style="--h:0.72;"></i><i style="--h:0.53;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.63;"></i><i style="--h:0.52;"></i><i style="--h:0.71;"></i><i style="--h:0.72;"></i><i style="--h:0.54;"></i><i style="--h:0.64;"></i><i style="--h:0.83;"></i><i style="--h:0.59;"></i><i style="--h:0.60;"></i><i style="--h:0.52;"></i><i style="--h:0.49;"></i><i style="--h:0.44;"></i><i style="--h:0.46;"></i><i style="--h:0.41;"></i><i style="--h:0.40;"></i><i style="--h:0.40;"></i><i style="--h:0.52;"></i><i style="--h:0.54;"></i><i style="--h:0.51;"></i><i style="--h:0.52;"></i><i style="--h:0.59;"></i><i style="--h:0.51;"></i><i style="--h:0.60;"></i><i style="--h:0.63;"></i><i style="--h:0.60;"></i><i style="--h:0.54;"></i><i style="--h:0.52;"></i><i style="--h:0.46;"></i><i style="--h:0.40;"></i></div>
     <audio src="assets/audio/ki-stimme.mp3" preload="auto"></audio>
     <figcaption>Stimmen</figcaption>
     <span class="fragment ki-ton"></span>
@@ -1469,16 +1542,17 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
   <aside class="notes">Computer wurden alle 18 Monate doppelt so leistungsfähig, das war schon schnell. KI verdoppelt sich etwa alle sechs Monate. Die Linie läuft von allein ein.</aside>
 </section>
 
-<!-- ============ DAS HANDY IST NUR DAS FENSTER ============ -->
+<!-- ============ DER RECHNER IST NUR DAS FENSTER ============ -->
 <section class="f-th" data-stimmung="th">
-  <img class="fenster-bild" src="assets/illu/handy-cloud.jpg" alt="Ein altes Tastenhandy, über eine Lichtlinie mit einem Rechenzentrum verbunden">
-  <div class="fenster-name" style="left:18%;">Nokia 6300 · 8 MB</div>
+  <img class="fenster-bild" src="assets/illu/taschenrechner.jpg" alt="Ein alter grafikfähiger Taschenrechner, über eine Lichtlinie mit einem Rechenzentrum verbunden">
+  <div class="fenster-name" style="left:18%;">TI-83 Plus von 1999</div>
   <div class="fenster-name" style="left:83%;">Hier rechnet die KI</div>
-  <p class="fenster-erklaerung">Ein Entwickler hat Claude<br>auf sein Nokia von 2007 gebracht.<br>Gerechnet wird im Rechenzentrum,<br>das Handy ist nur der Bildschirm.</p>
+  <p class="fenster-erklaerung">Ein Maschinenbauer hat Claude<br>in seinen alten Taschenrechner gelötet.<br>Ein winziger WLAN-Chip fragt im Rechenzentrum,<br>der Rechner ist nur der Bildschirm.</p>
   <div class="slide">
-    <h2 class="headline" style="position:relative;">Claude auf einem Handy von <span class="schimmer">2007</span></h2>
+    <h2 class="headline" style="position:relative;">Claude auf einem Taschenrechner<br>von <span class="schimmer">1999</span></h2>
+    <p class="fussquelle" style="right:auto;left:690px;">Quelle: Mostly Functional Engineering, YouTube, Mai 2026</p>
   </div>
-  <aside class="notes">Ende September hat ein Entwickler aus der Türkei Claude auf sein altes Nokia 6300 von 2007 gebracht. 8 MB Speicher, das Handy kommt nicht mal mehr ins heutige Internet. Er hat in ein paar Tagen eine kleine App geschrieben, die über einen Zwischenserver mit Claude spricht. Video: über 3 Millionen Aufrufe in wenigen Tagen. Der Trick: Die KI rechnet gar nicht im Handy, sondern im Rechenzentrum. Das Handy ist nur der Bildschirm. Heißt für euch: Ihr braucht kein teures Gerät, um die stärksten Modelle der Welt zu nutzen. Und: So eine scheinbar sinnlose Bastelei bringt plötzlich Millionen Aufrufe, so fangen Dinge an.</aside>
+  <aside class="notes">Im Mai 2026 hat der YouTuber Mostly Functional Engineering Claude auf einen 27 Jahre alten TI-83 Plus gebracht. Er sagt selbst: Ich bin Maschinenbauer, kein Software-Typ. Ein kleiner WLAN-Chip (ESP32) sitzt im Gehäuse, hängt am Link-Anschluss und schickt die Frage an die Claude-Schnittstelle. Die Antwort kommt zurück auf das Display. Er schreibt auch: Ich habe das nicht gebaut, damit ihr in Klausuren schummelt, dafür ist es viel zu unzuverlässig. Merksatz: Die KI ist nicht im Gerät, das Gerät ist nur das Fenster. Bauanleitung frei auf GitHub: Ti83_LLM_ESP32.</aside>
 </section>
 
 <!-- ============ WIR FRAGEN SCHLECHT ============ -->
@@ -1499,29 +1573,33 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
         <img src="assets/robo/pizza-schlecht.png" alt="Der Roboter ist enttäuscht">
       </div>
       <div class="trennlinie"></div>
-      <div class="fragment">
+      <div>
         <p class="label gut">So bekommst du, was du willst</p>
         <p class="ansage lang">„Eine Pizza Margherita, dünner Boden,<br>extra Basilikum, in 20 Minuten an die Mensa,<br>ich zahle mit Karte.“</p>
         <img src="assets/robo/pizza-gut.png" alt="Der Roboter freut sich">
       </div>
     </div>
   </div>
-  <aside class="notes">Wer nur Pizza sagt, bekommt irgendeine. Klick: Wer genau sagt, was er will, bekommt seine. Genau so funktioniert ein Prompt. Und dafür gibt es einen Kompass.</aside>
+  <aside class="notes">Wer nur Pizza sagt, bekommt irgendeine. Wer genau sagt, was er will, bekommt seine. Genau so funktioniert ein Prompt. Und dafür gibt es einen Kompass.</aside>
 </section>
 
 <!-- ============ KOMPASS ============ -->
 <section class="f-th" data-stimmung="neutral">
-  <div class="slide">
+  <div class="slide kompass-folie">
     <h2 class="headline">Der <span class="schimmer">Kompass</span></h2>
-    <div class="kompass"><div class="kompass-zeile"><span class="kopf">Rolle</span><b>Wer soll die KI sein?</b></div><div class="kompass-zeile"><span class="kopf">Aufgabe</span><b>Was genau soll passieren?</b></div><div class="kompass-zeile"><span class="kopf">Kontext</span><b>Was weißt nur du?</b></div><div class="kompass-zeile"><span class="kopf">„Förmchen“</span><b>In welcher Form?</b></div></div>
+    <div class="kompass-buehne">
+      <img class="kompass-scheibe" src="assets/illu/kompass-scheibe.jpg" alt="Ein Kompass">
+      <img class="kompass-nadel" src="assets/illu/kompass-nadel.png" alt="">
+      <div class="rose nord"><b>Rolle</b><span>Wer soll die KI sein?</span></div><div class="rose ost"><b>Aufgabe</b><span>Was genau soll passieren?</span></div><div class="rose sued"><b>Kontext</b><span>Was weißt nur du?</span></div><div class="rose west"><b>„Förmchen“</b><span>In welcher Form?</span></div>
+    </div>
   </div>
-  <aside class="notes">Vier Bausteine, immer dieselben. Danach live in Sekunden zeigen, Prompts stehen auf der Karte zum Mitnehmen. Bewerbung üben: Du bist Personalerin bei einem Lübecker Medizintechnik-Unternehmen. Führ ein Vorstellungsgespräch mit mir, eine Frage nach der anderen. Ich bewerbe mich als Werkstudent im Marketing, 3. Semester BWL. Nach jeder Antwort ehrliches Feedback, höchstens drei Sätze. Zweitens Tutor: Erklär mir Angebot und Nachfrage in drei Sätzen, dann stell mir eine Frage und warte auf meine Antwort. Drittens, als Rückgriff auf unseren Chat von 2020: Du bist eine skeptische Investorin, zerreiß meine Idee, Social-Media-Agentur in Lübeck, nenn die drei größten Risiken. Die KI findet genau die Fragen, die wir damals beantworten mussten. Und wir haben es trotzdem gemacht.</aside>
+  <aside class="notes">Vier Bausteine, immer dieselben. Die Nadel läuft von selbst alle vier Richtungen ab. Danach live in Sekunden zeigen, Prompts stehen auf der Karte zum Mitnehmen. Bewerbung üben: Du bist Personalerin bei einem Lübecker Medizintechnik-Unternehmen. Führ ein Vorstellungsgespräch mit mir, eine Frage nach der anderen. Ich bewerbe mich als Werkstudent im Marketing, 3. Semester.</aside>
 </section>
 
 <!-- ============ DEMO: LERNSEITE BAUEN ============ -->
 <section class="f-th" data-stimmung="th">
   <div class="slide">
-    <h2 class="headline">KI baut dir ein <span class="schimmer">Werkzeug</span></h2>
+    <h2 class="headline">KI baut dir <span class="schimmer">Werkzeuge</span></h2>
     <div class="fenster gross"><div class="fenster-leiste"><i></i><i></i><i></i><span>lernseite.html · von KI gebaut</span></div><iframe src="demo/lernseite.html" title="Interaktive Lernseite Angebot und Nachfrage" loading="lazy"></iframe></div>
   </div>
   <aside class="notes">Magic Moment. Diese Seite hat eine KI aus einem einzigen Satz gebaut: Bau mir eine interaktive Lernseite zu Angebot und Nachfrage, mit zwei Reglern, einer Kurve, die sich live bewegt, und dem Lübecker Weihnachtsmarkt als Beispiel. Live an den Reglern ziehen: Besucher hoch, Preis steigt. Ihr könnt euch eure eigenen Lernwerkzeuge bauen lassen. Der Bau dauert Minuten, deshalb zeigen wir das fertige Ergebnis.</aside>
@@ -1534,12 +1612,12 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
   <div class="eis-wasser"></div>
   <div class="eis-spitze">Prompt</div>
   <span class="eisberg-trigger fragment" aria-hidden="true"></span>
-  <div class="eis-schicht" style="--i:0;--y:336px;">Login</div><div class="eis-schicht" style="--i:1;--y:416px;">Datenbank</div><div class="eis-schicht" style="--i:2;--y:496px;">Datenschutz</div><div class="eis-schicht" style="--i:3;--y:576px;">Hosting</div><div class="eis-schicht" style="--i:4;--y:656px;">Sicherheit</div><div class="eis-schicht" style="--i:5;--y:736px;">Backups</div><div class="eis-schicht" style="--i:6;--y:816px;">Wartung</div>
+  <div class="eis-schicht" style="--i:0;--y:336px;">Skills</div><div class="eis-schicht" style="--i:1;--y:416px;">Persönliche Einstellungen</div><div class="eis-schicht" style="--i:2;--y:496px;">Eigene Dateien</div><div class="eis-schicht" style="--i:3;--y:576px;">Kontext</div><div class="eis-schicht" style="--i:4;--y:656px;">Beispiele</div><div class="eis-schicht" style="--i:5;--y:736px;">Feedback</div><div class="eis-schicht" style="--i:6;--y:816px;">Gegenprüfen</div>
 </div></div>
   <div class="slide links-mitte">
-    <h2 class="headline">Die KI baut<br>nur die <span class="schimmer">Spitze.</span></h2>
+    <h2 class="headline" style="font-size:96px;line-height:1.08;">Der Prompt ist<br>nur die <span class="schimmer">Spitze.</span></h2>
   </div>
-  <aside class="notes">Erst sieht man nur die Spitze über Wasser: Prompt. So wird es auf Instagram verkauft, ein Satz, fertige App. Klick: Darunter taucht der Rest auf. Login, Datenbank, Datenschutz, Hosting, Sicherheit, Backups, Wartung. Das macht keine KI für euch fertig, das ist echte Arbeit und echte Verantwortung. Bei uns läuft jede App vor dem Start durch eine Prüfliste. Für alle aus der Informatik: Euer Job verschwindet nicht, er liegt unter Wasser.</aside>
+  <aside class="notes">Erst sieht man nur die Spitze über Wasser: Prompt. So wird es auf Instagram verkauft, ein Satz, fertiges Ergebnis. Klick: Darunter taucht der Rest auf. Skills, persönliche Einstellungen, eigene Dateien, Kontext, Beispiele, Feedback und am Ende selbst gegenprüfen. Wer nur den Prompt übt, nutzt ein Zehntel von dem, was geht.</aside>
 </section>
 
 <!-- ============ NIE IN DIE KI ============ -->
@@ -1555,9 +1633,9 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
 <section class="f-th" data-stimmung="th">
   <div class="slide">
     <h2 class="headline">KI erfindet auch mal <span class="schimmer">Quellen.</span></h2>
-    <div class="faktencheck"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg><p>Jede Quelle selbst öffnen</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg><p>Jede Zahl gegenprüfen</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><p>„Sag mir, wenn du es nicht weißt.“</p></div></div>
+    <div class="ikon-reihe"><figure class="ikon-ding" style="--spaet:0.10s;"><div class="ikon-kreis"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></div><figcaption>Jede Quelle<br>selbst öffnen</figcaption></figure><figure class="ikon-ding" style="--spaet:0.25s;"><div class="ikon-kreis"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg></div><figcaption>Jede Zahl<br>gegenprüfen</figcaption></figure><figure class="ikon-ding" style="--spaet:0.40s;"><div class="ikon-kreis"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div><figcaption>„Sag mir, wenn<br>du es nicht weißt.“</figcaption></figure></div>
   </div>
-  <aside class="notes">Drei Klicks, drei Gewohnheiten. Der dritte Punkt ist ein echter Satz für den Prompt: Wer der KI erlaubt, nichts zu wissen, bekommt seltener erfundene Antworten.</aside>
+  <aside class="notes">Drei Gewohnheiten, alle sofort sichtbar. Der dritte Punkt ist ein echter Satz für den Prompt: Wer der KI erlaubt, nichts zu wissen, bekommt seltener erfundene Antworten.</aside>
 </section>
 
 <!-- ============ ERST SELBST DENKEN ============ -->
@@ -1569,35 +1647,14 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
   <aside class="notes">Die Studie vom MIT: Wer seinen Aufsatz von Anfang an mit KI geschrieben hat, konnte danach kaum einen Satz daraus wiedergeben. Wer erst selbst geschrieben und dann KI genutzt hat, schnitt besser ab. Wichtig: kleine Vorabstudie, 54 Personen, noch nicht begutachtet. Also kein Beweis, aber eine gute Regel fürs Studium.</aside>
 </section>
 
-<!-- ============ STUDIE ============ -->
-<section class="f-th" data-stimmung="neutral">
-  <div class="slide">
-    <div class="studie">
-      <p class="riesig schimmer">+40 %<small>Qualität</small></p>
-      <div class="nebenzahlen"><span><b>25 %</b> schneller</span><span><b>12 %</b> mehr geschafft</span></div>
-    </div>
-    <p class="fussquelle">Quelle: Harvard Business School und Boston Consulting Group, 758 Berater mit und ohne KI, 2023</p>
-  </div>
-  <aside class="notes">Die bekannte Studie von Harvard und der Boston Consulting Group (2023). Wer KI richtig nutzt, ist besser, schneller und schafft mehr. Genau das haben wir heute geübt.</aside>
-</section>
-
-<!-- ============ HANDZEICHEN: BERUFE ============ -->
-<section class="f-th" data-stimmung="neutral">
+<!-- ============ WO HILFT KI AM MEISTEN ============ -->
+<section class="f-th rennen-folie" data-stimmung="th">
   <div class="slide">
     <h2 class="headline">Wo hilft KI am <span class="schimmer">meisten?</span></h2>
-    <div class="icons" style="--n:4;"><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg><p>Programmierer</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg><p>Dolmetscher</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><p>Journalisten</p></div><div class="fragment"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg><p>Brückenwärter</p></div></div>
-  </div>
-  <aside class="notes">Vier Klicks, nach jedem Hände zählen. Die meisten tippen auf Programmierer. Auflösung auf der nächsten Folie.</aside>
-</section>
-
-<!-- ============ BERUFE: AUFLÖSUNG ============ -->
-<section class="f-th" data-stimmung="th">
-  <div class="slide">
-    <h2 class="headline">Dolmetscher, nicht <span class="schimmer">Programmierer</span></h2>
-    <div class="balken"><div class="balken-zeile"><span class="beruf">Dolmetscher</span><div class="spur"><i style="width:98%;"></i></div><b>0,492</b><span class="platz">Platz 1</span></div><div class="balken-zeile"><span class="beruf">Historiker</span><div class="spur"><i style="width:92%;"></i></div><b>0,462</b><span class="platz">Platz 2</span></div><div class="balken-zeile"><span class="beruf">Journalisten</span><div class="spur"><i style="width:77%;"></i></div><b>0,383</b><span class="platz">Platz 11</span></div><div class="balken-zeile"><span class="beruf">Data Scientists</span><div class="spur"><i style="width:71%;"></i></div><b>0,357</b><span class="platz">Platz 19</span></div><div class="balken-zeile"><span class="beruf">Brückenwärter</span><div class="spur"><i style="width:0%;"></i></div><b>0</b><span class="platz">ganz unten</span></div></div>
+    <div class="rennen"><div class="rennen-zeile" style="--w:1.000;--spaet:0.20s;"><span class="beruf">Dolmetscher</span><div class="bahn"><i class="fuell"></i><span class="kopf"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span></div><b class="zahl" data-ziel="0.492">0,492</b></div><div class="rennen-zeile" style="--w:0.939;--spaet:0.34s;"><span class="beruf">Historiker</span><div class="bahn"><i class="fuell"></i><span class="kopf"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span></div><b class="zahl" data-ziel="0.462">0,462</b></div><div class="rennen-zeile" style="--w:0.778;--spaet:0.48s;"><span class="beruf">Journalisten</span><div class="bahn"><i class="fuell"></i><span class="kopf"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></span></div><b class="zahl" data-ziel="0.383">0,383</b></div><div class="rennen-zeile" style="--w:0.726;--spaet:0.62s;"><span class="beruf">Data Scientists</span><div class="bahn"><i class="fuell"></i><span class="kopf"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span></div><b class="zahl" data-ziel="0.357">0,357</b></div><div class="rennen-zeile" style="--w:0.000;--spaet:0.76s;"><span class="beruf">Brückenwärter</span><div class="bahn"><i class="fuell"></i><span class="kopf"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg></span></div><b class="zahl" data-ziel="0.0">0</b></div></div>
     <p class="fussquelle">Quelle: Microsoft Research, 200.000 Copilot-Gespräche aus den USA, 2025</p>
   </div>
-  <aside class="notes">Die Studie hat gemessen, bei welchen Tätigkeiten Menschen sich wirklich von KI helfen lassen. Ganz oben Dolmetscher und Historiker, Programmierer stehen nicht einmal unter den ersten 40. Ganz unten: Brücken- und Schleusenwärter, die haben wir in Lübeck ja genug. Wichtig: Das ist kein Ranking, wer seinen Job verliert. Die Autoren sagen selbst, daraus Jobverlust abzuleiten wäre ein Fehler. Dazu das Beispiel auf der nächsten Folie.</aside>
+  <aside class="notes">Die Studie hat gemessen, bei welchen Tätigkeiten Menschen sich wirklich von KI helfen lassen. Ganz oben Dolmetscher und Historiker. Ganz unten: Brücken- und Schleusenwärter, die haben wir in Lübeck ja genug. Wichtig: Das ist kein Ranking, wer seinen Job verliert. Es zeigt, wo KI schon heute mitarbeitet.</aside>
 </section>
 
 <!-- ============ GELDAUTOMAT ============ -->
@@ -1605,46 +1662,19 @@ mein Laptop und ich haben uns gestern getrennt. Es ging nicht von mir aus.</span
   <img class="voll automat-bild foto-rechts" src="assets/illu/geldautomat.jpg" alt="Ein leuchtender Geldautomat im Dunkeln">
   <div class="schleier-links"></div>
   <div class="slide links-mitte">
-    <h2 class="these" style="max-width:1100px;font-size:104px;">Der Geldautomat hat die Kassierer <span class="schimmer">nicht abgeschafft.</span></h2>
+    <h2 class="these" style="max-width:none;font-size:88px;white-space:nowrap;">Der Geldautomat<br>hat die Kassierer<br><span class="schimmer">nicht abgeschafft.</span></h2>
   </div>
   <aside class="notes">Das Beispiel stammt aus derselben Microsoft-Studie. Der Geldautomat hat die Hauptaufgabe der Bankkassierer übernommen, Geld auszahlen. Trotzdem gab es danach mehr Kassierer, weil Banken günstiger neue Filialen eröffnen konnten und die Leute sich um Beratung kümmerten. KI verändert Aufgaben. Was mit den Jobs passiert, entscheiden Menschen und Unternehmen.</aside>
 </section>
 
-<!-- ============ DREI ZUKÜNFTE ============ -->
-<section class="f-th" data-stimmung="th">
-  <div class="slide">
-    <h2 class="headline" style="margin-bottom:0;">Was KI bis 2030 <span class="schimmer">bringen könnte</span></h2>
-    <div class="szenarien"><div class="szenario s0">
-  <p class="wenn"><span>Wenn</span> KI so viel verändert wie damals das Internet</p>
-  <b class="jahre"><small>knapp</small> 1 Jahr</b>
-</div><div class="szenario s1">
-  <p class="wenn"><span>Wenn</span> KI die Hälfte der Büroarbeit erledigt</p>
-  <b class="jahre">4 Jahre</b>
-</div><div class="szenario s2">
-  <p class="wenn"><span>Wenn</span> KI fast jede Büroarbeit besser kann als wir</p>
-  <b class="jahre">14 Jahre</b>
-</div></div>
-    <p class="offen fragment">Welches Szenario es wird, steht <span class="schimmer">noch nicht fest.</span></p>
-    <p class="fussquelle">Quelle: Anthropic, „Scenarios for our Economic Future“, September 2026</p>
-  </div>
-  <aside class="notes">Erst Handzeichen: Wer glaubt, KI wird wie das Internet? Wer glaubt, KI macht bald die Hälfte der Büroarbeit? Wer glaubt ans Extrem? Erklärung: Anthropic hat ausgerechnet, wie groß die US-Wirtschaft 2030 ohne KI wäre, und das mit drei Szenarien verglichen. Weil Prozente keiner fühlt, steht groß da, wie viele Jahre normales Wachstum das wären, die US-Wirtschaft wächst sonst um etwa 2 Prozent im Jahr. Wie das Internet: plus 1,6 Prozent, also knapp ein Jahr zusätzlich. Hälfte der Büroarbeit: plus 8,3 Prozent, vier Jahre zusätzlich. Extrem: plus 32,4 Prozent, das wären 14 Jahre Wachstum zusätzlich, und das bis 2030. Klick: Welches Szenario es wird, steht noch nicht fest. Das entscheiden auch die, die heute hier sitzen. Quelle: Anthropic, Scenarios for our Economic Future, September 2026, über 10.000 Befragte.</aside>
-</section>
-
 <!-- ============ WESHALB ZUGEHÖRT ============ -->
-<section class="f-hblau" data-stimmung="neutral">
-  <div class="slide mittig">
-    <h2 class="frage-gross">Weshalb hast du uns<br><span class="schimmer">zugehört?</span></h2>
-  </div>
-  <aside class="notes">Rückgriff auf den Anfang. Ab hier wechselt die Farbe vom TH-Rot ins EDGE-Blau. Frage stellen, Pause lassen.</aside>
-</section>
-
-<!-- ============ DU BESTIMMST DEN GRUND ============ -->
 <section class="f-hblau" data-stimmung="hblau" data-chrome="zahl">
   <img class="voll" src="assets/illu/finale.jpg" alt="Das Seminargebäude der TH Lübeck im Morgengrauen"><div class="schleier-links"></div>
-  <div class="slide links-mitte">
-    <h2 class="hero" style="font-size:132px;">Du bestimmst<br><span class="schimmer">den Grund.</span></h2>
+  <div class="schleier-frage"></div>
+  <div class="slide mittig">
+    <h2 class="frage-gross">Weshalb hast du<br>uns <span class="schimmer">zugehört?</span></h2>
   </div>
-  <aside class="notes">Die Schlussbotschaft vom letzten Jahr, bewusst gleich: Ihr habt unsere Geschichten gehört. Die Ereignisse in deinem Leben haben den Sinn, den du ihnen gibst. Also frag dich: Warum warst du heute hier? Das Gebäude vom Anfang, jetzt im Morgengrauen.</aside>
+  <aside class="notes">Rückgriff auf den Anfang. Ab hier wechselt die Farbe vom TH-Rot ins EDGE-Blau. Das Gebäude vom Anfang, jetzt im Morgengrauen. Frage stellen, Pause lassen. Die Ereignisse in deinem Leben haben den Sinn, den du ihnen gibst.</aside>
 </section>
 
 <!-- ============ ENDE ============ -->
@@ -1814,6 +1844,30 @@ window.addEventListener('resize', chromeAusrichten);
   document.addEventListener('click', function (e) { var k = e.target.closest && e.target.closest('.k-stimme'); if (k) spielen(k); });
 })();
 </script>
-<script src="kosmos.js"></script>
+<script>
+/* Zahlen der Rennen-Folie zählen beim Öffnen hoch, im Standbild bleiben sie stehen */
+(function () {
+  if (document.body.classList.contains('standbild')) return;
+  function start(f) {
+    if (!f || !f.classList.contains('rennen-folie')) return;
+    f.querySelectorAll('.zahl').forEach(function (z, i) {
+      var ziel = parseFloat(z.dataset.ziel), t0 = performance.now() + 200 + i * 140, dauer = 1500;
+      if (!ziel) return;
+      (function schritt(t) {
+        var u = Math.max(0, Math.min(1, (t - t0) / dauer)), e = 1 - Math.pow(1 - u, 3);
+        z.textContent = (ziel * e).toFixed(3).replace('.', ',');
+        if (u < 1) requestAnimationFrame(schritt);
+      })(performance.now());
+    });
+  }
+  Reveal.on('slidechanged', function (e) { start(e.currentSlide); });
+})();
+</script><script>
+/* Sprecheransicht (Taste S) lädt die Präsi in eingebetteten Fenstern: dort darf nichts hörbar laufen, sonst klingt der Ton versetzt doppelt */
+if (window.Reveal && Reveal.isSpeakerNotes && Reveal.isSpeakerNotes()) {
+  var spielen_ = HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play = function () { this.muted = true; return spielen_.apply(this, arguments); };
+}
+</script><script src="kosmos.js"></script>
 </body>
 </html>
